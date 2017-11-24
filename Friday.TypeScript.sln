@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friday.Base", "Friday.Base\Friday.Base.csproj", "{F3D3BC5A-DB30-462B-90F4-BBDD54C8E52E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friday.Media", "Friday.Media\Friday.Media.csproj", "{3D816E78-6B25-4D30-BA8A-05139E472E21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F3D3BC5A-DB30-462B-90F4-BBDD54C8E52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3D3BC5A-DB30-462B-90F4-BBDD54C8E52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D3BC5A-DB30-462B-90F4-BBDD54C8E52E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D816E78-6B25-4D30-BA8A-05139E472E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D816E78-6B25-4D30-BA8A-05139E472E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D816E78-6B25-4D30-BA8A-05139E472E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D816E78-6B25-4D30-BA8A-05139E472E21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

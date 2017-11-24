@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D816E78-6B25-4D30-BA8A-05139E472E21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Friday.Media</RootNamespace>
+    <AssemblyName>Friday.Media</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Codecs\amr-nb\portedJs\amr.js" />
+    <Content Include="Codecs\amr-nb\portedJs\amrnb.min.js" />
+    <Content Include="Codecs\amr-nb\portedJs\codec.js" />
+    <Content Include="Codecs\amr-nb\portedJs\decoder.js" />
+    <Content Include="Codecs\amr-nb\portedJs\encoder.js" />
+    <Content Include="Codecs\amr-nb\portedJs\libamr-nb.js" />
+    <Content Include="Codecs\amr-nb\site.js" />
+    <Content Include="Codecs\amr-nb\portedJs\util.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Codecs\amr-nb\AMRDecoder.d.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\AmrStream.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\AudioStream.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\CRuntime.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\main.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\Stream.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
