@@ -1,4 +1,4 @@
-﻿namespace AtsLibUtility {
+﻿namespace Friday.Utility {
 
     type TSound = "audio/ogg" | "audio/mpeg" | "audio/wav";
 

@@ -1,4 +1,4 @@
-﻿namespace AtsLibUtility {
+﻿namespace Friday.Utility {
     export interface RGB {
         Red: number;
         Green: number;

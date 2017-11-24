@@ -1,4 +1,4 @@
-﻿namespace AtsLibUtility{
+﻿namespace Friday.Utility{
 
     export class UnitBezier {
 

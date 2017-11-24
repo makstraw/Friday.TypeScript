@@ -1,4 +1,4 @@
-namespace AtsLibAnimation.CoinStack {
+namespace Friday.Animation.CoinStack {
     export class CoinStackShadow {
         private container: HTMLElement;
         private width: number;

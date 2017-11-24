@@ -1,7 +1,7 @@
 ﻿///<reference path="PingPong.ts"/>
 ///<reference path="WebSocketTransport.ts"/>
 
-namespace AtsLibTransport {
+namespace Friday.Transport {
     export abstract class ReflectionBasedTransport extends WebSocketTransport{
         [key: string]: any;
         protected handlerNamePrefix: string = "doOn";

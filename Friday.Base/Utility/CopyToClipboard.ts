@@ -1,4 +1,4 @@
-﻿namespace AtsLibUtility {
+﻿namespace Friday.Utility {
 
     export function copyToClipboard(element: HTMLElement) {
         // create hidden text element, if it doesn't already exist

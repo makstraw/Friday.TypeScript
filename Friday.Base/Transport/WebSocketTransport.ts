@@ -1,6 +1,6 @@
 ﻿///<reference path="WebSocketConnectionString.ts"/>
 ///<reference path="IMessage.ts"/>
-namespace AtsLibTransport {
+namespace Friday.Transport {
     export abstract class WebSocketTransport {
         
         private  socket: WebSocket;

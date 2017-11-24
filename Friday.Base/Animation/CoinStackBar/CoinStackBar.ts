@@ -2,7 +2,7 @@
 ///<reference path="CoinStackShadow.ts"/>
 ///<reference path="Coin.ts"/>
 ///<reference path="CoinStackBarConfig.ts"/>
-namespace AtsLibAnimation.CoinStack {
+namespace Friday.Animation.CoinStack {
 
     export class CoinStackPile {
         constructor() {

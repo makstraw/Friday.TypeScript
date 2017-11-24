@@ -1,4 +1,4 @@
-﻿namespace BitcoinLib {
+﻿namespace Friday.ValueTypes {
 
     export class BitcoinMultiplier {
         public Name: KnockoutObservable<string>;

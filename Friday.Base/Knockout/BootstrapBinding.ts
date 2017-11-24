@@ -1,6 +1,6 @@
 ﻿///<reference path="../Definitions/jquery.d.ts"/>
 ///<reference path="../Definitions/knockout.d.ts"/>
-namespace AtsLibKnockout {
+namespace Friday.Knockout {
     ko.bindingHandlers.showModal = {
         init(element, valueAccessor) {
             $(element).modal({

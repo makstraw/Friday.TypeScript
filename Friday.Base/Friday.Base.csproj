@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>f3d3bc5a-db30-462b-90f4-bbdd54c8e52e</ProjectGuid>
+    <ProjectGuid>{F3D3BC5A-DB30-462B-90F4-BBDD54C8E52E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Friday.Base</RootNamespace>
@@ -30,24 +30,64 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Animation\CoinStackBar.js" />
+    <Content Include="Animation\CoinStackBar\types.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Animation\CoinStackBar.js.map" />
+    <None Include="Animation\CoinStackBar\types.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Animation\CoinStackBar\Coin.ts" />
+    <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackBar.ts" />
+    <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackBarConfig.ts" />
+    <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackShadow.ts" />
+    <TypeScriptCompile Include="Animation\CoinStackBar\types.ts" />
+    <TypeScriptCompile Include="Definitions\jquery.d.ts" />
+    <TypeScriptCompile Include="Definitions\jquery.i18n.d.ts" />
+    <TypeScriptCompile Include="Definitions\knockout.d.ts" />
+    <TypeScriptCompile Include="Definitions\seedrandom.d.ts" />
+    <TypeScriptCompile Include="Encoding\base58.ts" />
+    <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\WindowLocationExtensions.ts" />
+    <TypeScriptCompile Include="Knockout\AnimationBinding.ts" />
+    <TypeScriptCompile Include="Knockout\BootstrapBinding.ts" />
+    <TypeScriptCompile Include="Knockout\Chat.ts" />
+    <TypeScriptCompile Include="Knockout\Counter.ts" />
+    <TypeScriptCompile Include="Knockout\DataGrid.ts" />
+    <TypeScriptCompile Include="Knockout\i18nBinding.ts" />
+    <TypeScriptCompile Include="Locale\localeNumbers.ts" />
+    <TypeScriptCompile Include="Transport\IMessage.ts" />
+    <TypeScriptCompile Include="Transport\PingPong.ts" />
+    <TypeScriptCompile Include="Transport\ReflectionBasedTransport.ts" />
+    <TypeScriptCompile Include="Transport\WebSocketConnectionString.ts" />
+    <TypeScriptCompile Include="Transport\WebSocketTransport.ts" />
+    <TypeScriptCompile Include="Utility\Colors.ts" />
+    <TypeScriptCompile Include="Utility\CookieHelper.ts" />
+    <TypeScriptCompile Include="Utility\CopyToClipboard.ts" />
+    <TypeScriptCompile Include="Utility\CubicBezier.ts" />
+    <TypeScriptCompile Include="Utility\SoundManager.ts" />
+    <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
+    <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
+    <TypeScriptCompile Include="ValueObjects\DateTime.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Jquery\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

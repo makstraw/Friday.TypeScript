@@ -1,4 +1,4 @@
-﻿namespace  AtsLibTransport {
+﻿namespace  Friday.Transport {
     export class WebSocketConnectionString {
         private readonly server: string;
         private readonly port: number;

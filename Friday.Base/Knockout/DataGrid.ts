@@ -1,4 +1,4 @@
-﻿namespace AtsLibKnockout {
+﻿namespace Friday.Knockout {
 
 
     export class DataGrid {

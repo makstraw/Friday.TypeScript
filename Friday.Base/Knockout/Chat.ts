@@ -1,4 +1,4 @@
-﻿namespace ChatLib {
+﻿namespace Friday.Knockout.ChatLib {
 
     export interface ISubmitFlag {
         PropertyName: string;

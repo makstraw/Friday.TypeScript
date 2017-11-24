@@ -1,4 +1,4 @@
-namespace AtsLibAnimation.CoinStack {
+namespace Friday.Animation.CoinStack {
     export class CoinStackBarConfig {
         Container: HTMLElement;
         ContainerWidthPx?: number;

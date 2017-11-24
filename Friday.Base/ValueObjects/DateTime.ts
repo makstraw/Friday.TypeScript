@@ -1,4 +1,4 @@
-﻿namespace AtsLibValueTypes {
+﻿namespace Friday.ValueTypes {
     export class DateTime {
         public static FromCSharp(dateTime: string): Date {
             var tmpArray: Array<string>;

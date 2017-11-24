@@ -1,5 +1,5 @@
 ﻿///<reference path="WebSocketTransport.ts"/>
-namespace AtsLibTransport {
+namespace Friday.Transport {
     export class PingPong {
         private rtt: number;
         private measureStart: number;

@@ -1,4 +1,4 @@
-﻿namespace AtsLibTransport {
+﻿namespace Friday.Transport {
     export interface IMessage {
         
     }

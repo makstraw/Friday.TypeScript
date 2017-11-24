@@ -1,4 +1,4 @@
-﻿namespace AtsLibUtility {
+﻿namespace Friday.Utility {
     export class CookieHelper {
         public static SetCookie(name: string, value: string, days: number) {
             var expires: string;
@@ -37,9 +37,9 @@ interface KnockoutExtenders {
 
 ko.extenders.Cookie = (target, key) => {
     var initialValue = target();
-    if (key && AtsLibUtility.CookieHelper.GetCookie(key) !== null) {
+    if (key && Friday.Utility.CookieHelper.GetCookie(key) !== null) {
         try {
-            initialValue = JSON.parse(AtsLibUtility.CookieHelper.GetCookie(key));
+            initialValue = JSON.parse(Friday.Utility.CookieHelper.GetCookie(key));
         }catch(e){
             
         }
@@ -47,7 +47,7 @@ ko.extenders.Cookie = (target, key) => {
     }
     target(initialValue);
     target.subscribe((newValue: any): void =>{
-        AtsLibUtility.CookieHelper.SetCookie(key, ko.toJSON(newValue), 365);
+        Friday.Utility.CookieHelper.SetCookie(key, ko.toJSON(newValue), 365);
     });
     return target;
 }

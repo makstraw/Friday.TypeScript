@@ -1,4 +1,4 @@
-﻿namespace AtsLibKnockout {
+﻿namespace Friday.Knockout {
     ko.bindingHandlers.toggleShow = {
         init(element, valueAccessor) {
 
