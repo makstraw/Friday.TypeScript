@@ -1,5 +1,4 @@
 ﻿namespace Friday.Logging {
-    import Exception = Friday.Exceptions.Exception;
     export interface ILogger {
         LogCritical(error: string) : void;
         LogCritical(errorMessage: string, e: Error) : void;

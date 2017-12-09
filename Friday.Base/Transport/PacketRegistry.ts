@@ -1,4 +1,5 @@
-﻿namespace Friday.Transport{
+﻿///<reference path="BasicMessage.ts"/>
+namespace Friday.Transport{
     import ILogger = Friday.Logging.ILogger;
 
     export class PacketRegistryEntry {

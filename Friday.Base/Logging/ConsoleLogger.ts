@@ -1,6 +1,4 @@
 namespace Friday.Logging {
-    import Exception = Friday.Exceptions.Exception;
-
     export class ConsoleLogger implements ILogger {
         private minLogLevel: LogLevel;
 
