@@ -15,12 +15,11 @@ namespace Friday.Transport {
 
         constructor(connectionString: WebSocketConnectionString) {
             this.connectionString = connectionString;
-            this.connect();
         }
 
         public connect(): void {
             this.socket = new WebSocket(this.connectionString.toString());
-
+            this.socket.binaryType = "arraybuffer";
             this.socket.onclose = this.onCloseHandler.bind(this);;
             this.socket.onopen = this.onOpenHandler.bind(this);
             this.socket.onmessage = this.onMessageHandler.bind(this);

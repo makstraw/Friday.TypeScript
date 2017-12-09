@@ -5,5 +5,9 @@
         public Write(chunk: T) {
             this.queue.push(chunk);
         }
+
+        public Clear() {
+            this.queue = [];
+        }
     }
 }
