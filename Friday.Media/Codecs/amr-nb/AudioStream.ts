@@ -3,6 +3,7 @@ namespace Friday.Audio {
     import WritableStream = Streams.WritableStream
 
     export class AudioStream extends WritableStream<Float32Array> {
+        public BufferOffset : number = 0;
         private ctx: AudioContext;
         private readonly sampleRate: number = 8000;
         private readonly bufferSize: number = 16384;
@@ -55,7 +56,9 @@ namespace Friday.Audio {
             while (outOffset < out.length) {
 
                 if (!this.currentBuffer && this.queue.length > 0) {
-                    this.currentBuffer = this.queue.shift();
+                    var chunk = this.queue.shift();
+                    this.currentBuffer = chunk.buffer;
+                    this.BufferOffset = chunk.offset;
                     this.currentBufferOffset = 0;
                 }
 

@@ -1,9 +1,15 @@
 ﻿namespace Friday.Streams {
-    export class WritableStream<T> {
-        protected queue: Array<T> = [];
 
-        public Write(chunk: T) {
-            this.queue.push(chunk);
+    export interface IBufferChunk<T> {
+        buffer: T;
+        offset: number;
+    }
+
+    export class WritableStream<T> {
+        protected queue: Array<IBufferChunk<T>> = [];
+
+        public Write(chunk: T, offset: number) {
+            this.queue.push({buffer: chunk, offset: offset});
         }
 
         public Clear() {

@@ -8,18 +8,18 @@ namespace Friday.Transport{
     }
 
     export interface IPacketRegistryRouteRegistration {
-        RegisterBinaryRoute(functionPointer: Function): void;
+        RegisterBinaryRoute(functionPointer: Function, packetType: any): void;
         RegisterRoute(functionPointer: Function, packetType: any): void;
     }
 
     export interface IPacketRegistryRouteFind {
         FindRoute(packet: BasicMessage): void;
-        FindBinaryRoute(buffer: ArrayBuffer): void;
+        FindBinaryRoute(type: number,buffer: Uint8Array): void;
     }
 
     export class PacketRegistry {
         private readonly registry: Array<PacketRegistryEntry> = [];
-        private binaryRoute: PacketRegistryEntry;
+        private readonly binaryRegistry: Array<PacketRegistryEntry> = [];
         private logger: ILogger;
 
         constructor(logger: ILogger) {
@@ -34,9 +34,11 @@ namespace Friday.Transport{
             this.registry.push(route);
         }
 
-        public RegisterBinaryRoute(functionPointer: Function) {
-            this.binaryRoute = new PacketRegistryEntry();
-            this.binaryRoute.FunctionPointer = functionPointer;
+        public RegisterBinaryRoute(functionPointer: Function, packetType: any) {
+            var route = new PacketRegistryEntry();
+            route.PacketType = packetType;
+            route.FunctionPointer = functionPointer;
+            this.binaryRegistry.push(route);
         }
 
         public FindRoute(packet: BasicMessage) {
@@ -44,14 +46,21 @@ namespace Friday.Transport{
                 if (this.registry[i].PacketType == packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.toString());
                     this.registry[i].FunctionPointer(packet);
-                    break;
+                    return;
                 }
             }
             this.logger.LogDebug("Route not found for: " + packet.MessageType);
         }
 
-        public FindBinaryRoute(buffer: ArrayBuffer) {
-            this.binaryRoute.FunctionPointer(buffer);
+        public FindBinaryRoute(type: number, buffer: Uint8Array) {
+            for (let i = 0; i < this.binaryRegistry.length; i++) {
+                if (this.binaryRegistry[i].PacketType == type) {
+                    this.logger.LogDebug(`Routing type ${type}, with buffer ${buffer.byteLength}`);
+                    this.binaryRegistry[i].FunctionPointer(buffer);
+                    return ;
+                }
+            }
+            this.logger.LogDebug("Route not found for: " + type);
         }
 
     }
