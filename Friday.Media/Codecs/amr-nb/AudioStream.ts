@@ -6,7 +6,7 @@ namespace Friday.Audio {
         public BufferOffset : number = 0;
         private ctx: AudioContext;
         private readonly sampleRate: number = 8000;
-        private readonly bufferSize: number = 16384;
+        private readonly bufferSize: number = 4096;//16384;
         private processorNode: ScriptProcessorNode;
         private inputNode: AudioBufferSourceNode;
         private shuttingDown = false;
@@ -37,13 +37,6 @@ namespace Friday.Audio {
                 const actualFromOffset = from.byteLength * channel + fromOffset
                 const channelData = to.getChannelData(channel)
                 channelData.set(from.subarray(actualFromOffset,fromOffset+length),toOffset);
-//                this._bulkCopy(channelData, toOffset, actualFromOffset, length)
-//
-//
-//                    for (let i = 0; i < length; i++) {
-//                        const actualFromOffset = (fromOffset + i) * this.channelsCount + channel;
-//                        channelData[toOffset + i] = from[i];
-//                    }
             }
             
         }
