@@ -64,6 +64,7 @@
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
     <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\TypedArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\WindowLocationExtensions.ts" />
     <TypeScriptCompile Include="Knockout\AnimationBinding.ts" />
     <TypeScriptCompile Include="Knockout\BootstrapBinding.ts" />
