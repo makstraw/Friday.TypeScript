@@ -2,11 +2,13 @@
 namespace Friday.Audio {
     import WritableStream = Streams.WritableStream
 
+    export type AudioStreamBufferSize = 0 | 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384
+
     export class AudioStream extends WritableStream<Float32Array> {
         public BufferOffset : number = 0;
         private ctx: AudioContext;
         private readonly sampleRate: number = 8000;
-        private readonly bufferSize: number = 4096;//16384;
+        private readonly bufferSize: AudioStreamBufferSize;
         private processorNode: ScriptProcessorNode;
         private inputNode: AudioBufferSourceNode;
         private shuttingDown = false;
@@ -16,9 +18,10 @@ namespace Friday.Audio {
         private readonly channelsCount = 1;
         private readonly interleaved = true;
 
-        constructor(ctx: AudioContext) {
+        constructor(ctx: AudioContext, bufferSize: AudioStreamBufferSize = 4096) {
             super();
             this.ctx = ctx;
+            this.bufferSize = bufferSize;
             this.processorNode = ctx.createScriptProcessor(this.bufferSize, 0, this.channelsCount);
             this.inputNode = ctx.createBufferSource();
             this.inputNode.playbackRate.value = 0.2;
@@ -41,11 +44,31 @@ namespace Friday.Audio {
             
         }
 
+        private fadeOut(buffer: AudioBuffer) {
+            const ms = 15;
+            const bitsPerSample = 16;
+            const kbps = this.ctx.sampleRate * bitsPerSample / 8;
+            const bytes = kbps * ms / 1000;
+//            console.log(`SampeRate: ${this.ctx.sampleRate}, Ms: ${ms}, bitsPerSample: ${bitsPerSample}, kbps: ${kbps}, byte: ${bytes}`);
+            const channelData = buffer.getChannelData(0);
+            for (let i = bytes; i > 0; i--) {
+                let amplitude = i / bytes;
+                if(amplitude < 0.1) amplitude = 0.1;
+                channelData[channelData.length - i] = channelData[channelData.length - i] * amplitude;
+            }
+            for (let i = 0; i <= bytes; i++) {
+                let amplitude = i / bytes;
+                if (amplitude < 0.1) amplitude = 0.1;
+                channelData[i] = channelData[i] * amplitude;
+            }
+        }
+
         public AudioProcessHandle(ev: AudioProcessingEvent) {
             if (this.shutDown) return;
             const out = ev.outputBuffer;
-
+            
             let outOffset = 0;
+
             while (outOffset < out.length) {
 
                 if (!this.currentBuffer && this.queue.length > 0) {
@@ -69,6 +92,7 @@ namespace Friday.Audio {
                 const remainingInput = this.currentBuffer.length - this.currentBufferOffset;
                 const remaining = Math.min(remainingOutput, remainingInput);
                 this.copyTo(this.currentBuffer, out, outOffset, this.currentBufferOffset, remaining);
+//                this.fadeOut(out);
                 this.currentBufferOffset += remaining;
                 outOffset += remaining;
                 if (this.currentBufferOffset >= this.currentBuffer.length) {
