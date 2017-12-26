@@ -1,4 +1,4 @@
-﻿namespace Friday.Audio {
+﻿namespace Friday.AudioLib {
     export class Resampler {
         private fromSampleRate: number;
         private toSampleRate: number;

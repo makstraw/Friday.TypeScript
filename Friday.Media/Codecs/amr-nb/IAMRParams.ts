@@ -1,4 +1,4 @@
-﻿namespace Friday.Audio.Amr {
+﻿namespace Friday.AudioLib.Amr {
     interface IAMRParams {
         
     }

@@ -46,7 +46,6 @@ namespace Friday.Transport{
                 if (this.registry[i].PacketType == packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.toString());
                     this.registry[i].FunctionPointer(packet);
-                    return;
                 }
             }
             this.logger.LogDebug("Route not found for: " + packet.MessageType);

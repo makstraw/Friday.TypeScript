@@ -1,4 +1,4 @@
-namespace Friday.Audio.Amr {
+namespace Friday.AudioLib.Amr {
     export class AMRDecoder {
         private block_size = 20;
         private frame_size = 160;

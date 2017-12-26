@@ -1,4 +1,4 @@
-﻿namespace Friday.Audio.Amr {
+﻿namespace Friday.AudioLib.Amr {
     export class AMR {
         public static MAGIC_NUMBER: [35, 33, 65, 77, 82, 10];
         public static MAGIC_NUMBER_STRING: "#!AMR\n";
