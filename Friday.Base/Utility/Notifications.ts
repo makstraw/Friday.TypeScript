@@ -19,13 +19,14 @@
         }
 
         private onRequestPermission(result: NotificationPermission) {
-            
+            this.Permissions(result);
         }
 
-        public Notify(title: string, msg: string, icon?: string) {
+        public Notify(title: string, msg: string, icon?: string, tag?: string) {
             var options: NotificationOptions = { body: msg };
             //options.tag;
             if (icon) options.icon = icon;
+            if (tag) options.tag = tag;
 
             var notification = new Notification(title, options);
             //notification.onclick()
