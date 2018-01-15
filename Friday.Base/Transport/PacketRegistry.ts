@@ -1,23 +1,16 @@
 ﻿///<reference path="BasicMessage.ts"/>
+///<reference path="IPacketRegistryRouteFind.ts"/>
+///<reference path="IPacketRegistryRouteRegistration.ts"/>
+///<reference path="../Logging/ILogger.ts"/>
 namespace Friday.Transport{
     import ILogger = Friday.Logging.ILogger;
 
-    export class PacketRegistryEntry {
+    class PacketRegistryEntry {
         public PacketType: any;
         public FunctionPointer: Function;
     }
 
-    export interface IPacketRegistryRouteRegistration {
-        RegisterBinaryRoute(functionPointer: Function, packetType: any): void;
-        RegisterRoute(functionPointer: Function, packetType: any): void;
-    }
-
-    export interface IPacketRegistryRouteFind {
-        FindRoute(packet: BasicMessage): void;
-        FindBinaryRoute(type: number,buffer: Uint8Array): void;
-    }
-
-    export class PacketRegistry {
+    export class PacketRegistry implements IPacketRegistryRouteFind, IPacketRegistryRouteRegistration {
         private readonly registry: Array<PacketRegistryEntry> = [];
         private readonly binaryRegistry: Array<PacketRegistryEntry> = [];
         private logger: ILogger;

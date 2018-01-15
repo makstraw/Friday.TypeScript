@@ -76,9 +76,16 @@
     <TypeScriptCompile Include="Knockout\DataGrid.ts" />
     <TypeScriptCompile Include="Knockout\i18nBinding.ts" />
     <TypeScriptCompile Include="Locale\localeNumbers.ts" />
+    <TypeScriptCompile Include="Logging\ConsoleLogger.ts" />
+    <TypeScriptCompile Include="Logging\ILogger.ts" />
+    <TypeScriptCompile Include="Logging\LogLevel.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
     <TypeScriptCompile Include="Transport\IMessage.ts" />
+    <TypeScriptCompile Include="Transport\IMessageSend.ts" />
+    <TypeScriptCompile Include="Transport\IPacketRegistryRouteFind.ts" />
+    <TypeScriptCompile Include="Transport\IPacketRegistryRouteRegistration.ts" />
     <TypeScriptCompile Include="Transport\JsonWebSocketTransport.ts" />
+    <TypeScriptCompile Include="Transport\PacketRegistry.ts" />
     <TypeScriptCompile Include="Transport\PingPong.ts" />
     <TypeScriptCompile Include="Transport\ReflectionBasedTransport.ts" />
     <TypeScriptCompile Include="Transport\RouterBasedTransport.ts" />
@@ -92,7 +99,6 @@
     <TypeScriptCompile Include="Utility\Notifications.ts" />
     <TypeScriptCompile Include="Utility\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
-    <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
     <TypeScriptCompile Include="ValueObjects\DateTime.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿///<reference path="WebSocketConnectionString.ts"/>
 ///<reference path="IMessage.ts"/>
+///<reference path="IMessageSend.ts"/>
 ///<reference path="PingPong.ts"/>
 namespace Friday.Transport {
     export type WebSocketBinaryType = "arraybuffer" | "blob";
@@ -9,7 +10,7 @@ namespace Friday.Transport {
         pingInstance?: PingPong;
     }
 
-    export abstract class WebSocketTransport {
+    export abstract class WebSocketTransport implements IMessageSend {
         private ping: PingPong;
         private  socket: WebSocket;
         private connectionString: WebSocketConnectionString;
