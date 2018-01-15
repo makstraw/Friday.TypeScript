@@ -1,5 +1,5 @@
 ﻿///<reference path="../Definitions/knockout.d.ts" />
-///<reference path="WsViewModel.ts"/>
+///<reference path="RoutedViewModel.ts"/>
 /// <reference path="../../Friday.Base/Transport/IPacketRegistryRouteRegistration.ts" />
 /// <reference path="../../Friday.Base/Transport/IMessageSend.ts" />
 ///<reference path="Notices/NoticeViewModel.ts"/>
@@ -8,7 +8,7 @@ namespace Friday.Knockout.ViewModels {
     import IMessageSend = Transport.IMessageSend;
     import NoticeViewModel = Knockout.ViewModels.Notices.NoticeViewModel;
 
-    export abstract class ModalViewModel extends WsViewModel {
+    export abstract class ModalViewModel extends RoutedViewModel {
         public ErrorText: KnockoutObservable<string> = ko.observable("");
         public ShowModal: KnockoutObservable<boolean> = ko.observable(false);
 
