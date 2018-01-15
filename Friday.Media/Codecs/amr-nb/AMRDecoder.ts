@@ -1,3 +1,4 @@
+///<reference path="../../Definitions/opencoreamr.d.ts"/>
 namespace Friday.AudioLib.Amr {
     export class AMRDecoder {
         private block_size = 20;

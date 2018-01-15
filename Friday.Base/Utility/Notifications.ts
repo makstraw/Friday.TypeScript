@@ -1,4 +1,5 @@
-﻿namespace Friday.Notifications {
+﻿///<reference path="../Definitions/knockout.d.ts"/>
+namespace Friday.Notifications {
 
     type NotificationPermission = "default" | "denied" | "granted";
 

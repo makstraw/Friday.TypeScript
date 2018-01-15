@@ -43,22 +43,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Codecs\amr-nb\portedJs\amr.js" />
-    <Content Include="Codecs\amr-nb\portedJs\amrnb.min.js" />
-    <Content Include="Codecs\amr-nb\portedJs\codec.js" />
-    <Content Include="Codecs\amr-nb\portedJs\decoder.js" />
-    <Content Include="Codecs\amr-nb\portedJs\encoder.js" />
-    <Content Include="Codecs\amr-nb\portedJs\libamr-nb.js" />
-    <Content Include="Codecs\amr-nb\site.js" />
-    <Content Include="Codecs\amr-nb\portedJs\util.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Codecs\amr-nb\AMRDecoder.d.ts" />
-    <TypeScriptCompile Include="Codecs\amr-nb\AmrStream.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\AudioStream2.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\BufferQueue.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\IPlaybackState.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\IWebAudioApiBackendOptions.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\reference.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\SampleBuffer.ts" />
+    <TypeScriptCompile Include="Audio\AudioStream2\WebAudioApiBackend.ts" />
+    <TypeScriptCompile Include="Audio\Resampler.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\AMR.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\AMRDecoder.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\AMREncoder.ts" />
     <TypeScriptCompile Include="Codecs\amr-nb\AudioStream.ts" />
-    <TypeScriptCompile Include="Codecs\amr-nb\CRuntime.ts" />
-    <TypeScriptCompile Include="Codecs\amr-nb\main.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\IAMRParams.ts" />
+    <TypeScriptCompile Include="Codecs\amr-nb\reference.ts" />
     <TypeScriptCompile Include="Codecs\amr-nb\Stream.ts" />
+    <TypeScriptCompile Include="Definitions\opencoreamr.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
