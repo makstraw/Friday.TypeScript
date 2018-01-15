@@ -1,4 +1,5 @@
-///<reference path="ReflectionBasedTransport.ts"/>
+///<reference path="JsonWebSocketTransport.ts"/>
+///<reference path="PacketRegistry.ts"/>
 namespace Friday.Transport { 
     export abstract class RouterBasedTransport extends JsonWebSocketTransport {
         private registry: IPacketRegistryRouteFind;

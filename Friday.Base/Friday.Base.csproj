@@ -56,6 +56,9 @@
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackBarConfig.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackShadow.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\types.ts" />
+    <TypeScriptCompile Include="Crypto\Hash\IHashProvider.ts" />
+    <TypeScriptCompile Include="Crypto\Hash\IHashResult.ts" />
+    <TypeScriptCompile Include="Crypto\Hash\Sha256.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
     <TypeScriptCompile Include="Definitions\jquery.i18n.d.ts" />
     <TypeScriptCompile Include="Definitions\knockout.d.ts" />
@@ -79,6 +82,7 @@
     <TypeScriptCompile Include="Transport\WebSocketConnectionString.ts" />
     <TypeScriptCompile Include="Transport\WebSocketTransport.ts" />
     <TypeScriptCompile Include="Utility\Colors.ts" />
+    <TypeScriptCompile Include="Utility\Converter\bin2hex.ts" />
     <TypeScriptCompile Include="Utility\CookieHelper.ts" />
     <TypeScriptCompile Include="Utility\CopyToClipboard.ts" />
     <TypeScriptCompile Include="Utility\CubicBezier.ts" />
