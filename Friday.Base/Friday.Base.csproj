@@ -69,12 +69,6 @@
     <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
     <TypeScriptCompile Include="Extensions\TypedArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\WindowLocationExtensions.ts" />
-    <TypeScriptCompile Include="Knockout\AnimationBinding.ts" />
-    <TypeScriptCompile Include="Knockout\BootstrapBinding.ts" />
-    <TypeScriptCompile Include="Knockout\Chat.ts" />
-    <TypeScriptCompile Include="Knockout\Counter.ts" />
-    <TypeScriptCompile Include="Knockout\DataGrid.ts" />
-    <TypeScriptCompile Include="Knockout\i18nBinding.ts" />
     <TypeScriptCompile Include="Locale\localeNumbers.ts" />
     <TypeScriptCompile Include="Logging\ConsoleLogger.ts" />
     <TypeScriptCompile Include="Logging\ILogger.ts" />

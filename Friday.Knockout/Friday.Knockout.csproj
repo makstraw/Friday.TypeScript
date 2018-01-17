@@ -43,7 +43,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
+    <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
+    <TypeScriptCompile Include="ViewModels\Chat.ts" />
+    <TypeScriptCompile Include="ViewModels\DataGrid.ts" />
+    <TypeScriptCompile Include="Definitions\jquery.d.ts" />
+    <TypeScriptCompile Include="Definitions\jquery.i18n.d.ts" />
     <TypeScriptCompile Include="Definitions\knockout.d.ts" />
+    <TypeScriptCompile Include="Bindings\i18nBinding.ts" />
     <TypeScriptCompile Include="Utility\SimpleTimer.ts" />
     <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
     <TypeScriptCompile Include="ViewModels\ModalViewModel.ts" />

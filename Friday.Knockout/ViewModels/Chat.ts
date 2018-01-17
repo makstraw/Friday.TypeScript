@@ -72,7 +72,11 @@
 
     }
 
-    export class Chat {
+    export interface IChatChannelControl {
+        CurrentChannel: KnockoutObservable<string>;
+    }
+
+    export class Chat implements IChatChannelControl {
         public Channels: Array<ChatChannel> = [];
         public CurrentChannel: KnockoutObservable<string>;
         public MessageText: KnockoutObservable<string> = ko.observable("");
