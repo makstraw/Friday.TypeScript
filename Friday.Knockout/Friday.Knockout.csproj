@@ -45,8 +45,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
-    <TypeScriptCompile Include="ViewModels\Chat.ts" />
-    <TypeScriptCompile Include="ViewModels\DataGrid.ts" />
+    <TypeScriptCompile Include="ViewModels\ChatViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\DataGridViewModel.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
     <TypeScriptCompile Include="Definitions\jquery.i18n.d.ts" />
     <TypeScriptCompile Include="Definitions\knockout.d.ts" />

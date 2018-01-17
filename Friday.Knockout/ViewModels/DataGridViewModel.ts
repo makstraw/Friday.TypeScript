@@ -1,7 +1,7 @@
-﻿namespace Friday.Knockout {
+﻿namespace Friday.Knockout.ViewModels {
 
 
-    export class DataGrid {
+    export class DataGridViewModel {
         private data: KnockoutObservableArray<object> = ko.observableArray([]);
         
         private itemsPerPage: number;

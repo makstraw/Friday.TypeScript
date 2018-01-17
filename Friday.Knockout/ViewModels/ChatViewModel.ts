@@ -1,4 +1,9 @@
-﻿namespace Friday.Knockout.ChatLib {
+﻿/// <reference path="../../Friday.Base/Transport/IPacketRegistryRouteRegistration.ts" />
+/// <reference path="../../Friday.Base/Transport/IMessageSend.ts" />
+namespace Friday.Knockout.Chat {
+    import RoutedViewModel = Knockout.ViewModels.RoutedViewModel;
+    import IPacketRegistryRouteRegistration = Transport.IPacketRegistryRouteRegistration;
+    import IMessageSend = Transport.IMessageSend;
 
     export interface ISubmitFlag {
         PropertyName: string;
@@ -13,7 +18,6 @@
 
     export interface IChatCfg {
         Channels: Array<IChannelCfg>;
-        SubmitHandler: Function;
         SubmitFlags?: Array<ISubmitFlag>;
         SwitchChannelHandler?: Function;
     }
@@ -76,12 +80,11 @@
         CurrentChannel: KnockoutObservable<string>;
     }
 
-    export class Chat implements IChatChannelControl {
-        public Channels: Array<ChatChannel> = [];
-        public CurrentChannel: KnockoutObservable<string>;
-        public MessageText: KnockoutObservable<string> = ko.observable("");
-        public Visible: KnockoutObservable<boolean> = ko.observable(false).extend({Cookie: "isChatVisible"});
-        private readonly submitHandler: Function;
+    export abstract class ChatViewModel extends RoutedViewModel implements IChatChannelControl {
+        public readonly Channels: Array<ChatChannel> = [];
+        public readonly CurrentChannel: KnockoutObservable<string>;
+        public readonly MessageText: KnockoutObservable<string> = ko.observable("");
+        public readonly Visible: KnockoutObservable<boolean> = ko.observable(false).extend({Cookie: "isChatVisible"});
         private readonly submitFlags: Array<ISubmitFlag> = [];
         private readonly switchChannelHandler: Function;
 
@@ -94,7 +97,7 @@
             for (var i = 0; i < this.submitFlags.length; i++) {
                 message[this.submitFlags[i].PropertyName] = this.submitFlags[i].PropertyValue;
             }
-            this.submitHandler(message);
+            this.sendMessage(message);
             this.MessageText("");
         }
 
@@ -125,12 +128,12 @@
             }
         }
 
-        constructor(cfg: IChatCfg) {
+        constructor(cfg: IChatCfg, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
+            super(transport, registry);
             for (var i = 0; i < cfg.Channels.length; i++) {
                 this.Channels.push(new ChatChannel(cfg.Channels[i]));
             }
             this.CurrentChannel = ko.observable(this.Channels[0].Name);
-            this.submitHandler = cfg.SubmitHandler;
             this.switchChannelHandler = cfg.SwitchChannelHandler;
             if (cfg.SubmitFlags.length > 0)
                 this.submitFlags = cfg.SubmitFlags;
