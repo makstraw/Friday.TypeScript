@@ -66,6 +66,7 @@
     <TypeScriptCompile Include="Encoding\base58.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
     <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
     <TypeScriptCompile Include="Extensions\TypedArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\WindowLocationExtensions.ts" />
