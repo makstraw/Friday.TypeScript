@@ -7,15 +7,15 @@ interface KnockoutObservableArray<T> {
 
 ko.observableArray.fn.RemoveDeleted = function (records: Array<any>) {
     this().forEach(function (item: any) {
-        if (!records.find(function (element: any): boolean {
+        if (!records.find(function(element: any): boolean {
                 if (typeof element == "object")
                     return compareObjects(this, element);
                 else return this == element;
             },
             item)) {
-            this.remove((i: any) => {return item.Equals(i)});
+            this.remove((i: any) => { return compareObjects(item, i) });
         };
-    });
+    },this);
 }
 
 ko.observableArray.fn.AddNew = function (records: Array<any>, unshift?: boolean) {
