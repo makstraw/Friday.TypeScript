@@ -92,6 +92,7 @@
     <TypeScriptCompile Include="Utility\CopyToClipboard.ts" />
     <TypeScriptCompile Include="Utility\CubicBezier.ts" />
     <TypeScriptCompile Include="Utility\Notifications.ts" />
+    <TypeScriptCompile Include="Utility\ObjectComparison.ts" />
     <TypeScriptCompile Include="Utility\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
     <TypeScriptCompile Include="ValueObjects\DateTime.ts" />

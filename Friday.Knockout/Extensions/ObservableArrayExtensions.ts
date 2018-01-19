@@ -1,4 +1,4 @@
-﻿///<reference path="../../Friday.Base/Extensions/ObjectExtensions.ts"/>
+﻿///<reference path="../../Friday.Base/Utility/ObjectComparison.ts"/>
 interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;
@@ -9,7 +9,7 @@ ko.observableArray.fn.RemoveDeleted = function (records: Array<any>) {
     this().forEach(function (item: any) {
         if (!records.find(function (element: any): boolean {
                 if (typeof element == "object")
-                    return this.Equals(element);
+                    return compareObjects(this, element);
                 else return this == element;
             },
             item)) {
@@ -24,7 +24,7 @@ ko.observableArray.fn.AddNew = function (records: Array<any>, unshift?: boolean)
     records.forEach(function(item: any) {
         if(!this().find(function(element: any): boolean {
             if (typeof element == "object")
-                return this.Equals(element);
+                return compareObjects(this, element);
             else return this == element;
         }, item)) {
             if (unshift) this.unshift(item);
