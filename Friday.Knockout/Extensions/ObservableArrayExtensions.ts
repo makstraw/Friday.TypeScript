@@ -1,4 +1,5 @@
-﻿interface KnockoutObservableArray<T> {
+﻿///<reference path="../../Friday.Base/Extensions/ObjectExtensions.ts"/>
+interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;
     UpdateRecords(records: Array<T>, unshift?: boolean): void;
