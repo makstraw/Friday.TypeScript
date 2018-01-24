@@ -3,9 +3,44 @@ interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;
     UpdateRecords(records: Array<T>, unshift?: boolean): void;
+    InsertOrUpdate(newRecord: T, objectPropertyName: string, unshift?: boolean, ): void;
+    FindRecord(matchRecord: T, objectPropertyName: string): object;
+    FindRecordIndex(matchRecord: T, objectPropertyName: string): number;
 }
 
-ko.observableArray.fn.RemoveDeleted = function (records: Array<any>) {
+ko.observableArray.fn.FindRecord = function (this: KnockoutObservableArray<any>, matchRecord: any, objectPropertyName: string): object {
+    var index = this.FindRecordIndex(matchRecord, objectPropertyName);
+    if (index != null) return this()[index];
+    return null;
+}
+
+ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<any>, matchRecord: any, objectPropertyName: string): number {
+    for (let i = 0; i < this().length;i++) {
+        var item = this()[i];
+        if ((typeof item[objectPropertyName] == "object" &&
+                compareObjects(item[objectPropertyName], matchRecord[objectPropertyName])) ||
+            (typeof item[objectPropertyName] != "object" && item[objectPropertyName] == matchRecord[objectPropertyName])
+        ) {
+            return i;
+        }
+    }
+    return null;
+}
+
+ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<any>, newRecord: object, objectPropertyName: string, unshift?: boolean, ): void {
+    if (!unshift) unshift = false;
+    var itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
+    if (itemIndex != null) {
+        this().splice(itemIndex, 1, newRecord);
+        console.log(this());
+        this.notifySubscribers();
+    } else {
+        if (unshift) this.unshift(newRecord);
+        else this.push(newRecord);
+    }
+}
+
+ko.observableArray.fn.RemoveDeleted = function (this: KnockoutObservableArray<any>, records: Array<any>) {
     this().forEach(function (item: any) {
         if (!records.find(function(element: any): boolean {
                 if (typeof element == "object")
@@ -18,7 +53,7 @@ ko.observableArray.fn.RemoveDeleted = function (records: Array<any>) {
     },this);
 }
 
-ko.observableArray.fn.AddNew = function (records: Array<any>, unshift?: boolean) {
+ko.observableArray.fn.AddNew = function (this: KnockoutObservableArray<any>, records: Array<any>, unshift?: boolean) {
     if (!unshift) unshift = false;
 
     records.forEach(function(item: any) {
@@ -33,7 +68,7 @@ ko.observableArray.fn.AddNew = function (records: Array<any>, unshift?: boolean)
     }, this);
 }
 
-ko.observableArray.fn.UpdateRecords = function (records: Array<any>, unshift?: boolean) {
+ko.observableArray.fn.UpdateRecords = function (this: KnockoutObservableArray<any>, records: Array<any>, unshift?: boolean) {
     if (!unshift) unshift = false;
 
     this.RemoveDeleted(records);
