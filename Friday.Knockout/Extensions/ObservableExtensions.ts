@@ -3,22 +3,18 @@
 }
 
 interface KnockoutExtenders {
-    Default(value: any);
+    Default(target: any, value?: any);
 }
 
 ko.observable.fn.Reset = function () {
     this(typeof this._default === 'function' ? this._default() : this._default);
 }
 
-ko.extenders.Default = function(value: any) {
-    if (typeof value === 'undefined') return;
-    this._default = value;
+ko.extenders.Default = (target: any, value?: any) => {
+    if (typeof value === 'undefined') target._default = target();
+    else target._default = value;
 
-    if (typeof this() === 'undefined') {
-        this.reset();
-    }
-
-    this.subscribe(function (newValue) {
+    target.subscribe(function (newValue) {
         typeof newValue === 'undefined' && this.reset();
     });
 }
