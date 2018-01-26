@@ -1,3 +1,4 @@
+///<reference path="LogLevel.ts"/>
 namespace Friday.Logging {
     export class ConsoleLogger implements ILogger {
         private minLogLevel: LogLevel;
