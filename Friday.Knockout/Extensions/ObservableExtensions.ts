@@ -1,9 +1,9 @@
 ﻿interface KnockoutObservable<T> {
-    Reset()
+    Reset(): void;
 }
 
 interface KnockoutExtenders {
-    Default(target: any, value?: any);
+    Default(target: any, value?: any): any;
 }
 
 ko.observable.fn.Reset = function () {
@@ -14,7 +14,7 @@ ko.extenders.Default = (target: any, value?: any) => {
     if (typeof value === 'undefined') target._default = target();
     else target._default = value;
 
-    target.subscribe(function (newValue) {
+    target.subscribe(function (newValue: any) {
         typeof newValue === 'undefined' && this.reset();
     });
 }
