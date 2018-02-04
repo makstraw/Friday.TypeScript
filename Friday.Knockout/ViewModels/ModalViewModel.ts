@@ -41,6 +41,7 @@ namespace Friday.Knockout.ViewModels {
 
         public Show() {
             this.Clear();
+            ModalViewModel.HideAll();
             this.ShowModal(true);
         }
     }

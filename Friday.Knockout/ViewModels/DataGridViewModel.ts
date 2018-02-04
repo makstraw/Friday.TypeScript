@@ -1,32 +1,35 @@
 ﻿namespace Friday.Knockout.ViewModels {
 
 
-    export class DataGridViewModel {
-        private data: KnockoutObservableArray<object> = ko.observableArray([]);
+    export class DataGridViewModel<T extends Object> {
+        private data: KnockoutObservableArray<T> = ko.observableArray([]);
         
-        private itemsPerPage: number;
+        public ItemsPerPage: KnockoutObservable<number>;
         public Columns: KnockoutObservableArray<string> = ko.observableArray([]);
         public CurrentPageIndex: KnockoutObservable<number> = ko.observable(0);
-        public MaxPageIndex: KnockoutComputed<number> = ko.pureComputed(this.getMaxPageIndex,this);
-        public CurrentPageData: KnockoutComputed<Array<object>> = ko.pureComputed(this.getDataSlice,this); 
 
-        private getDataSlice() : Array<object> {
-            var startIndex = this.itemsPerPage * this.CurrentPageIndex();
-            return ko.unwrap(this.data).slice(startIndex, startIndex + this.itemsPerPage);
-        }
+        public MaxPageIndex: KnockoutComputed<number> = ko.pureComputed(function(this: DataGridViewModel<T>): number {
+            return Math.ceil(ko.unwrap(this.data).length / this.ItemsPerPage()) - 1;
+        }, this);
 
-        private getMaxPageIndex(): number {
-            return Math.ceil(ko.unwrap(this.data).length / this.itemsPerPage) - 1;
-        }
+        public CurrentPageData: KnockoutComputed<Array<T>> = ko.pureComputed(function (this: DataGridViewModel<T>): Array<T> {
+            var startIndex = this.ItemsPerPage() * this.CurrentPageIndex();
+            return ko.unwrap(this.data).slice(startIndex, startIndex + this.ItemsPerPage());
+        },this); 
+
 
         constructor(columns: Array<string>, itemsPerPage: number = 5) {
             this.Columns(columns);
-            this.itemsPerPage = itemsPerPage;
+            this.ItemsPerPage = ko.observable(itemsPerPage);
         }
 
-        public Set(data: Array<object>) {
+        public Set(data: Array<T>) {
             this.data(data);
 
+        }
+
+        public Add(record: T) {
+            this.data.push(record);
         }
 
         public NextPage() {

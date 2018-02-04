@@ -55,6 +55,7 @@
     <TypeScriptCompile Include="Bindings\i18nBinding.ts" />
     <TypeScriptCompile Include="Utility\SimpleTimer.ts" />
     <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
+    <TypeScriptCompile Include="ViewModels\LocaleManager.ts" />
     <TypeScriptCompile Include="ViewModels\ModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeList.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeRouter.ts" />

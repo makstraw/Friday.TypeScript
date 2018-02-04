@@ -56,6 +56,7 @@
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackBarConfig.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackShadow.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\types.ts" />
+    <TypeScriptCompile Include="Collections\KeyValuePair.ts" />
     <TypeScriptCompile Include="Crypto\Hash\IHashProvider.ts" />
     <TypeScriptCompile Include="Crypto\Hash\IHashResult.ts" />
     <TypeScriptCompile Include="Crypto\Hash\Sha256.ts" />
@@ -65,6 +66,7 @@
     <TypeScriptCompile Include="Definitions\seedrandom.d.ts" />
     <TypeScriptCompile Include="Encoding\base58.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
     <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
