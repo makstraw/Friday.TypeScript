@@ -63,8 +63,16 @@
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
     <TypeScriptCompile Include="Definitions\jquery.i18n.d.ts" />
     <TypeScriptCompile Include="Definitions\knockout.d.ts" />
+    <TypeScriptCompile Include="Definitions\long.d.ts" />
     <TypeScriptCompile Include="Definitions\seedrandom.d.ts" />
     <TypeScriptCompile Include="Encoding\base58.ts" />
+    <TypeScriptCompile Include="Exceptions\ArgumentCountException.ts" />
+    <TypeScriptCompile Include="Exceptions\ArgumentException.ts" />
+    <TypeScriptCompile Include="Exceptions\ArgumentOutOfRangeException.ts" />
+    <TypeScriptCompile Include="Exceptions\Exception.ts" />
+    <TypeScriptCompile Include="Exceptions\NotImplementedException.ts" />
+    <TypeScriptCompile Include="Exceptions\OverflowException.ts" />
+    <TypeScriptCompile Include="Exceptions\reference_basicexceptions.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
@@ -93,11 +101,15 @@
     <TypeScriptCompile Include="Utility\CookieHelper.ts" />
     <TypeScriptCompile Include="Utility\CopyToClipboard.ts" />
     <TypeScriptCompile Include="Utility\CubicBezier.ts" />
+    <TypeScriptCompile Include="Utility\MethodHelper.ts" />
     <TypeScriptCompile Include="Utility\Notifications.ts" />
     <TypeScriptCompile Include="Utility\ObjectComparison.ts" />
     <TypeScriptCompile Include="Utility\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
-    <TypeScriptCompile Include="ValueObjects\DateTime.ts" />
+    <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
+    <TypeScriptCompile Include="ValueObjects\Time\DateTime.ts" />
+    <TypeScriptCompile Include="ValueObjects\Time\TimeSpan.ts" />
+    <TypeScriptCompile Include="ValueObjects\Time\UnixTime.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jquery\" />
