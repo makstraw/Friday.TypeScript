@@ -36,7 +36,7 @@ namespace Friday.ValueTypes {
 
         private static readonly TicksPerTenthSecond = TimeSpan.TicksPerMillisecond.multiply(100);
 
-        public static readonly Zero = new TimeSpan(0);
+        public static readonly Zero = new TimeSpan(Long.ZERO);
 
         public static readonly MaxValue = new TimeSpan(Long.MAX_VALUE);
         public static readonly MinValue = new TimeSpan(Long.MIN_VALUE);
