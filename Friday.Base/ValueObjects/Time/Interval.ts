@@ -1,0 +1,71 @@
+﻿///<reference path="UnixTime.ts"/>
+namespace Friday.ValueTypes {
+    import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
+    import ArgumentException = Exceptions.ArgumentException;
+
+    export class Interval implements IComparable<Interval> {
+
+
+        public static get Empty(): Interval {
+            return new Interval(UnixTime.EpochStart, UnixTime.EpochStart);
+        }
+
+        public readonly Start: UnixTime;
+        public readonly End: UnixTime;
+        public get Length(): UnixTime {
+            return this.End.Subtract(this.Start);
+        }
+
+        constructor(start: UnixTime, end: UnixTime) {
+            if (start.GreaterThan(end))
+                throw new ArgumentOutOfRangeException('start');
+            this.Start = start;
+            this.End = end;
+        }
+
+        public ToLocalTimeInterval(): string {
+            return "Start: " + this.Start.ToLocalTimeString() + " End: " + this.End.ToLocalTimeString();
+        }
+
+        public static FromTimeTillNow(startTime: DateTime): Interval;
+        public static FromTimeTillNow(startTime: UnixTime): Interval;
+        public static FromTimeTillNow(startTime: any): Interval {
+            if (startTime instanceof DateTime) {
+                return new Interval(startTime.ToUnixTime(), DateTime.UtcNow.ToUnixTime());
+            } else if (startTime instanceof UnixTime) {
+                return new Interval(startTime, DateTime.UtcNow.ToUnixTime());
+            }
+            throw new ArgumentException('startTime');
+        }
+
+        public toString(): string {
+            return "Start: " + this.Start.ToUtcTimeString() + ", End: " + this.End.ToUtcTimeString();
+        }
+
+        public Equals(other: Interval) {
+            return this.Start.Equals(other.Start) && this.End.Equals(other.End);
+        }
+
+        public CompareTo(other: Interval): number {
+            if (this.Length.GreaterThan(other.Length)) return 1;
+            if (this.Length.LessThan(other.Length)) return -1;
+            return 0;
+        }
+
+        public GreaterThanOrEqual(other: Interval): boolean {
+            return this.Length.GreaterThanOrEqual(other.Length);
+        }
+
+        public LessThan(other: Interval): boolean {
+            return this.Length.LessThan(other.Length);
+        }
+
+        public LessThanOrEqual(other: Interval): boolean {
+            return this.Length.LessThanOrEqual(other.Length);
+        }
+
+        public GreaterThan(other: Interval): boolean {
+            return this.Length.GreaterThan(other.Length);
+        }
+    }
+}

@@ -16,7 +16,7 @@ namespace Friday.ValueTypes {
         return UnixTime.FromTimeStampSeconds(Long.fromNumber(timeStamp));
     };
 
-    export class UnixTime {
+    export class UnixTime implements IComparable<UnixTime> {
         public static get Now(): UnixTime {
             return DateTime.UtcNow.ToUnixTime();
         }
@@ -107,11 +107,11 @@ namespace Friday.ValueTypes {
             return this.TimeStamp.lessThan(other.TimeStamp);
         }
 
-        public GreaterOrEqualThan(other: UnixTime): boolean {
+        public GreaterThanOrEqual(other: UnixTime): boolean {
             return this.TimeStamp.greaterThanOrEqual(other.TimeStamp);
         }
 
-        public LessOrEqualThan(other: UnixTime): boolean {
+        public LessThanOrEqual(other: UnixTime): boolean {
             return this.TimeStamp.lessThanOrEqual(other.TimeStamp);
         }
 

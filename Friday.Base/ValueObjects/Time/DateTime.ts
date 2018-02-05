@@ -24,7 +24,8 @@ namespace Friday.ValueTypes {
         Saturday = 6
     }
 
-    export class DateTime {
+    export class DateTime implements IComparable<DateTime> {
+
         // ReSharper disable InconsistentNaming
         public get InternalTicks(): Long {
             return this.dateData.and(DateTime.TicksMask).toSigned();
@@ -346,17 +347,33 @@ namespace Friday.ValueTypes {
             return 0;
         }
 
-        public Comare(value: DateTime): number {
-            return DateTime.Compare(this, value);
+        public CompareTo(other: DateTime): number {
+            return DateTime.Compare(this, other);
         }
 
         public static Equals(t1: DateTime, t2: DateTime): boolean {
             return t1.InternalTicks.equals(t2.InternalTicks);
         }
 
-        public Equals(value: DateTime): boolean {
-            return DateTime.Equals(this, value);
+        public Equals(other: DateTime): boolean {
+            return DateTime.Equals(this, other);
         }
+
+        public GreaterThan(other: DateTime): boolean {
+            return this.InternalTicks.greaterThan(other.InternalTicks);
+        }
+
+        public GreaterThanOrEqual(other: DateTime): boolean {
+            return this.InternalTicks.greaterThanOrEqual(other.InternalTicks);
+        }
+
+        public LessThan(other: DateTime): boolean {
+            return this.InternalTicks.lessThan(other.InternalTicks);
+        }
+
+        public LessThanOrEqual(other: DateTime): boolean {
+            return this.InternalTicks.lessThanOrEqual(other.InternalTicks);
+        } 
 
         public static DaysInMonth(year: number, month: number) {
             if (month < 1 || month > 12) throw new ArgumentOutOfRangeException("month");

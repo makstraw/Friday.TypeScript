@@ -6,8 +6,8 @@ namespace Friday.ValueTypes {
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
     import OverflowException = Exceptions.OverflowException;
 
-    export class TimeSpan {
-        // ReSharper disable InconsistentNaming
+    export class TimeSpan implements IComparable<TimeSpan> {
+ // ReSharper disable InconsistentNaming
         public static readonly TicksPerMillisecond = Long.fromNumber(10000);
         private static readonly MillisecondsPerTick = 1.0 / TimeSpan.TicksPerMillisecond.toNumber();
 
@@ -153,8 +153,24 @@ namespace Friday.ValueTypes {
             return 0;
         }
 
-        public CompareTo(value: TimeSpan): number {
-            return TimeSpan.Compare(this, value);
+        public CompareTo(other: TimeSpan): number {
+            return TimeSpan.Compare(this, other);
+        }
+
+        public GreaterThan(other: TimeSpan): boolean {
+            return this.Ticks.greaterThan(other.Ticks);
+        }
+
+        public GreaterThanOrEqual(other: TimeSpan): boolean {
+            return this.Ticks.greaterThanOrEqual(other.Ticks);
+        }
+
+        public LessThan(other: TimeSpan): boolean {
+            return this.Ticks.lessThan(other.Ticks);
+        }
+
+        public LessThanOrEqual(other: TimeSpan): boolean {
+            return this.Ticks.lessThanOrEqual(other.Ticks);
         }
 
         public static FromDays(value: number): TimeSpan {
