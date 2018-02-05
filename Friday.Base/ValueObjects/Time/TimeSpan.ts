@@ -212,8 +212,11 @@ namespace Friday.ValueTypes {
             return new TimeSpan(value);
         }
 
-        public static TimeToTicks(hour, minute, second): Long {
-            throw new NotImplementedException('TimeToTicks');
+        public static TimeToTicks(hour: number, minute: number, second: number): Long {
+            let totalSeconds = Long.fromNumber(hour).mul(3600).add(minute * 60).add(second);
+            if (totalSeconds.greaterThan(TimeSpan.MaxSeconds) || totalSeconds.lessThan(TimeSpan.MinSeconds))
+                throw new ArgumentOutOfRangeException('hour, minute,second');
+            return totalSeconds.mul(TimeSpan.TicksPerSecond);
         }
     }
 }

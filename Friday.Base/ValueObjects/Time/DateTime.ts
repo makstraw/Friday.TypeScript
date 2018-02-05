@@ -27,7 +27,7 @@ namespace Friday.ValueTypes {
     export class DateTime {
         // ReSharper disable InconsistentNaming
         public get InternalTicks(): Long {
-            return Long.fromValue(this.dateData.and(DateTime.TicksMask));
+            return this.dateData.and(DateTime.TicksMask).toSigned();
         }
 
         public get InternalKind(): Long {
@@ -80,12 +80,12 @@ namespace Friday.ValueTypes {
 
         public static get Now(): DateTime {
             let milliseconds = Date.now();
-            return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond));
+            return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond).add(Long.fromNumber(DateTime.DaysTo1970).mul(DateTime.TicksPerDay)));
         }
 
         public static get UtcNow(): DateTime {
             let milliseconds = new Date().getUTCMilliseconds();
-            return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond));
+            return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond).add(Long.fromNumber(DateTime.DaysTo1970).mul(DateTime.TicksPerDay)));
         }
 
         public get Second(): number {
@@ -164,14 +164,14 @@ namespace Friday.ValueTypes {
         public static readonly MinValue: DateTime = new DateTime(DateTime.MinTicks, DateTimeKind.Unspecified);
         public static readonly MaxValue: DateTime = new DateTime(DateTime.MaxTicks, DateTimeKind.Unspecified);
 
-        private static readonly TicksMask = Long.fromString("0x3FFFFFFFFFFFFFFF", true, 8); //UInt64
-        private static readonly FlagsMask = Long.fromString("0xC000000000000000", true, 8); //UInt64
-        private static readonly LocalMask = Long.fromString("0x8000000000000000", true, 8); //UInt64
-        private static readonly TicksCeiling = Long.fromString("0x4000000000000000", false, 8); //Int64
-        private static readonly KindUnspecified = Long.fromString("0x0000000000000000", true, 8); //UInt64
-        private static readonly KindUtc = Long.fromString("0x4000000000000000", true, 8); //UInt64
-        private static readonly KindLocal = Long.fromString("0x8000000000000000", true, 8); //UInt64
-        private static readonly KindLocalAmbiguousDst = Long.fromString("0xC000000000000000", true, 8);
+        private static readonly TicksMask = Long.fromString("3FFFFFFFFFFFFFFF", true, 16); //UInt64
+        private static readonly FlagsMask = Long.fromString("C000000000000000", true, 16); //UInt64
+        private static readonly LocalMask = Long.fromString("8000000000000000", true, 16); //UInt64
+        private static readonly TicksCeiling = Long.fromString("4000000000000000", false, 16); //Int64
+        private static readonly KindUnspecified = Long.fromString("0000000000000000", true, 16); //UInt64
+        private static readonly KindUtc = Long.fromString("4000000000000000", true, 16); //UInt64
+        private static readonly KindLocal = Long.fromString("8000000000000000", true, 16); //UInt64
+        private static readonly KindLocalAmbiguousDst = Long.fromString("C000000000000000", true, 16);
         private static readonly KindShift = 62;
 
         private static readonly TicksField = "ticks";
@@ -389,23 +389,23 @@ namespace Friday.ValueTypes {
 
         private GetDatePart(part: number): number {
             // n = number of days since 1/1/0001
-            let n = this.InternalTicks.div(DateTime.TicksPerDay).toNumber();
+            let n = this.InternalTicks.div(DateTime.TicksPerDay);
             // y400 = number of whole 400-year periods since 1/1/0001
-            let y400 = n / DateTime.DaysPer400Years;
+            let y400 = n.div(DateTime.DaysPer400Years).toNumber();
             // n = day number within 400-year period
-            n -= y400 * DateTime.DaysPer400Years;
+            n = n.sub(y400 * DateTime.DaysPer400Years);
             // y100 = number of whole 100-year periods within 400-year period
-            let y100 = n / DateTime.DaysPer100Years;
+            let y100 = n.div(DateTime.DaysPer100Years).toNumber();
             // Last 100-year period has an extra day, so decrement result if 4
             if (y100 == 4) y100 = 3;
             // n = day number within 100-year period
-            n -= y100 * DateTime.DaysPer100Years;
+            n = n.sub(y100 * DateTime.DaysPer100Years);
             // y4 = number of whole 4-year periods within 100-year period
-            let y4 = n / DateTime.DaysPer4Years;
+            let y4 = n.div(DateTime.DaysPer4Years).toNumber();
             // n = day number within 4-year period
-            n -= y4 * DateTime.DaysPer4Years;
+            n = n.sub(y4 * DateTime.DaysPer4Years);
             // y1 = number of whole years within 4-year period
-            let y1 = n / DateTime.DaysPerYear;
+            let y1 = n.div(DateTime.DaysPerYear).toNumber();
             // Last year has an extra day, so decrement result if 4
             if (y1 == 4) y1 = 3;
             // If year was requested, compute and return it
@@ -413,22 +413,22 @@ namespace Friday.ValueTypes {
                 return y400 * 400 + y100 * 100 + y4 * 4 + y1 + 1;
             }
             // n = day number within year
-            n -= y1 * DateTime.DaysPerYear;
+            n = n.sub(y1 * DateTime.DaysPerYear);
             // If day-of-year was requested, return it
-            if (part == DateTime.DatePartDayOfYear) return n + 1;
+            if (part == DateTime.DatePartDayOfYear) return n.add(1).toNumber();
             // Leap year calculation looks different from IsLeapYear since y1, y4,
             // and y100 are relative to year 1, not year 0
             let leapYear = y1 == 3 && (y4 != 24 || y100 == 3);
             let days = leapYear ? DateTime.DaysToMonth366 : DateTime.DaysToMonth365;
             // All months have less than 32 days, so n >> 5 is a good conservative
             // estimate for the month
-            let m = n >> 5 + 1;
+            let m = n.shiftRight(5).add(1).toNumber();
             // m = 1-based month number
-            while (n >= days[m]) m++;
+            while (n.greaterThanOrEqual(days[m])) m++;
             // If month was requested, return it
             if (part == DateTime.DatePartMonth) return m;
             // Return 1-based day-of-month
-            return n - days[m - 1] + 1;
+            return n.sub(days[m - 1]).add(1).toNumber();
         }
 
         public ToLocalTime(): DateTime {
