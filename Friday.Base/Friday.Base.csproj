@@ -108,6 +108,8 @@
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\DateTime.ts" />
+    <TypeScriptCompile Include="ValueObjects\IComparable.ts" />
+    <TypeScriptCompile Include="ValueObjects\Time\Interval.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\TimeSpan.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\UnixTime.ts" />
   </ItemGroup>
