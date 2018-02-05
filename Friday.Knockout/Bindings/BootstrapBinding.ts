@@ -1,8 +1,7 @@
 ﻿///<reference path="../Definitions/jquery.d.ts"/>
 ///<reference path="../Definitions/knockout.d.ts"/>
-namespace Friday.Knockout {
     ko.bindingHandlers.showModal = {
-        init(element, valueAccessor) {
+        init: function(element, valueAccessor) {
             $(element).modal({
                 show: false
             });
@@ -15,7 +14,7 @@ namespace Friday.Knockout {
                     });
             }
         },
-        update(element, valueAccessor) {
+        update: function(element, valueAccessor) {
             var value = valueAccessor();
             if (ko.utils.unwrapObservable(value)) {
                 $(element).modal('show');
@@ -24,4 +23,3 @@ namespace Friday.Knockout {
             }
         }
     };
-}

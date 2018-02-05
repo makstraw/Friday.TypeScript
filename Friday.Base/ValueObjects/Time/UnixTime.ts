@@ -1,5 +1,6 @@
 ﻿///<reference path="DateTime.ts"/>
 ///<reference path="../../Extensions/StringExtensions.ts"/>
+///<reference path="../IComparable.ts"/>
 namespace Friday.ValueTypes {
     import NotImplementedException = Exceptions.NotImplementedException;
 

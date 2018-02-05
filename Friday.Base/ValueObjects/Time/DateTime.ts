@@ -1,6 +1,7 @@
 ﻿///<reference path="../../Definitions/long.d.ts"/>
 ///<reference path="../../Utility/MethodHelper.ts"/>
 ///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
+///<reference path="../IComparable.ts"/>
 ///<reference path="TimeSpan.ts"/>
 namespace Friday.ValueTypes {
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;

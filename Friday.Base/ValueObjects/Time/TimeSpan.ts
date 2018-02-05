@@ -1,5 +1,6 @@
 ﻿///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
 ///<reference path="../../Definitions/long.d.ts"/>
+///<reference path="../IComparable.ts"/>
 namespace Friday.ValueTypes {
     import NotImplementedException = Exceptions.NotImplementedException;
     import ArgumentException = Exceptions.ArgumentException;
