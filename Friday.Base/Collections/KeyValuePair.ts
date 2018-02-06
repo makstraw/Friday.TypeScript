@@ -1,6 +1,4 @@
-﻿///<reference path="../Definitions/jquery.d.ts"/>
-///<reference path="../Definitions/jquery.i18n.d.ts"/>
-namespace Friday.Collections {
+﻿namespace Friday.Collections {
 
     export enum KeyValuePairSerializationMode {
         Object,

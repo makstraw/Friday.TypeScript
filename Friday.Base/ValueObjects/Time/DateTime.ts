@@ -1,5 +1,4 @@
-﻿///<reference path="../../Definitions/long.d.ts"/>
-///<reference path="../../Utility/MethodHelper.ts"/>
+﻿///<reference path="../../Utility/MethodHelper.ts"/>
 ///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
 ///<reference path="../IComparable.ts"/>
 ///<reference path="TimeSpan.ts"/>
@@ -352,12 +351,13 @@ namespace Friday.ValueTypes {
             return DateTime.Compare(this, other);
         }
 
-        public static Equals(t1: DateTime, t2: DateTime): boolean {
-            return t1.InternalTicks.equals(t2.InternalTicks);
-        }
+//        public static Equals(t1: DateTime, t2: DateTime): boolean {
+//            return t1.InternalTicks.equals(t2.InternalTicks);
+//        }
 
         public Equals(other: DateTime): boolean {
-            return DateTime.Equals(this, other);
+            return this.InternalTicks.equals(other.InternalTicks);
+//            return DateTime.Equals(this, other);
         }
 
         public GreaterThan(other: DateTime): boolean {

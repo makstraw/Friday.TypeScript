@@ -1,7 +1,4 @@
-﻿///<reference path="../Definitions/knockout.d.ts"/>
-///<reference path="../Definitions/jquery.d.ts"/>
-///<reference path="../Definitions/jquery.i18n.d.ts"/>
-ko.bindingHandlers.i18n = {
+﻿ko.bindingHandlers.i18n = {
     init: function(element, valueAccessor) {
 
     },

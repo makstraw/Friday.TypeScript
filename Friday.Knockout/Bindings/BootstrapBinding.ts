@@ -1,6 +1,4 @@
-﻿///<reference path="../Definitions/jquery.d.ts"/>
-///<reference path="../Definitions/knockout.d.ts"/>
-    ko.bindingHandlers.showModal = {
+﻿    ko.bindingHandlers.showModal = {
         init: function(element, valueAccessor) {
             $(element).modal({
                 show: false

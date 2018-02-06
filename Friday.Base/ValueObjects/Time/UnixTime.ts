@@ -56,7 +56,7 @@ namespace Friday.ValueTypes {
             let localPrefix = DateTimeKind[DateTimeKind.Local];
             let utcPrefix = DateTimeKind[DateTimeKind.Utc];
             let formattedTime = String.Empty();
-            let dateTime = UnixTime.ToDateTime(this.TimeStamp);
+            let dateTime = this.ToDateTime();
 
             switch (format) {
                 case "L":
@@ -78,12 +78,12 @@ namespace Friday.ValueTypes {
             this.TimeStamp = timeStamp;
         }
 
-        public static ToDateTime(unixTime: Long): DateTime {
-            return this.UnixEpochStart.AddSeconds(unixTime.toNumber());
-        }
+//        public static ToDateTime(unixTime: Long): DateTime {
+//            return this.UnixEpochStart.AddSeconds(unixTime.toNumber());
+//        }
 
         public ToDateTime(): DateTime {
-            return UnixTime.ToDateTime(this.TimeStamp);
+            return UnixTime.UnixEpochStart.AddSeconds(this.TimeStamp.toNumber());
         }
 
         public CompareTo(other: UnixTime): number {
@@ -92,12 +92,13 @@ namespace Friday.ValueTypes {
             return 0;
         }
 
-        public static Equals(t1: UnixTime, t2: UnixTime): boolean {
-            return t1.TimeStamp.equals(t2.TimeStamp);
-        }
+//        public static Equals(t1: UnixTime, t2: UnixTime): boolean {
+//            return t1.TimeStamp.equals(t2.TimeStamp);
+//        }
 
         public Equals(other: UnixTime): boolean {
-            return UnixTime.Equals(this, other);
+            return this.TimeStamp.equals(other.TimeStamp);
+//            return UnixTime.Equals(this, other);
         }
 
         public GreaterThan(other: UnixTime): boolean {

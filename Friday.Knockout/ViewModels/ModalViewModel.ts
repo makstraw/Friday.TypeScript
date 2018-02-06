@@ -1,5 +1,4 @@
-﻿///<reference path="../Definitions/knockout.d.ts" />
-///<reference path="RoutedViewModel.ts"/>
+﻿///<reference path="RoutedViewModel.ts"/>
 /// <reference path="../../Friday.Base/Transport/IPacketRegistryRouteRegistration.ts" />
 /// <reference path="../../Friday.Base/Transport/IMessageSend.ts" />
 ///<reference path="Notices/NoticeViewModel.ts"/>
