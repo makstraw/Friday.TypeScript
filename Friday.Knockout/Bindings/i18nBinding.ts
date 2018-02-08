@@ -10,7 +10,6 @@
             $(element).text(output);
         }
         else {
-            console.log(value);
             if (typeof value.params == "string" || typeof value.params == "number")
                 output = $.i18n(value.key as string, value.params);
             else if (typeof value.params == "object" && Array.isArray(value.params)) {
