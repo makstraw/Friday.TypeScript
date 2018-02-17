@@ -85,7 +85,7 @@ namespace Friday.ValueTypes {
         }
 
         public static get UtcNow(): DateTime {
-            let milliseconds = new Date().getUTCMilliseconds();
+            let milliseconds = new Date().getTime();
             return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond).add(Long.fromNumber(DateTime.DaysTo1970).mul(DateTime.TicksPerDay)));
         }
 
@@ -293,6 +293,7 @@ namespace Friday.ValueTypes {
         public Add(value: any, scale?: number): DateTime {
             if (typeof value == "number") {
                 let millis: Long = Long.fromNumber(value).multiply(scale); //+ (value >= 0? 0.5: -0.5);
+                return this.AddTicks(millis.multiply(DateTime.TicksPerMillisecond));
             } else return this.AddTicks(value._ticks);
         }
 

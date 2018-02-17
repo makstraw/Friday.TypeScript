@@ -9,7 +9,7 @@ namespace Friday.Knockout.ViewModels {
         protected sendMessage: Function;
 
         constructor(transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
-            this.sendMessage = transport.sendMessage.bind(transport);
+            this.sendMessage = transport.SendMessage.bind(transport);
             this.registerRoutes(registry);
         }
 

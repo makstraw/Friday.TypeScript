@@ -5,7 +5,21 @@ namespace Friday.ValueTypes {
     import ArgumentException = Exceptions.ArgumentException;
 
     export class Interval implements IComparable<Interval> {
+        public static readonly SecondsInMinute = 60;
+        public static readonly SecondsInHour = Interval.SecondsInMinute * 60;
+        public static readonly SecondsInDay = Interval.SecondsInHour * 24;
 
+        public get Days(): number {
+            return this.Length.TimeStamp.div(Interval.SecondsInDay).toNumber();
+        }
+
+        public get Hours(): number {
+            return this.Length.TimeStamp.div(Interval.SecondsInHour).toNumber();
+        }
+
+        public get Minutes(): number {
+            return this.Length.TimeStamp.div(Interval.SecondsInMinute).toNumber();
+        }
 
         public static get Empty(): Interval {
             return new Interval(UnixTime.EpochStart, UnixTime.EpochStart);

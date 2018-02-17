@@ -10,21 +10,28 @@ namespace Friday.ValueTypes {
 
     export interface DateTime {
         ToUnixTime(): UnixTime;
+        ToTimestamp(): number;
     }
 
-    DateTime.prototype.ToUnixTime = function (this: DateTime) {
+    DateTime.prototype.ToUnixTime = function (this: DateTime) : UnixTime {
         let timeStamp = this.Subtract(UnixTime.UnixEpochStart).TotalSeconds;
         return UnixTime.FromTimeStampSeconds(Long.fromNumber(timeStamp));
     };
 
+    DateTime.prototype.ToTimestamp = function (this: DateTime) : number {
+        return this.ToUnixTime().TimeStamp.toNumber();
+    };
+
     export class UnixTime implements IComparable<UnixTime> {
+        
+
         public static get Now(): UnixTime {
             return DateTime.UtcNow.ToUnixTime();
         }
 
         public static readonly UnixEpochStart: DateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         public static readonly EpochStart: UnixTime = UnixTime.UnixEpochStart.ToUnixTime();
-
+        public static readonly EpochEnd: UnixTime = UnixTime.FromTimeStampSeconds(Long.fromNumber(2147483647));
 
         public static readonly CryptoCurrenciesEpochStartDateTime: DateTime = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         public static readonly CryptoCurrenciesEpochStart: UnixTime = UnixTime.CryptoCurrenciesEpochStartDateTime.ToUnixTime();

@@ -61,6 +61,7 @@
     <TypeScriptCompile Include="ViewModels\Notices\NoticeRouter.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeStack.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\PingPong.ts" />
     <TypeScriptCompile Include="ViewModels\RoutedViewModel.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

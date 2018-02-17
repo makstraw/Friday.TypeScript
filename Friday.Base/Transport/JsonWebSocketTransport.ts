@@ -14,8 +14,8 @@ namespace Friday.Transport {
     }
 
     export abstract class JsonWebSocketTransport extends WebSocketTransport {
-        protected incomingEnumType: EnumSerializationType
-        protected outgoingEnumType: EnumSerializationType
+        protected incomingEnumType: EnumSerializationType;
+        protected outgoingEnumType: EnumSerializationType;
 
         constructor(connectionString: WebSocketConnectionString, options?: IJsonWebSocketOptions) {
             super(connectionString, options);
@@ -28,16 +28,18 @@ namespace Friday.Transport {
 
         protected abstract messageTypeToString(messageType: any, direction: MessageTypeDirection): string;
 
-        public sendMessage(message: IMessage) {
+        public SendMessage(message: IMessage) {
             if (this.outgoingEnumType == "string") {
                 message.MessageType = this.messageTypeToString(message.MessageType, "client");
             }
-            super.sendMessage(message);
+            super.SendMessage(message);
         }
 
         protected onMessageHandler(event: MessageEvent): void {
             if (typeof event.data === "string") {
-                var message = JSON.parse(event.data);
+                var message = JSON.parse(event.data) as BasicMessage;
+                if (this.incomingEnumType == "string")
+                    message.MessageType = this.messageTypeToString(message.MessageType, "server");
                 if (this.debugMode) console.log(message);
                 this.routeJsonMessage(message);
             } else if (event.data instanceof ArrayBuffer) {
