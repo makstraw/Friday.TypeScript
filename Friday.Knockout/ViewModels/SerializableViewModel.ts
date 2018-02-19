@@ -1,5 +1,5 @@
 ///<reference path="RoutedViewModel.ts"/>
-///<reference path="../Extensions/ObservableExtensions.ts"/>
+///<reference path="../Extensions/ObservableExtension/Default.ts"/>
 
 namespace Friday.Knockout.ViewModels {
     import IMessage = Friday.Transport.IMessage;
