@@ -62,7 +62,12 @@
     <TypeScriptCompile Include="ViewModels\Notices\NoticeStack.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\PingPong.ts" />
+    <TypeScriptCompile Include="ViewModels\ReadOnlyModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\RoutedViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\SerializableViewModel.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Captcha\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
