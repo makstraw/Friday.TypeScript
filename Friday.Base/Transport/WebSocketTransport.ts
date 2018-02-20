@@ -27,6 +27,7 @@ namespace Friday.Transport {
             this.connectionString = connectionString;
             this.options = options;
             if (options) {
+                if (typeof options.DebugMode != "undefined") this.debugMode = options.DebugMode;
                 if (typeof options.AutoReconnect != "undefined") this.autoReconnect = options.AutoReconnect;
                 if (typeof options.AutoReconnectTimeMs != "undefined") this.autoReconnectTimeMs = options.AutoReconnectTimeMs;
             }
@@ -50,8 +51,10 @@ namespace Friday.Transport {
         }
 
         public SendMessage(message: IMessage): void {
+            if(this.debugMode) console.log("Sending packet: ",message);
             if (this.socket.readyState == WebSocket.OPEN)
                 this.socket.send(JSON.stringify(message));
+            else if (this.debugMode) console.log("Not sent, socket is not ready");
         }
 
         protected onOpenHandler(): void {
