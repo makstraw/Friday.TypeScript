@@ -48,6 +48,7 @@
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Default.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Cookie.ts" />
+    <TypeScriptCompile Include="Extensions\ObservableExtension\Serialize.ts" />
     <TypeScriptCompile Include="ViewModels\ChatViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\DataGridViewModel.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />

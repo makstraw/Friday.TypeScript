@@ -4,8 +4,22 @@
 namespace Friday.Knockout.ViewModels {
     import IMessage = Friday.Transport.IMessage;
 
+    export enum SerializationMode {
+        IncludeSelected,
+        ExcludeSelected
+    }
+
+    export enum SerializationFilter {
+        All,
+        ObservablesOnly,
+        PrimitivesOnly
+    }
+
     export abstract class SerializableViewModel extends RoutedViewModel implements IMessage {
+        [index: string]: any;
         public abstract readonly MessageType: any;
+        public readonly SerializationMode: SerializationMode = SerializationMode.ExcludeSelected;
+        public readonly SerializationFilter: SerializationFilter = SerializationFilter.All;
 
         public Clear() {
             for (var prop in this) {
