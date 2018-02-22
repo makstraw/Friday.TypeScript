@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Audio\AudioStream2\AudioBufferSize.ts" />
     <TypeScriptCompile Include="Audio\AudioStream2\AudioStream2.ts" />
     <TypeScriptCompile Include="Audio\AudioStream2\BufferQueue.ts" />
     <TypeScriptCompile Include="Audio\AudioStream2\IPlaybackState.ts" />

@@ -21,9 +21,9 @@ namespace Friday.Transport {
 
         protected messageTypeToString(messageType: any, direction: MessageTypeDirection): string {
             if (direction == "server") {
-                return this.serverMessageEnum[messageType];
+                return (<any>this.serverMessageEnum)[messageType];
             } else if (direction == "client") {
-                return this.clientMessageEnum[messageType];
+                return (<any>this.clientMessageEnum)[messageType];
             }
         }
 

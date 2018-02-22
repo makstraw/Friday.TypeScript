@@ -52,7 +52,7 @@ ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<a
 
 ko.observableArray.fn.RemoveDeleted = function (this: KnockoutObservableArray<any>, records: Array<any>) {
     this().forEach(function (item: any) {
-        if (!records.find(function(element: any): boolean {
+        if (!(<any>records).find(function(element: any): boolean {
                 if (typeof element == "object")
                     return compareObjects(this, element);
                 else return this == element;

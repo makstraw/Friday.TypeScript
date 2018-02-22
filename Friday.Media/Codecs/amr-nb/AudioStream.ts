@@ -2,7 +2,7 @@
 namespace Friday.AudioLib {
     import WritableStream = Streams.WritableStream
 
-    export type AudioStreamBufferSize = 0 | 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384
+    
 
     export class AudioStream extends WritableStream<Float32Array> {
         public BufferOffset : number = 0;
