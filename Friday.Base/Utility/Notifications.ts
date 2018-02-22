@@ -8,10 +8,13 @@ namespace Friday.Notifications {
     }
 
     export class NotificationsApiWrapper {
+        private Available: boolean = false;
         public Permissions: KnockoutObservable<NotificationPermission> = <KnockoutObservable<NotificationPermission>>(ko.observable("default"));
         public Notices: KnockoutObservableArray<Notification> = ko.observableArray([]);
 
         constructor() {
+            if (!("Notification" in window)) return;
+            this.Available = true;
             var ntf = ((Notification) as any) as IFixedNotificationDeclaration;
             this.Permissions(ntf.permission);
 
@@ -24,6 +27,7 @@ namespace Friday.Notifications {
         }
 
         public Notify(title: string, msg: string, icon?: string, tag?: string) {
+            if (!this.Available) return;
             var options: NotificationOptions = { body: msg };
             //options.tag;
             if (icon) options.icon = icon;
