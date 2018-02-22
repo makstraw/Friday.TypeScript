@@ -35,13 +35,15 @@ namespace Friday.Transport{
         }
 
         public FindRoute(packet: BasicMessage) {
+            let found: boolean = false;
             for (let i = 0; i < this.registry.length; i++) {
                 if (this.registry[i].PacketType == packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.toString());
                     this.registry[i].FunctionPointer(packet);
+                    found = true;
                 }
             }
-            this.logger.LogDebug("Route not found for: " + packet.MessageType);
+            if(!found) this.logger.LogDebug("Route not found for: " + packet.MessageType);
         }
 
         public FindBinaryRoute(type: number, buffer: Uint8Array) {

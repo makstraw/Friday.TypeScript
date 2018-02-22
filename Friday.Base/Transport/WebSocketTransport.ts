@@ -1,40 +1,42 @@
 ﻿///<reference path="WebSocketConnectionString.ts"/>
 ///<reference path="IMessage.ts"/>
 ///<reference path="IMessageSend.ts"/>
-///<reference path="PingPong.ts"/>
 namespace Friday.Transport {
     export type WebSocketBinaryType = "arraybuffer" | "blob";
 
     export interface IWebSocketOptions {
-        binaryType?: WebSocketBinaryType;
-        pingInstance?: PingPong;
+        BinaryType?: WebSocketBinaryType;
+        AutoReconnect?: boolean;
+        AutoReconnectTimeMs?: number;
+        DebugMode?: boolean;
     }
 
     export abstract class WebSocketTransport implements IMessageSend {
-        private ping: PingPong;
         private  socket: WebSocket;
         private connectionString: WebSocketConnectionString;
-        public debugMode: boolean = false;
+        protected debugMode: boolean = false;
 
-        protected readonly autoReconnect : boolean = true;
-        protected readonly autoReconnectTimeMs : number= 1000;
+        protected manualDisconnect: boolean = false;
+        protected readonly autoReconnect : boolean = false;
+        protected readonly autoReconnectTimeMs : number = 1000;
         protected autoReconnectTaskId : number;
 
-        protected isReady: boolean = false;
         protected options: IWebSocketOptions;
 
         constructor(connectionString: WebSocketConnectionString, options?: IWebSocketOptions) {
             this.connectionString = connectionString;
             this.options = options;
             if (options) {
-                if (typeof(options.pingInstance) != "undefined") this.ping = options.pingInstance;
+                if (typeof options.DebugMode != "undefined") this.debugMode = options.DebugMode;
+                if (typeof options.AutoReconnect != "undefined") this.autoReconnect = options.AutoReconnect;
+                if (typeof options.AutoReconnectTimeMs != "undefined") this.autoReconnectTimeMs = options.AutoReconnectTimeMs;
             }
         }
 
-        public connect(): void {
+        public Connect(): void {
             this.socket = new WebSocket(this.connectionString.toString());
-            if (this.options && typeof(this.options.binaryType) != "undefined") {
-                this.socket.binaryType = this.options.binaryType;
+            if (this.options && typeof(this.options.BinaryType) != "undefined") {
+                this.socket.binaryType = this.options.BinaryType;
             }
             
             this.socket.onclose = this.onCloseHandler.bind(this);;
@@ -43,28 +45,38 @@ namespace Friday.Transport {
             this.socket.onerror = this.onErrorHandler.bind(this);;
         }
 
-        public disconnect(): void {
+        public Disconnect(): void {
+            this.manualDisconnect = true;
             this.socket.close();
         }
 
-        public sendMessage(message: IMessage): void {
-            if (this.isReady)
+        public SendMessage(message: IMessage): void {
+            if(this.debugMode) console.log("Sending packet: ",message);
+            if (this.socket.readyState == WebSocket.OPEN)
                 this.socket.send(JSON.stringify(message));
+            else if (this.debugMode) console.log("Not sent, socket is not ready");
         }
 
-        protected abstract onOpenHandler(): void;
+        protected onOpenHandler(): void {
+            this.manualDisconnect = false;
+        }
 
         protected abstract onMessageHandler(event: MessageEvent): void;
 
-        protected abstract onCloseHandler(event: CloseEvent): void;
-
-        protected abstract onErrorHandler(): void;
-
-        protected doOnPong(message: any) {
-            if (typeof (this.ping) != "undefined") {
-                this.ping.Pong();
-                this.ping.CustomPongHandler(this.ping.GetRtt());
+        protected onCloseHandler(event: CloseEvent): void {
+            if (this.autoReconnect && ! this.manualDisconnect) {
+                clearTimeout(this.autoReconnectTaskId);
+                this.autoReconnectTaskId = setTimeout(this.Connect.bind(this), this.autoReconnectTimeMs);
             }
-        } 
+        }
+
+        protected abstract onErrorHandler(event: ErrorEvent): void;
+//
+//        protected doOnPong(message: any) {
+//            if (typeof (this.ping) != "undefined") {
+//                this.ping.Pong();
+//                this.ping.CustomPongHandler(this.ping.GetRtt());
+//            }
+//        } 
     }
 }

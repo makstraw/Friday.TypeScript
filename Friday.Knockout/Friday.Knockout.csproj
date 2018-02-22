@@ -46,6 +46,9 @@
     <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\ObservableExtension\Default.ts" />
+    <TypeScriptCompile Include="Extensions\ObservableExtension\Cookie.ts" />
+    <TypeScriptCompile Include="Extensions\ObservableExtension\Serialize.ts" />
     <TypeScriptCompile Include="ViewModels\ChatViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\DataGridViewModel.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
@@ -54,12 +57,19 @@
     <TypeScriptCompile Include="Bindings\i18nBinding.ts" />
     <TypeScriptCompile Include="Utility\SimpleTimer.ts" />
     <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
+    <TypeScriptCompile Include="ViewModels\LocaleManager.ts" />
     <TypeScriptCompile Include="ViewModels\ModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeList.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeRouter.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeStack.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\PingPong.ts" />
+    <TypeScriptCompile Include="ViewModels\ReadOnlyModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\RoutedViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\SerializableViewModel.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Captcha\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

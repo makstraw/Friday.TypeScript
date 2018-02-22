@@ -1,5 +1,5 @@
 ﻿namespace Friday.ValueTypes {
-    export class DateTime {
+    export class LegacyDateTime {
         public static FromCSharp(dateTime: string): Date {
             var tmpArray: Array<string>;
             tmpArray = dateTime.split("T");

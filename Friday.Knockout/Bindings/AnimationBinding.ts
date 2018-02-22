@@ -1,9 +1,9 @@
-﻿namespace Friday.Knockout {
+﻿
     ko.bindingHandlers.toggleShow = {
-        init(element, valueAccessor) {
+        init: function(element, valueAccessor) {
 
         },
-        update(element, valueAccessor) {
+        update: function(element, valueAccessor) {
             var showMs = $(element).attr("data-show-ms");
             var hideMs = $(element).attr("data-hide-ms");
 
@@ -17,10 +17,10 @@
     }
 
     ko.bindingHandlers.toggleFade = {
-        init(element, valueAccessor) {
+        init: function(element, valueAccessor) {
 
         },
-        update(element, valueAccessor) {
+        update: function(element, valueAccessor) {
             var fadeInMs = $(element).attr("data-fadein-ms");
             var fadeOutMs = $(element).attr("data-fadeout-ms");
 
@@ -34,10 +34,10 @@
     }
 
     ko.bindingHandlers.toggleSlide = {
-        init(element, valueAccessor) {
+        init: function(element, valueAccessor) {
 
         },
-        update(element, valueAccessor) {
+        update: function(element, valueAccessor) {
             var slideUpMs = $(element).attr("data-slideup-ms");
             var slideDownMs = $(element).attr("data-slidedown-ms");
 
@@ -49,4 +49,3 @@
             }
         }
     }
-}

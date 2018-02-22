@@ -5,12 +5,22 @@ interface KnockoutObservableArray<T> {
     UpdateRecords(records: Array<T>, unshift?: boolean): void;
     InsertOrUpdate(newRecord: T, objectPropertyName: string, unshift?: boolean, ): void;
     FindRecord(matchRecord: T, objectPropertyName: string): object;
+    FindRecordByProperty(propertyName: string, propertyValue: any): object;
     FindRecordIndex(matchRecord: T, objectPropertyName: string): number;
 }
 
 ko.observableArray.fn.FindRecord = function (this: KnockoutObservableArray<any>, matchRecord: any, objectPropertyName: string): object {
     var index = this.FindRecordIndex(matchRecord, objectPropertyName);
     if (index != null) return this()[index];
+    return null;
+}
+
+ko.observableArray.fn.FindRecordByProperty = function(this: KnockoutObservableArray<any>,
+    propertyName: string,
+    propertyValue: any): object {
+    for (let i = 0; i < this().length; i++) {
+        if (this()[i][propertyName] == propertyValue) return this()[i];
+    }
     return null;
 }
 
