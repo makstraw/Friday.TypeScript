@@ -1,12 +1,13 @@
 ///<reference path="RoutedViewModel.ts"/>
 ///<reference path="../Extensions/ObservableExtension/Default.ts"/>
+///<reference path="../Extensions/ObservableExtension/Serialize.ts"/>
 
 namespace Friday.Knockout.ViewModels {
     import IMessage = Friday.Transport.IMessage;
 
     export enum SerializationMode {
-        IncludeSelected,
-        ExcludeSelected
+        Include,
+        Exclude
     }
 
     export enum SerializationFilter {
@@ -18,7 +19,7 @@ namespace Friday.Knockout.ViewModels {
     export abstract class SerializableViewModel extends RoutedViewModel implements IMessage {
         [index: string]: any;
         public abstract readonly MessageType: any;
-        public readonly SerializationMode: SerializationMode = SerializationMode.ExcludeSelected;
+        public readonly SerializationMode: SerializationMode = SerializationMode.Exclude;
         public readonly SerializationFilter: SerializationFilter = SerializationFilter.All;
 
         public Clear() {
@@ -29,12 +30,12 @@ namespace Friday.Knockout.ViewModels {
             }
         }
 
-        protected toDto(): object {
-            return ko.toJS(this);
-        }
+//        protected toDto(): object {
+//            return ko.toJS(this);
+//        }
 
         public Submit() {
-            let dto = this.toDto();
+            let dto = ko.ToDto(this);
             (dto as any).MessageType = this.MessageType;
             this.sendMessage(dto);
         }

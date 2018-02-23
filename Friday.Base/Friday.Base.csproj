@@ -74,6 +74,8 @@
     <TypeScriptCompile Include="Exceptions\OverflowException.ts" />
     <TypeScriptCompile Include="Exceptions\reference_basicexceptions.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\Array\Except.ts" />
+    <TypeScriptCompile Include="Extensions\Array\Has.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
@@ -108,10 +110,14 @@
     <TypeScriptCompile Include="Utility\ObjectComparison.ts" />
     <TypeScriptCompile Include="Utility\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
+    <TypeScriptCompile Include="ValueObjects\IEqualityComparer.ts" />
+    <TypeScriptCompile Include="ValueObjects\ISerializable.ts" />
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
+    <TypeScriptCompile Include="ValueObjects\RequestId.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\DateTime.ts" />
     <TypeScriptCompile Include="ValueObjects\IComparable.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\Interval.ts" />
+    <TypeScriptCompile Include="ValueObjects\Time\TimeConstants.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\TimeSpan.ts" />
     <TypeScriptCompile Include="ValueObjects\Time\UnixTime.ts" />
   </ItemGroup>

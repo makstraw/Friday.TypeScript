@@ -1,7 +1,8 @@
-﻿namespace Friday.ValueTypes {
-    export interface IComparable<T> {
+﻿///<reference path="IEqualityComparer.ts"/>
+namespace Friday.ValueTypes {
+
+    export interface IComparable<T> extends IEqualityComparer<T>{
         CompareTo(other: T): number;
-        Equals(other: T): boolean;
         GreaterThan(other: T): boolean;
         GreaterThanOrEqual(other: T): boolean;
         LessThan(other: T): boolean;
