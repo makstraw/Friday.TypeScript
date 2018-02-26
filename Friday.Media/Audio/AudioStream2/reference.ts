@@ -3,6 +3,7 @@
 ///<reference path="IWebAudioApiBackendOptions.ts"/>
 ///<reference path="BufferQueue.ts"/>
 ///<reference path="WebAudioApiBackend.ts"/>
+///<reference path="AudioBufferSize.ts"/>
 ///<reference path="AudioStream2.ts"/>
 
 namespace Friday.AudioLib {

@@ -2,7 +2,7 @@
     export interface IPlaybackState {
         PlaybackPosition: number;
         SamplesQueued: number;
-        Dropped: number
+        Dropped: number;
         Delayed: number;
     }
 }
