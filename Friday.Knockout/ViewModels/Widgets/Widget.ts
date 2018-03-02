@@ -1,5 +1,6 @@
 ﻿///<reference path="WidgetPosition.ts"/>
 ///<reference path="WidgetSize.ts"/>
+///<reference path="IWidgetDto.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;

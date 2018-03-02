@@ -1,4 +1,5 @@
 ﻿///<reference path="../../../Friday.Base/Extensions/Array/Has.ts"/>
+///<reference path="IWidgetDto.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import INamespaceObject = Friday.ValueTypes.INamespaceObject;
     import ITransport = Transport.ITransport;
