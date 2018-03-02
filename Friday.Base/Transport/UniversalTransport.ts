@@ -1,16 +1,15 @@
 ///<reference path="RouterBasedTransport.ts"/>
-///<reference path="ITransportEvents.ts"/>
-///<reference path="../Utility/EventHandler.ts"/>
+///<reference path="ITransport.ts"/>
 namespace Friday.Transport {
     import EventHandler = Utility.EventHandler;
 
     export interface IUniversalTransportOptions extends IJsonWebSocketOptions {
         ServerMessageEnum: object;
         ClientMessageEnum: object;
-        ConnectionString: WebSocketConnectionString
+        ConnectionString: WebSocketConnectionString;
     }
 
-    export class UniversalTransport extends RouterBasedTransport implements ITransportEvents{
+    export class UniversalTransport extends RouterBasedTransport implements ITransport{
         private readonly serverMessageEnum: object;
         private readonly clientMessageEnum: object;
 

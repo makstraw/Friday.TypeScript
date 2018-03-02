@@ -135,6 +135,10 @@ namespace Friday.ValueTypes {
         public AddDays(dayCount: number): UnixTime {
             return new UnixTime(this.TimeStamp.add(Long.fromNumber(dayCount).mul(this.SecondsInDay)));
         }
+
+        public static FromDto(dto): UnixTime {
+            return new UnixTime(Long.fromNumber(dto.TimeStamp));
+        }
     }
 
 

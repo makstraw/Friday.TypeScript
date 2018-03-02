@@ -76,6 +76,7 @@
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\Array\Except.ts" />
     <TypeScriptCompile Include="Extensions\Array\Has.ts" />
+    <TypeScriptCompile Include="Extensions\Array\SetEquals.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
@@ -87,6 +88,8 @@
     <TypeScriptCompile Include="Logging\ILogger.ts" />
     <TypeScriptCompile Include="Logging\LogLevel.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
+    <TypeScriptCompile Include="Transport\IRequestWithId.ts" />
+    <TypeScriptCompile Include="Transport\ITransport.ts" />
     <TypeScriptCompile Include="Transport\ITransportEvents.ts" />
     <TypeScriptCompile Include="Utility\EventHandler.ts" />
     <TypeScriptCompile Include="Transport\IMessage.ts" />

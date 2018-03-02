@@ -6,6 +6,7 @@ namespace Friday.ValueTypes {
     export class RequestId implements ValueTypes.ISerializable<number> {
         private id: number;
         private static readonly maxUint32Value = 0xFFFFFFFF;
+        private static readonly maxInt32Value = 0x7FFFFFFF;
 
         private static readonly callBackRegistry : Array<KeyValuePair<number,Function>> = [];
 
@@ -29,11 +30,15 @@ namespace Friday.ValueTypes {
         
 
         private generate(): number {
-            return Math.random() * RequestId.maxUint32Value;
+            return Math.floor(Math.random() * RequestId.maxInt32Value);
         }
 
         public ToDto(): number {
             return this.id;
+        }
+
+        public MatchResponse(id: number) {
+            return this.id === id;
         }
     }
 }
