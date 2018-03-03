@@ -67,6 +67,16 @@
     <TypeScriptCompile Include="ViewModels\ReadOnlyModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\RoutedViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\SerializableViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\Dashboard.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\Grid.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\IDashboardConfiguration.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\ILayoutConfiguration.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\ISavedWidgetDto.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\IWidgetDto.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\Layout.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\Widget.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\WidgetPosition.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\WidgetSize.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Captcha\" />
