@@ -65,7 +65,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
             let dto: ISavedWidgetDto = { Name: this.WidgetName, Options: options };
             return dto;
-        };
+        }
+
+        public abstract Setup();
+
+        public abstract Destroy();
 
 
         constructor(transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {

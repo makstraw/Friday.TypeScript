@@ -63,6 +63,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
+        public RemoveWidget(widget: Widget) {
+            this.Widgets.remove(widget);
+            widget.Destroy();
+        }
+
         public AddWidget() {
 
         }
