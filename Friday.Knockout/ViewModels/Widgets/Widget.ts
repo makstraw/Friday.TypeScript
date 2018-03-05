@@ -7,11 +7,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
     export abstract class Widget extends RoutedViewModel {
         public Id: string;
-        public abstract WidgetName: string;
+        public WidgetName: string;
         public Position: WidgetPosition;
         public Size: WidgetSize;
-        public abstract MinimumSize: WidgetSize;
-        public abstract MaximumSize: WidgetSize;
+        public abstract readonly MinimumSize: WidgetSize;
+        public abstract readonly MaximumSize: WidgetSize;
 
         public OnResize() {
             console.log(arguments);
@@ -72,9 +72,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public abstract Destroy();
 
 
-        constructor(transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
+        constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport, registry);
-            
+            this.WidgetName = this.constructor.name;
+            this.Size = options.Size;
+            this.Position = options.Position;
         }
     }
 }
