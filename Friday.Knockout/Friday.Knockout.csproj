@@ -77,6 +77,7 @@
     <TypeScriptCompile Include="ViewModels\Widgets\Widget.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetPosition.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetSize.ts" />
+    <TypeScriptCompile Include="ViewModels\WindowTitleViewModel.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Captcha\" />
