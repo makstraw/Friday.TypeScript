@@ -6,8 +6,8 @@ namespace Friday.Knockout.ViewModels {
         public Status: KnockoutObservable<boolean> = ko.observable(false);
         public OnError: EventHandler<null> = new EventHandler<null>();
 
-        private requestFunction: Function = document.documentElement.requestFullscreen || document.documentElement.mozRequestFullScreen || document.documentElement.webkitRequestFullscreen || this.null;
-        private cancelFunction: Function = document.cancelFullScreen || document.mozCancelFullScreen || document.webkitCancelFullScreen || this.null;
+        private requestFunction: Function = document.documentElement.requestFullscreen || document.documentElement.mozRequestFullScreen || document.documentElement.webkitRequestFullscreen || this.nullFunction;
+        private cancelFunction: Function = document.cancelFullScreen || document.mozCancelFullScreen || document.webkitCancelFullScreen || this.nullFunction;
         
         private readonly element: HTMLElement;
 
@@ -51,7 +51,7 @@ namespace Friday.Knockout.ViewModels {
             this.OnError.Call();
         }
 
-        private null() {
+        private nullFunction() {
 
         }
     }
