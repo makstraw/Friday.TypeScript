@@ -24,9 +24,8 @@
             position.Left(this.roundPixelsToGrid(position.Left(), this.HorizontalGridStepPx()));
         }
 
-        public AlignSizeToGrid(size: WidgetSize, minSize: WidgetSize, maxSize: WidgetSize) {
-            size.Height(this.roundPixelsToGrid(size.Height(), this.VerticalGridStepPx(), minSize.Height(), maxSize.Height()));
-            size.Width(this.roundPixelsToGrid(size.Width(), this.HorizontalGridStepPx(), minSize.Width(), maxSize.Width()));
+        public AlignSizeToGrid(dimension: number, step: number): number {
+            return this.roundPixelsToGrid(dimension, step);
         }
     }
 }

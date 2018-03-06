@@ -63,6 +63,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
+        public OnResize(target: Widget): boolean {
+            target.Size.Height(Number.parseInt($("#" + target.Id).css("height")));
+            target.Size.Width(Number.parseInt($("#" + target.Id).css("width")));
+            return true;
+        }
+
         public RemoveWidget(widget: Widget) {
             this.Widgets.remove(widget);
             widget.Destroy();
@@ -85,7 +91,16 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.factory = new WidgetFactory(cfg.Namespace, cfg.Transport, cfg.Registry);
             for (let i = 0; i < layout.Widgets.length; i++) {
                 let widget = this.factory.GetWidget(layout.Widgets[i].Name, layout.Widgets[i].Options);
-                if(widget != null) this.Widgets.push(widget);
+                if (widget != null) {
+                    this.Widgets.push(widget);
+                    widget.Size.Width.subscribe((newValue: number) => {
+                        widget.Size.Width(this.Grid.AlignSizeToGrid(newValue, this.Grid.HorizontalGridStepPx()));
+                    });
+
+                    widget.Size.Height.subscribe((newValue: number) => {
+                        widget.Size.Height(this.Grid.AlignSizeToGrid(newValue, this.Grid.VerticalGridStepPx()));
+                    });
+                }
             }
 
 //            let widget = CurrencyPairWidget.FromDto({

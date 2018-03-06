@@ -4,8 +4,8 @@
         Height: KnockoutObservable<number>;
 
         constructor(width: number, height: number) {
-            this.Width = ko.observable(width);
-            this.Height = ko.observable(height);
+            this.Width = ko.observable(width).extend({ rateLimit: 100 });
+            this.Height = ko.observable(height).extend({ rateLimit: 100 });
         }
     }
 }

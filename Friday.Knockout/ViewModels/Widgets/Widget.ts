@@ -13,10 +13,6 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public abstract readonly MinimumSize: WidgetSize;
         public abstract readonly MaximumSize: WidgetSize;
 
-        public OnResize() {
-            console.log(arguments);
-        }
-
         public OnDragStart(target: Widget, event: any): boolean {
             let originalEvent: DragEvent = event.originalEvent;
             var style = window.getComputedStyle(originalEvent.target as Element, null);
@@ -74,7 +70,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport, registry);
-            this.WidgetName = this.constructor.name;
+            this.WidgetName = (this.constructor as any).name;
             this.Size = options.Size;
             this.Position = options.Position;
         }
