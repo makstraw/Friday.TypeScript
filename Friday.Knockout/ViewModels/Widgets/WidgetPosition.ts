@@ -7,5 +7,9 @@
             this.Top = ko.observable(top);
             this.Left = ko.observable(left);
         }
+
+        public static FromDto(dto: WidgetPosition): WidgetPosition {
+            return new WidgetPosition(dto.Top as any, dto.Left as any);
+        }
     }
 }

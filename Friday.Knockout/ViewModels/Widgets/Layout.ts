@@ -1,5 +1,5 @@
 ﻿///<reference path="../../../Friday.Base/Extensions/Array/Has.ts"/>
-///<reference path="IWidgetDto.ts"/>
+///<reference path="IWidgetOptions.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import INamespaceObject = Friday.ValueTypes.INamespaceObject;
     import ITransport = Transport.ITransport;
@@ -23,7 +23,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             return output;
         }
 
-        public GetWidget(name: string, options: IWidgetDto): Widget | null {
+        public GetWidget(name: string, options: IWidgetOptions): Widget | null {
             if (this.availableWidgets.Has(name)) {
                 let widget = (this.namespace[name] as any).FromDto(options, this.transport, this.registry) as Widget;
                 return widget;
@@ -64,8 +64,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public OnResize(target: Widget): boolean {
-            target.Size.Height(Number.parseInt($("#" + target.Id).css("height")));
-            target.Size.Width(Number.parseInt($("#" + target.Id).css("width")));
+            target.Size.Height(parseInt($("#" + target.Id).css("height")));
+            target.Size.Width(parseInt($("#" + target.Id).css("width")));
             return true;
         }
 

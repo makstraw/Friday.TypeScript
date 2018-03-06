@@ -73,7 +73,7 @@
     <TypeScriptCompile Include="ViewModels\Widgets\IDashboardConfiguration.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\ILayoutConfiguration.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\ISavedWidgetDto.ts" />
-    <TypeScriptCompile Include="ViewModels\Widgets\IWidgetDto.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\IWidgetOptions.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Layout.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Widget.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetPosition.ts" />

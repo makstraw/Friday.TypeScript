@@ -1,6 +1,6 @@
 ﻿///<reference path="WidgetPosition.ts"/>
 ///<reference path="WidgetSize.ts"/>
-///<reference path="IWidgetDto.ts"/>
+///<reference path="IWidgetOptions.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;
@@ -43,23 +43,14 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
-        protected savePositionAndSize(): IWidgetDto {
-            return {
-                Width: this.Size.Width(),
-                Height: this.Size.Height(),
-                Top: this.Position.Top(),
-                Left: this.Position.Left(),
-            }
-        }
-
-        protected abstract saveOptions(options: IWidgetDto): IWidgetDto;
+        protected abstract saveOptions(options: IWidgetOptions): IWidgetOptions;
 
         public Save(): ISavedWidgetDto {
-            let options = this.savePositionAndSize();
+            let options: IWidgetOptions = { Position: this.Position, Size: this.Size}
             options = this.saveOptions(options);
 
 
-            let dto: ISavedWidgetDto = { Name: this.WidgetName, Options: options };
+            let dto: ISavedWidgetDto = { Name: this.WidgetName, Options: ko.toJS(options) };
             return dto;
         }
 

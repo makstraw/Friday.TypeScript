@@ -7,5 +7,9 @@
             this.Width = ko.observable(width).extend({ rateLimit: 100 });
             this.Height = ko.observable(height).extend({ rateLimit: 100 });
         }
+
+        public static FromDto(dto: WidgetSize): WidgetSize {
+            return new WidgetSize(dto.Width as any, dto.Height as any);
+        }
     }
 }

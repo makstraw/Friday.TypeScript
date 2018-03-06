@@ -23,7 +23,9 @@ namespace Friday.ValueTypes {
     };
 
     export class UnixTime implements IComparable<UnixTime> {
-        
+        public GetHashCode(): number {
+            return this.TimeStamp.xor(this.TimeStamp.shiftRight(32)).toNumber();
+        }
 
         public static get Now(): UnixTime {
             return DateTime.UtcNow.ToUnixTime();

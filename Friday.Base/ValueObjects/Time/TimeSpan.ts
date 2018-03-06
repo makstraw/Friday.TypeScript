@@ -7,7 +7,9 @@ namespace Friday.ValueTypes {
     import OverflowException = Exceptions.OverflowException;
 
     export class TimeSpan implements IComparable<TimeSpan> {
- // ReSharper disable InconsistentNaming
+        public GetHashCode(): number {
+            return this.Ticks.xor(this.Ticks.shiftRight(32)).toNumber();
+        } // ReSharper disable InconsistentNaming
         public static readonly TicksPerMillisecond = Long.fromNumber(10000);
         private static readonly MillisecondsPerTick = 1.0 / TimeSpan.TicksPerMillisecond.toNumber();
 

@@ -5,6 +5,11 @@ namespace Friday.ValueTypes {
     import ArgumentException = Exceptions.ArgumentException;
 
     export class Interval implements IComparable<Interval> {
+
+        public GetHashCode(): number {
+            return this.Length.GetHashCode();
+        }
+
         public static readonly SecondsInMinute = 60;
         public static readonly SecondsInHour = Interval.SecondsInMinute * 60;
         public static readonly SecondsInDay = Interval.SecondsInHour * 24;

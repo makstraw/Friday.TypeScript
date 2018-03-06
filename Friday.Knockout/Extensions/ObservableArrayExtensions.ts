@@ -1,4 +1,5 @@
 ﻿///<reference path="../../Friday.Base/Utility/ObjectComparison.ts"/>
+///<reference path="../../Friday.Base/ValueObjects/IEquatable.ts"/>
 interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;

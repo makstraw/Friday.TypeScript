@@ -25,6 +25,9 @@ namespace Friday.ValueTypes {
     }
 
     export class DateTime implements IComparable<DateTime> {
+        public GetHashCode(): number {
+            return this.InternalTicks.xor(this.InternalTicks.shiftRight(32)).toNumber();
+        }
 
         // ReSharper disable InconsistentNaming
         public get InternalTicks(): Long {

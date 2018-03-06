@@ -114,6 +114,7 @@
     <TypeScriptCompile Include="Utility\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
     <TypeScriptCompile Include="ValueObjects\IEqualityComparer.ts" />
+    <TypeScriptCompile Include="ValueObjects\IEquatable.ts" />
     <TypeScriptCompile Include="ValueObjects\INamespaceObject.ts" />
     <TypeScriptCompile Include="ValueObjects\ISerializable.ts" />
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
