@@ -5,7 +5,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;
 
-    export abstract class Widget extends RoutedViewModel {
+    export abstract class Widget extends RoutedViewModel{
         public Id: string;
         public WidgetName: string;
         public Position: WidgetPosition;

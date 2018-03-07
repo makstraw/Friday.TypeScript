@@ -45,6 +45,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
+    <TypeScriptCompile Include="Bindings\DataListBinding.ts" />
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Default.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Cookie.ts" />
@@ -76,8 +77,10 @@
     <TypeScriptCompile Include="ViewModels\Widgets\IWidgetOptions.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Layout.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Widget.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\WidgetFactory.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetPosition.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetSize.ts" />
+    <TypeScriptCompile Include="ViewModels\Widgets\WidgetWizard.ts" />
     <TypeScriptCompile Include="ViewModels\WindowTitleViewModel.ts" />
   </ItemGroup>
   <ItemGroup>

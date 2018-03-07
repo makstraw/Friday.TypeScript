@@ -27,5 +27,9 @@
         public AlignSizeToGrid(dimension: number, step: number): number {
             return this.roundPixelsToGrid(dimension, step);
         }
+
+        public AllocateSpace(size: WidgetSize): WidgetPosition {
+            return WidgetPosition.Zero;
+        }
     }
 }

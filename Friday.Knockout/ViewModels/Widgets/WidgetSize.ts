@@ -11,5 +11,9 @@
         public static FromDto(dto: WidgetSize): WidgetSize {
             return new WidgetSize(dto.Width as any, dto.Height as any);
         }
+
+        public static get Zero(): WidgetSize {
+            return new WidgetSize(0, 0);
+        }
     }
 }

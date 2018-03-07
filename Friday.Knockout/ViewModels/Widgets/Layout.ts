@@ -1,38 +1,6 @@
 ﻿///<reference path="../../../Friday.Base/Extensions/Array/Has.ts"/>
 ///<reference path="IWidgetOptions.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
-    import INamespaceObject = Friday.ValueTypes.INamespaceObject;
-    import ITransport = Transport.ITransport;
-    import IPacketRegistryRouteRegistration = Transport.IPacketRegistryRouteRegistration;
-
-    class WidgetFactory {
-        private availableWidgets: Array<string> = [];
-        private namespace: INamespaceObject<Widget>;
-        private transport: ITransport;
-        private registry: IPacketRegistryRouteRegistration;
-
-        constructor(widgetsNamespace: INamespaceObject<Widget>, transport: ITransport, registry: IPacketRegistryRouteRegistration) {
-            this.namespace = widgetsNamespace;
-            this.availableWidgets = this.scanNamespace(widgetsNamespace);
-            this.transport = transport;
-            this.registry = registry;
-        }
-
-        private scanNamespace(widgetsNamespace: INamespaceObject<Widget>): Array<string> {
-            let output = Object.getOwnPropertyNames(widgetsNamespace);
-            return output;
-        }
-
-        public GetWidget(name: string, options: IWidgetOptions): Widget | null {
-            if (this.availableWidgets.Has(name)) {
-                let widget = (this.namespace[name] as any).FromDto(options, this.transport, this.registry) as Widget;
-                return widget;
-            }
-            return null;
-        }
-
-    }
-
     export class Layout {
         public Grid: Grid;
         public Widgets: KnockoutObservableArray<Widget> = ko.observableArray([]);
@@ -74,8 +42,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
             widget.Destroy();
         }
 
-        public AddWidget() {
-
+        public AddWidget(dto: ISavedWidgetDto) {
+            console.log(dto);
+            let widget = this.factory.GetWidget(dto.Name, dto.Options);
+            widget.Size = WidgetSize.FromDto(widget.MinimumSize);
+            widget.Position = this.Grid.AllocateSpace(widget.Size);
+            this.Widgets.push(widget);
         }
 
         public Save(): ILayoutConfiguration {
@@ -86,9 +58,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
             return dto;
         }
 
-        constructor(cfg: IDashboardConfiguration, layout: ILayoutConfiguration) {
+        constructor(cfg: IDashboardConfiguration, layout: ILayoutConfiguration, factory: WidgetFactory) {
             this.Grid = new Grid(cfg.HorizontalGridStepPx, cfg.VerticalGridStepPx);
-            this.factory = new WidgetFactory(cfg.Namespace, cfg.Transport, cfg.Registry);
+            this.factory = factory;
             for (let i = 0; i < layout.Widgets.length; i++) {
                 let widget = this.factory.GetWidget(layout.Widgets[i].Name, layout.Widgets[i].Options);
                 if (widget != null) {

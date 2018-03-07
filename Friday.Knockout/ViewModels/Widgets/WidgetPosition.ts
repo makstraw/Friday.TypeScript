@@ -11,5 +11,9 @@
         public static FromDto(dto: WidgetPosition): WidgetPosition {
             return new WidgetPosition(dto.Top as any, dto.Left as any);
         }
+
+        public static get Zero(): WidgetPosition {
+            return new WidgetPosition(0, 0);
+        }
     }
 }
