@@ -10,8 +10,8 @@ namespace Friday.Logging {
             this.LogLine(LogLevel.Critical, error.toString());
         }
 
-        LogDebug(msg: string): void {
-             this.LogLine(LogLevel.Debug,msg);
+        LogDebug(msg: string, ...args): void {
+             this.LogLine(LogLevel.Debug,msg,...args);
         }
 
         LogError(e: Error): void;
@@ -25,18 +25,18 @@ namespace Friday.Logging {
             this.LogLine(LogLevel.Information,msg);
         }
 
-        LogLine(level: LogLevel, line: string): void {
+        LogLine(level: LogLevel, line: string, ...args): void {
             if (level < this.minLogLevel) return;
 
-            if (level === LogLevel.Trace) console.trace(line);
-            else console.log(line);
+            if (level === LogLevel.Trace) console.trace(line, ...args);
+            else console.log(line, ...args);
         }
 
         LogWarning(warning: string): void {
             this.LogLine(LogLevel.Warning,warning);
         }
 
-        Trace(msg: string): void {
+        Trace(msg: string, ...args): void {
             this.LogLine(LogLevel.Trace,msg);
         }
 
