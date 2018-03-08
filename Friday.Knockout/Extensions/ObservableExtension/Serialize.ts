@@ -63,7 +63,7 @@ ko.ToDto = function (viewModel: Friday.Knockout.ViewModels.SerializableViewModel
             if (isPassingFilters(viewModel.SerializationMode, viewModel.SerializationFilter, viewModel[propName])) {
                 propValue = ko.unwrap(viewModel[propName]);
                 if (isSerializable(propValue)) propValue = (viewModel[propName] as Friday.ValueTypes.ISerializable<any>).ToDto();
-                dto[propName] = propValue;
+                (dto as any)[propName] = propValue;
             }
         } else if(viewModel.SerializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.ObservablesOnly) {
             if (typeIsFunction(viewModel[propName])) continue;
@@ -72,7 +72,7 @@ ko.ToDto = function (viewModel: Friday.Knockout.ViewModels.SerializableViewModel
                 propValue = (viewModel[propName] as Friday.ValueTypes.ISerializable<any>).ToDto();
 
             else propValue = viewModel[propName];
-            dto[propName] = propValue;
+            (dto as any)[propName] = propValue;
         }
 
     }
