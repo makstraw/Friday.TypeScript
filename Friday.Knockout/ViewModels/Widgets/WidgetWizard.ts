@@ -1,6 +1,6 @@
-﻿/// <reference path="../../../Friday.Base/ValueObjects/INamespaceObject.ts" />
+﻿/// <reference path="../../../Friday.Base/Reflection/INamespaceObject.ts" />
 namespace Friday.Knockout.ViewModels.Widgets {
-    import INamespaceObject = Friday.ValueTypes.INamespaceObject;
+    import INamespaceObject = Friday.Reflection.INamespaceObject;
 
     export class WidgetWizard {
         private readonly widgetNotSelectedTemplate: string = "widget-not-selected";
@@ -13,7 +13,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         constructor(namespace: INamespaceObject<Widget>, factory: WidgetFactory) {
             this.factory = factory;
-            this.WidgetTypes = Friday.ValueTypes.ScanNamespace(namespace);
+            this.WidgetTypes = Friday.Reflection.ScanNamespace(namespace);
             this.SelectedWidgetType.subscribe(this.onWidgetTypeSelected.bind(this));
 
         }

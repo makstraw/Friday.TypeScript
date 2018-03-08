@@ -3,5 +3,6 @@
         public static readonly SecondsInMinute = 60;
         public static readonly MinutesInHour = 60;
         public static readonly HoursInDay = 24;
+        public static readonly DaysInWeek = 7;
     }
 }

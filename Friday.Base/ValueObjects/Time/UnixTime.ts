@@ -64,7 +64,7 @@ namespace Friday.ValueTypes {
             if (String.IsNullOrEmpty(format)) format = "U";
             let localPrefix = DateTimeKind[DateTimeKind.Local];
             let utcPrefix = DateTimeKind[DateTimeKind.Utc];
-            let formattedTime = String.Empty();
+            let formattedTime = String.Empty;
             let dateTime = this.ToDateTime();
 
             switch (format) {

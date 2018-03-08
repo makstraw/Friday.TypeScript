@@ -5,7 +5,7 @@
 
 interface StringConstructor {
     IsNullOrEmpty(value: string): boolean;
-    Empty(): string;
+    Empty: string;
 }
 
 String.prototype.toUCFirst = function (): string {
@@ -18,4 +18,4 @@ String.prototype.IsEmpty = function (): boolean {
 
 String.IsNullOrEmpty = (value: string): boolean => value == null || value.IsEmpty();
 
-String.Empty = (): string => "";
+String.Empty = "";

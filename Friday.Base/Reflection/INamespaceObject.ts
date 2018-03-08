@@ -1,4 +1,4 @@
-﻿namespace Friday.ValueTypes {
+﻿namespace Friday.Reflection {
     export interface INamespaceObject<T> {
         [key: string]: T;
     }

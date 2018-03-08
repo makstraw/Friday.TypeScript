@@ -87,6 +87,7 @@
     <TypeScriptCompile Include="Logging\ConsoleLogger.ts" />
     <TypeScriptCompile Include="Logging\ILogger.ts" />
     <TypeScriptCompile Include="Logging\LogLevel.ts" />
+    <TypeScriptCompile Include="Reflection\Mirror.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
     <TypeScriptCompile Include="Transport\IRequestWithId.ts" />
     <TypeScriptCompile Include="Transport\ITransport.ts" />
@@ -115,7 +116,7 @@
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
     <TypeScriptCompile Include="ValueObjects\IEqualityComparer.ts" />
     <TypeScriptCompile Include="ValueObjects\IEquatable.ts" />
-    <TypeScriptCompile Include="ValueObjects\INamespaceObject.ts" />
+    <TypeScriptCompile Include="Reflection\INamespaceObject.ts" />
     <TypeScriptCompile Include="ValueObjects\ISerializable.ts" />
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
     <TypeScriptCompile Include="ValueObjects\RequestId.ts" />

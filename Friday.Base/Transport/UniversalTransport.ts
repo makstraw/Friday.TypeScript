@@ -2,6 +2,7 @@
 ///<reference path="ITransport.ts"/>
 namespace Friday.Transport {
     import EventHandler = Utility.EventHandler;
+    import ILogger = Logging.ILogger;
 
     export interface IUniversalTransportOptions extends IJsonWebSocketOptions {
         ServerMessageEnum: object;
@@ -13,7 +14,7 @@ namespace Friday.Transport {
         private readonly serverMessageEnum: object;
         private readonly clientMessageEnum: object;
 
-        public readonly OnOpen: EventHandler<void> = new EventHandler();
+        public readonly OnOpen: EventHandler<void> = new EventHandler(this.isReady.bind(this));
         public readonly OnClose: EventHandler<CloseEvent> = new EventHandler();
         public readonly OnError: EventHandler<ErrorEvent> = new EventHandler();
         public readonly OnMessage: EventHandler<MessageEvent> = new EventHandler();
@@ -28,8 +29,8 @@ namespace Friday.Transport {
 
         protected routeBlobMessage(blob: Blob): void { throw new Error("Not implemented"); }
 
-        constructor(registry: IPacketRegistryRouteFind, options: IUniversalTransportOptions) {
-            super(registry, options.ConnectionString, options);
+        constructor(registry: IPacketRegistryRouteFind, logger: ILogger, options: IUniversalTransportOptions) {
+            super(registry, options.ConnectionString, logger, options);
 
             this.serverMessageEnum = options.ServerMessageEnum;
             this.clientMessageEnum = options.ClientMessageEnum;

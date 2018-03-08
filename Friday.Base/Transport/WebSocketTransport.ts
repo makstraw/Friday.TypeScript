@@ -2,6 +2,7 @@
 ///<reference path="IMessage.ts"/>
 ///<reference path="IMessageSend.ts"/>
 namespace Friday.Transport {
+    import ILogger = Logging.ILogger;
     export type WebSocketBinaryType = "arraybuffer" | "blob";
 
     export interface IWebSocketOptions {
@@ -12,6 +13,7 @@ namespace Friday.Transport {
     }
 
     export abstract class WebSocketTransport implements IMessageSend {
+        protected logger: ILogger;
         private  socket: WebSocket;
         private connectionString: WebSocketConnectionString;
         protected debugMode: boolean = false;
@@ -23,7 +25,8 @@ namespace Friday.Transport {
 
         protected options: IWebSocketOptions;
 
-        constructor(connectionString: WebSocketConnectionString, options?: IWebSocketOptions) {
+        constructor(connectionString: WebSocketConnectionString, logger: ILogger, options?: IWebSocketOptions) {
+            this.logger = logger;
             this.connectionString = connectionString;
             this.options = options;
             if (options) {
@@ -50,11 +53,15 @@ namespace Friday.Transport {
             this.socket.close();
         }
 
+        protected isReady(): boolean {
+            return typeof this.socket !== "undefined" && this.socket.readyState === WebSocket.OPEN;
+        }
+
         public SendMessage(message: IMessage): void {
-            if(this.debugMode) console.log("Sending packet: ",message);
-            if (this.socket.readyState == WebSocket.OPEN)
+            this.logger.LogDebug(`Sending packet: ${message}`);
+            if (this.isReady())
                 this.socket.send(JSON.stringify(message));
-            else if (this.debugMode) console.log("Not sent, socket is not ready");
+            else this.logger.Trace("Not sent, socket is not ready");
         }
 
         protected onOpenHandler(): void {

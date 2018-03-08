@@ -7,7 +7,7 @@ namespace Friday.Logging {
         LogCritical(errorMessage: string, e: Error): void;
         LogCritical(e: Error): void;
         LogCritical(error: string | Error, e?: Error): void {
-            throw new Error("Not implemented");
+            this.LogLine(LogLevel.Critical, error.toString());
         }
 
         LogDebug(msg: string): void {
@@ -18,20 +18,27 @@ namespace Friday.Logging {
         LogError(error: string): void;
         LogError(error: string, e: Error): void;
         LogError(e: string | Error): void {
-            throw new Error("Not implemented");
+            this.LogLine(LogLevel.Error,e.toString());
         }
 
-        LogInformation(msg: string): void { throw new Error("Not implemented"); }
+        LogInformation(msg: string): void {
+            this.LogLine(LogLevel.Information,msg);
+        }
 
         LogLine(level: LogLevel, line: string): void {
             if (level < this.minLogLevel) return;
 
-            console.log(line);
+            if (level === LogLevel.Trace) console.trace(line);
+            else console.log(line);
         }
 
-        LogWarning(warning: string): void { throw new Error("Not implemented"); }
+        LogWarning(warning: string): void {
+            this.LogLine(LogLevel.Warning,warning);
+        }
 
-        Trace(msg: string): void { throw new Error("Not implemented"); }
+        Trace(msg: string): void {
+            this.LogLine(LogLevel.Trace,msg);
+        }
 
         constructor(minLogLevel: LogLevel) {
             this.minLogLevel = minLogLevel;

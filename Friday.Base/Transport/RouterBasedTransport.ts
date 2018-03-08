@@ -1,11 +1,13 @@
 ///<reference path="JsonWebSocketTransport.ts"/>
 ///<reference path="PacketRegistry.ts"/>
-namespace Friday.Transport { 
+namespace Friday.Transport {
+    import ILogger = Logging.ILogger;
+
     export abstract class RouterBasedTransport extends JsonWebSocketTransport {
         private registry: IPacketRegistryRouteFind;
 
-        constructor(registry: IPacketRegistryRouteFind, connectionString: WebSocketConnectionString, options?: IJsonWebSocketOptions) {
-            super(connectionString, options);
+        constructor(registry: IPacketRegistryRouteFind, connectionString: WebSocketConnectionString, logger: ILogger, options?: IJsonWebSocketOptions) {
+            super(connectionString,logger, options);
             this.registry = registry;
         }
 

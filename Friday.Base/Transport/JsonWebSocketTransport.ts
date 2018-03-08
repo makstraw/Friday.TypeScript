@@ -1,5 +1,6 @@
 ///<reference path="WebSocketTransport.ts"/>
 namespace Friday.Transport {
+    import ILogger = Logging.ILogger;
     export type EnumSerializationType = "string" | "number";
     export type MessageTypeDirection = "peer" | "server" | "client";
 
@@ -17,8 +18,8 @@ namespace Friday.Transport {
         protected incomingEnumType: EnumSerializationType;
         protected outgoingEnumType: EnumSerializationType;
 
-        constructor(connectionString: WebSocketConnectionString, options?: IJsonWebSocketOptions) {
-            super(connectionString, options);
+        constructor(connectionString: WebSocketConnectionString, logger: ILogger, options?: IJsonWebSocketOptions) {
+            super(connectionString, logger, options);
             if (!options) options = new DefaultJsonWebSocketOptions();
             this.incomingEnumType = options.IncomingEnumType;
             this.outgoingEnumType = options.OutgoingEnumType;
