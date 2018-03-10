@@ -37,14 +37,13 @@ function isSerializable(value: any): boolean {
 function isPassingFilters(serializationMode: Friday.Knockout.ViewModels.SerializationMode, serializationFilter: Friday.Knockout.ViewModels.SerializationFilter, value: KnockoutObservable<any>): boolean {
     //Observables not allowed by filter
     if (serializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.All && serializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.ObservablesOnly) return false;
+
     //Serialization mode set to Include Selected
     if (serializationMode === Friday.Knockout.ViewModels.SerializationMode.Include &&
         value.SerializationMode === Friday.Knockout.ViewModels.SerializationMode.Include) return true;
-
     //Serialization mode set to Exclude Selected
     if (serializationMode === Friday.Knockout.ViewModels.SerializationMode.Exclude &&
         value.SerializationMode !== Friday.Knockout.ViewModels.SerializationMode.Exclude) return true;
-
     //Filter not passed
     return false;
 
@@ -56,9 +55,7 @@ ko.ToDto = function (viewModel: Friday.Knockout.ViewModels.SerializableViewModel
     for (let i = 0; i < keys.length; i++) {
         let propName = keys[i];
         let propValue: any;
-
-        if(propName === "SerializationFilter" || propName === "SerializationMode") continue;       
-
+        if(propName === "SerializationFilter" || propName === "SerializationMode") continue;
         if (ko.isObservable(viewModel[propName])) {
             if (isPassingFilters(viewModel.SerializationMode, viewModel.SerializationFilter, viewModel[propName])) {
                 propValue = ko.unwrap(viewModel[propName]);
