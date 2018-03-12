@@ -9,17 +9,18 @@ namespace Friday.Knockout.ViewModels {
         private requestFunction: Function = document.documentElement.requestFullscreen || document.documentElement.mozRequestFullScreen || document.documentElement.webkitRequestFullscreen || this.nullFunction;
         private cancelFunction: Function = document.cancelFullScreen || document.mozCancelFullScreen || document.webkitCancelFullScreen || this.nullFunction;
         
-        private readonly element: HTMLElement;
+        private element: HTMLElement;
 
         constructor(element?: HTMLElement) {
-            this.element = element;
+            if (typeof element === "undefined") element = document.documentElement;
+            this.SetElement(element);
             document.addEventListener("fullscreenchange", this.stateChanged.bind(this));
             document.addEventListener("fullscreenerror", this.error.bind(this));
             document.addEventListener("mozfullscreenchange", this.stateChanged.bind(this));
             document.addEventListener("mozfullscreenerror", this.error.bind(this));
             document.addEventListener("webkitfullscreenchange", this.stateChanged.bind(this));
             document.addEventListener("webkitfullscreenerror", this.error.bind(this));
-            this.requestFunction = this.requestFunction.bind(document.documentElement);
+
             this.cancelFunction = this.cancelFunction.bind(document);
         }
 
@@ -27,8 +28,16 @@ namespace Friday.Knockout.ViewModels {
             return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
         }
 
-        public Toggle() {
-            if (this.fullscreenElement()) {
+        public SetElement(element: HTMLElement) {
+            this.element = element;
+            this.requestFunction = element.requestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen || this.nullFunction;
+            this.requestFunction = this.requestFunction.bind(element);
+        }
+
+        public Toggle(element?: HTMLElement) {
+            if (typeof element !== "undefined") this.SetElement(element);
+
+            if (!this.fullscreenElement()) {
                 this.requestFunction();
             } else {
                 this.cancelFunction();
