@@ -62,6 +62,7 @@ namespace Friday.Transport {
             if (this.isReady())
                 this.socket.send(JSON.stringify(message));
             else this.logger.Trace("Not sent, socket is not ready");
+//            this.logger.LogDebug(JSON.stringify(message));
         }
 
         protected onOpenHandler(): void {

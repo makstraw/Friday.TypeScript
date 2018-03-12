@@ -22,7 +22,7 @@ ko.observableArray.fn.FindRecordByProperty = function(this: KnockoutObservableAr
     propertyName: string,
     propertyValue: any): object | null {
     for (let i = 0; i < this().length; i++) {
-        if (this()[i][propertyName] == propertyValue) return this()[i];
+        if (typeof (this()[i]) !== "undefined" && this()[i][propertyName] == propertyValue) return this()[i];
     }
     return null;
 }
