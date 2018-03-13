@@ -6,6 +6,13 @@
 
 function findItem(options, prop, ref) {
     return ko.utils.arrayFirst(options,
+        function (item) {         
+            return ref === getVal(item, prop);
+        });
+}
+
+function findItem2(valueAccessor, prop, ref) {
+    return ko.utils.arrayFirst(valueAccessor().options,
         function (item) {
             return ref === getVal(item, prop);
         });
@@ -28,9 +35,8 @@ ko.bindingHandlers.datalist = {
         // when the value is changed, write to the associated myValue observable
         function onNewValue(newVal) {
             var dataItems = ko.unwrap(setup.options),
-                selectedItem = findItem(dataItems, textProperty, newVal),
+                selectedItem = findItem2(valueAccessor, textProperty, newVal),
                 newValue = selectedItem ? getVal(selectedItem, valueProperty) : void 0;
-
             if (ko.isWriteableObservable(myValue)) {
                 myValue(newValue);
             }
@@ -61,6 +67,7 @@ ko.bindingHandlers.datalist = {
             datalist = element.list,
             dataItems = ko.unwrap(setup.options),
             textProperty = ko.unwrap(setup.optionsText);
+
 
         // rebuild list of options when an underlying observable changes
         datalist.innerHTML = "";
