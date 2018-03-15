@@ -73,6 +73,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.OnWidgetUpdated.Call(dto);
         }
 
+        public AddLayout() {
+            this.createLayout();
+        }
+
         private createOrGetLayout(index: number): Layout {
             let layout: Layout;
             if (typeof this.Layouts()[index] === "undefined") layout = this.createLayout(index);
@@ -80,13 +84,14 @@ namespace Friday.Knockout.ViewModels.Widgets {
             return layout;
         }
 
-        private createLayout(index?: number) : Layout {
+        private createLayout(index?: number): Layout {
             let layout = new Layout(this.cfg, this.factory);
             if (typeof index !== "undefined") {
                 this.Layouts()[index] = layout;
                 this.Layouts.notifySubscribers();
+            } else {
+                 this.Layouts.push(layout);
             }
-            else this.Layouts.push(layout);
             if (typeof this.CurrentLayout === "undefined" || this.CurrentLayout() === null) this.CurrentLayout = ko.observable(layout);
             layout.CoordinatesUpdated.Subscribe(this.UpdateWidget.bind(this));
             return layout;
