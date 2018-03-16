@@ -46,15 +46,23 @@ namespace Friday.Knockout.ViewModels.Widgets {
             widget.Destroy();
         }
 
-        public AddWidget(dto: ISavedWidgetDto): Widget {
-            dto.Options.Wizard = false;
-            let widget = this.factory.GetWidget(dto.Name, dto.Options);
+        public AddWidget(widget: Widget): Widget;
+        public AddWidget(dto: ISavedWidgetDto): Widget;
+        public AddWidget(x: any): Widget{
+            if (typeof x.WidgetName != "undefined") {
+                let widget = x;
+                this.Widgets.push(widget);
+                return widget;
+            } else {
+                let dto = x;
+                dto.Options.Wizard = false;
+                let widget = this.factory.GetWidget(dto.Name, dto.Options);
 
-            if (widget != null) {
-                if (widget.Size.Equals(WidgetSize.Zero)) {
-                    widget.Size = WidgetSize.FromDto(widget.MinimumSize);
-                    widget.Position = this.Grid.AllocateSpace(widget.Size);
-                }
+                if (widget != null) {
+                    if (widget.Size.Equals(WidgetSize.Zero)) {
+                        widget.Size = WidgetSize.FromDto(widget.MinimumSize);
+                        widget.Position = this.Grid.AllocateSpace(widget.Size);
+                    }
 
                     widget.Size.Width.subscribe((newValue: number) => {
                         widget.Size.Width(this.Grid.AlignSizeToGrid(newValue, this.Grid.HorizontalGridStepPx()));
@@ -65,13 +73,13 @@ namespace Friday.Knockout.ViewModels.Widgets {
                         widget.Size.Height(this.Grid.AlignSizeToGrid(newValue, this.Grid.VerticalGridStepPx()));
                         this.CoordinatesUpdated.Call(widget);
                     });
-                if (typeof dto.Id === "undefined")
-                    this.Widgets.push(widget);
+                    if (typeof dto.Id === "undefined")
+                        this.Widgets.push(widget);
                     else this.Widgets()[dto.Id] = widget;
-                this.Widgets.notifySubscribers();
+                    this.Widgets.notifySubscribers();
+                }
+                return widget;
             }
-            
-            return widget;
         }
 
         public AssignId(widget: Widget) {

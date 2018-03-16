@@ -47,8 +47,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.OnWidgetCreated.Call(dto);
         }
 
+        public AddWidget(widget: Widget) {
+            this.CurrentLayout().AddWidget(widget);
+        }
+
         public LoadWidget(dto: ISavedWidgetDto) {
-            let layout = this.createOrGetLayout(dto.Layout)
+            let layout = this.createOrGetLayout(dto.Layout);
             layout.AddWidget(dto);
 
         }

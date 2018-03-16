@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../Friday.Base/Reflection/INamespaceObject.ts" />
 /// <reference path="../../../Friday.Base/Transport/ITransport.ts" />
-/// <reference path="../../../Friday.Base/Transport/IPacketRegistryRouteRegistration.ts" />
+/// <reference path="../../../Friday.Base/Transport/DummyPacketRegistry.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import INamespaceObject = Friday.Reflection.INamespaceObject;
     import ITransport = Friday.Transport.ITransport;
