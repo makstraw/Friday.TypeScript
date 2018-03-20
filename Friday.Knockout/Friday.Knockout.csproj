@@ -85,6 +85,7 @@
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetSize.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\WidgetWizard.ts" />
     <TypeScriptCompile Include="ViewModels\WindowTitleViewModel.ts" />
+    <TypeScriptCompile Include="ViewModels\WriteOnlySerializableViewModel.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Captcha\" />
