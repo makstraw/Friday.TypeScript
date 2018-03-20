@@ -9,12 +9,12 @@
         public CurrentPageIndex: KnockoutObservable<number> = ko.observable(0);
 
         public MaxPageIndex: KnockoutComputed<number> = ko.pureComputed(function(this: DataGridViewModel<T>): number {
-            return Math.ceil(ko.unwrap(this.data).length / this.ItemsPerPage()) - 1;
+            return Math.ceil(this.data().length / this.ItemsPerPage()) - 1;
         }, this);
 
         public CurrentPageData: KnockoutComputed<Array<T>> = ko.pureComputed(function (this: DataGridViewModel<T>): Array<T> {
             var startIndex = this.ItemsPerPage() * this.CurrentPageIndex();
-            return ko.unwrap(this.data).slice(startIndex, startIndex + this.ItemsPerPage());
+            return this.data().slice(startIndex, startIndex + this.ItemsPerPage());
         },this); 
 
 
