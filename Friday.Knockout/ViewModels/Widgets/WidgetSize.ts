@@ -1,5 +1,8 @@
 ﻿namespace Friday.Knockout.ViewModels.Widgets {
-    export class WidgetSize {
+    import IEquatable = Friday.ValueTypes.IEquatable;
+
+    export class WidgetSize implements IEquatable<WidgetSize>{
+
         Width: KnockoutObservable<number>;
         Height: KnockoutObservable<number>;
 
@@ -14,6 +17,10 @@
 
         public static get Zero(): WidgetSize {
             return new WidgetSize(0, 0);
+        }
+
+        public Equals(other: WidgetSize): boolean {
+            return this.Width() === other.Width() && this.Height() === other.Height();
         }
     }
 }

@@ -4,5 +4,7 @@
         public static readonly MinutesInHour = 60;
         public static readonly HoursInDay = 24;
         public static readonly DaysInWeek = 7;
+
+        public static readonly SecondsInDay = 86400;
     }
 }

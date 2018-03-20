@@ -38,7 +38,6 @@ namespace Friday.ValueTypes {
         public static readonly CryptoCurrenciesEpochStartDateTime: DateTime = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         public static readonly CryptoCurrenciesEpochStart: UnixTime = UnixTime.CryptoCurrenciesEpochStartDateTime.ToUnixTime();
 
-        public readonly SecondsInDay = 86400;
 
 
         public toString(): string {
@@ -135,12 +134,13 @@ namespace Friday.ValueTypes {
         }
 
         public AddDays(dayCount: number): UnixTime {
-            return new UnixTime(this.TimeStamp.add(Long.fromNumber(dayCount).mul(this.SecondsInDay)));
+            return new UnixTime(this.TimeStamp.add(Long.fromNumber(dayCount).mul(TimeConstants.SecondsInDay)));
         }
 
         public static FromDto(dto): UnixTime {
             return new UnixTime(Long.fromNumber(dto.TimeStamp));
         }
+
     }
 
 

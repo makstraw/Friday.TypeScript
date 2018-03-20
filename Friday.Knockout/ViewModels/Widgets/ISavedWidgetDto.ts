@@ -2,6 +2,8 @@
 namespace Friday.Knockout.ViewModels.Widgets {
     export interface ISavedWidgetDto {
         Name: string;
-        Options: IWidgetOptions,
+        Options: IWidgetOptions;
+        Layout?: number;
+        Id?: number;
     }
 }

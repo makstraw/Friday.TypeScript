@@ -89,6 +89,7 @@
     <TypeScriptCompile Include="Logging\LogLevel.ts" />
     <TypeScriptCompile Include="Reflection\Mirror.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
+    <TypeScriptCompile Include="Transport\DummyPacketRegistry.ts" />
     <TypeScriptCompile Include="Transport\IRequestWithId.ts" />
     <TypeScriptCompile Include="Transport\ITransport.ts" />
     <TypeScriptCompile Include="Transport\ITransportEvents.ts" />
