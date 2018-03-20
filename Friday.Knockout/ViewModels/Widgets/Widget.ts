@@ -1,10 +1,12 @@
 ﻿///<reference path="WidgetPosition.ts"/>
 ///<reference path="WidgetSize.ts"/>
 ///<reference path="IWidgetOptions.ts"/>
+///<reference path="../../../Friday.Base/Utility/EventHandler.ts"/>
 ///<reference path="../../../Friday.Base/Extensions/StringExtensions.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;
+    import EventHandler = Friday.Utility.EventHandler;
 
     export abstract class Widget extends RoutedViewModel{
         public Id: string;
@@ -16,6 +18,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public BackgroundColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
+        public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
 
         public OnDragStart(target: Widget, event: any): boolean {
             let originalEvent: DragEvent = event.originalEvent;
