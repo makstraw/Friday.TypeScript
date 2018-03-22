@@ -78,7 +78,16 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public AddLayout() {
-            this.createLayout();
+            this.CurrentLayout(this.createLayout());
+        }
+
+        public ClearLayout() {
+            for (let i = 0; i < this.CurrentLayout().Widgets().length; i++) {
+
+                let widget = this.CurrentLayout().Widgets()[i];
+                if (typeof widget !== "undefined" && widget !== null)
+                    this.RemoveWidget(this.CurrentLayout(), widget);
+            }
         }
 
         private createOrGetLayout(index: number): Layout {
