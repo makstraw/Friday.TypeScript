@@ -130,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jquery\" />
+    <Folder Include="System\Interfaces\" />
+    <Folder Include="System\Types\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

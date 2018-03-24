@@ -46,12 +46,27 @@ namespace Friday.Knockout.ViewModels.Widgets {
             widget.Destroy();
         }
 
+        private subscribeToWidgetEvents(widget: Widget) {
+            widget.OnSaveRequested.Subscribe((widget: Widget) => this.CoordinatesUpdated.Call(widget));
+
+            widget.Size.Width.subscribe((newValue: number) => {
+                widget.Size.Width(this.Grid.AlignSizeToGrid(newValue, this.Grid.HorizontalGridStepPx()));
+                this.CoordinatesUpdated.Call(widget);
+            });
+
+            widget.Size.Height.subscribe((newValue: number) => {
+                widget.Size.Height(this.Grid.AlignSizeToGrid(newValue, this.Grid.VerticalGridStepPx()));
+                this.CoordinatesUpdated.Call(widget);
+            });
+        }
+
         public AddWidget(widget: Widget): Widget;
         public AddWidget(dto: ISavedWidgetDto): Widget;
         public AddWidget(x: any): Widget{
             if (typeof x.WidgetName != "undefined") {
-                let widget = x;
+                let widget = x as Widget;
                 this.Widgets.push(widget);
+                this.subscribeToWidgetEvents(widget);
                 return widget;
             } else {
                 let dto = x;
@@ -64,15 +79,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
                         widget.Position = this.Grid.AllocateSpace(widget.Size);
                     }
 
-                    widget.Size.Width.subscribe((newValue: number) => {
-                        widget.Size.Width(this.Grid.AlignSizeToGrid(newValue, this.Grid.HorizontalGridStepPx()));
-                        this.CoordinatesUpdated.Call(widget);
-                    });
+                    this.subscribeToWidgetEvents(widget);
 
-                    widget.Size.Height.subscribe((newValue: number) => {
-                        widget.Size.Height(this.Grid.AlignSizeToGrid(newValue, this.Grid.VerticalGridStepPx()));
-                        this.CoordinatesUpdated.Call(widget);
-                    });
                     if (typeof dto.Id === "undefined")
                         this.Widgets.push(widget);
                     else this.Widgets()[dto.Id] = widget;

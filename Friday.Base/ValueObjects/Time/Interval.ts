@@ -87,5 +87,14 @@ namespace Friday.ValueTypes {
         public GreaterThan(other: Interval): boolean {
             return this.Length.GreaterThan(other.Length);
         }
+
+        public static FromDto(dto: Interval): Interval {
+            return new Interval(dto.Start, dto.End);
+        }
+
+        public toJSON(): any {
+            return { Start: this.Start, End: this.End }
+        }
+
     }
 }

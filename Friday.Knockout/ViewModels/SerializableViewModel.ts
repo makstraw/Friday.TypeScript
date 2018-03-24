@@ -1,22 +1,18 @@
 ///<reference path="RoutedViewModel.ts"/>
 ///<reference path="../Extensions/ObservableExtension/Default.ts"/>
 ///<reference path="../Extensions/ObservableExtension/Serialize.ts"/>
+///<reference path="../Types/Interfaces/IKnockoutSerializable.ts"/>
 
 namespace Friday.Knockout.ViewModels {
     import IMessage = Friday.Transport.IMessage;
+    import SerializationMode = Knockout.Types.SerializationMode;
+    import SerializationFilter = Knockout.Types.SerializationFilter;
+    import IKnockoutSerializable = Knockout.Types.IKnockoutSerializable;
 
-    export enum SerializationMode {
-        Include,
-        Exclude
-    }
 
-    export enum SerializationFilter {
-        All,
-        ObservablesOnly,
-        PrimitivesOnly
-    }
+    export abstract class SerializableViewModel extends RoutedViewModel implements IMessage, IKnockoutSerializable<any> {
 
-    export abstract class SerializableViewModel extends RoutedViewModel implements IMessage {
+
         [index: string]: any;
         public abstract readonly MessageType: any;
         public readonly SerializationMode: SerializationMode = SerializationMode.Exclude;
@@ -30,14 +26,14 @@ namespace Friday.Knockout.ViewModels {
             }
         }
 
-//        protected toDto(): object {
-//            return ko.toJS(this);
-//        }
+        public ToDto(): IMessage {
+            let dto = ko.ToDto(this);
+            (dto as IMessage).MessageType = this.MessageType;
+            return dto as IMessage;
+        }
 
         public Submit() {
-            let dto = ko.ToDto(this);
-            (dto as any).MessageType = this.MessageType;
-            this.sendMessage(dto);
+            this.sendMessage(this.ToDto());
         }
     }
 }

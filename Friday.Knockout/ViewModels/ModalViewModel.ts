@@ -1,12 +1,13 @@
 ﻿///<reference path="SerializableViewModel.ts"/>
 ///<reference path="Notices/NoticeViewModel.ts"/>
+///<reference path="../../Friday.Base/Extensions/StringExtensions.ts"/>
 namespace Friday.Knockout.ViewModels {
     import IPacketRegistryRouteRegistration = Transport.IPacketRegistryRouteRegistration;
     import IMessageSend = Transport.IMessageSend;
     import NoticeViewModel = Knockout.ViewModels.Notices.NoticeViewModel;
 
     export abstract class ModalViewModel extends SerializableViewModel {
-        public ErrorText: KnockoutObservable<string> = ko.observable("");
+        public ErrorText: KnockoutObservable<string> = ko.observable(String.Empty);
         public ShowModal: KnockoutObservable<boolean> = ko.observable(false);
 
         private static modalContext: Array<ModalViewModel> = [];

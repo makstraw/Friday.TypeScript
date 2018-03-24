@@ -50,6 +50,8 @@
     <TypeScriptCompile Include="Extensions\ObservableExtension\Default.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Cookie.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Serialize.ts" />
+    <TypeScriptCompile Include="Templates\RoutedViewModel.ts" />
+    <TypeScriptCompile Include="Types\Interfaces\IKnockoutSerializable.ts" />
     <TypeScriptCompile Include="ViewModels\ChatViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\DataGridViewModel.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
@@ -68,6 +70,7 @@
     <TypeScriptCompile Include="ViewModels\PingPong.ts" />
     <TypeScriptCompile Include="ViewModels\ReadOnlyModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\RoutedViewModel.ts" />
+    <TypeScriptCompile Include="Models\SerializableModel.ts" />
     <TypeScriptCompile Include="ViewModels\SerializableViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Dashboard.ts" />
     <TypeScriptCompile Include="ViewModels\Widgets\Grid.ts" />

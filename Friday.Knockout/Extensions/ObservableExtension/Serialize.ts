@@ -2,7 +2,8 @@
 // ReSharper disable once InconsistentNaming
 
 interface IKnockoutExtendersSerializeOptions {
-    Mode: Friday.Knockout.ViewModels.SerializationMode;
+    Mode: Friday.Knockout.Types.SerializationMode;
+    FieldName?: string;
 }
 
 interface KnockoutExtenders {
@@ -11,14 +12,17 @@ interface KnockoutExtenders {
 
 ko.extenders.Serialize = function (target: any, options: IKnockoutExtendersSerializeOptions) {
     target.SerializationMode = options.Mode;
+    if (typeof options.FieldName != "undefined") target.FieldName = options.FieldName;
 };
 
 // ReSharper disable once InconsistentNaming
 interface KnockoutObservable<T> {
-    Mode: Friday.Knockout.ViewModels.SerializationMode;
+    SerializationMode: Friday.Knockout.Types.SerializationMode;
+    FieldName?: string;
 }
 
 interface KnockoutStatic {
+    ToDto(model: Friday.Knockout.Models.SerializableModel<any>): object;
     ToDto(viewModel: Friday.Knockout.ViewModels.SerializableViewModel): object;
 }
 
@@ -34,44 +38,52 @@ function isSerializable(value: any): boolean {
     return typeof value === "object" && typeof value["ToDto"] === "function";
 }
 
-function isPassingFilters(serializationMode: Friday.Knockout.ViewModels.SerializationMode, serializationFilter: Friday.Knockout.ViewModels.SerializationFilter, value: KnockoutObservable<any>): boolean {
+function isPassingFilters(serializationMode: Friday.Knockout.Types.SerializationMode, serializationFilter: Friday.Knockout.Types.SerializationFilter, value: KnockoutObservable<any>): boolean {
     //Observables not allowed by filter
-    if (serializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.All && serializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.ObservablesOnly) return false;
+    if (serializationFilter !== Friday.Knockout.Types.SerializationFilter.All && serializationFilter !== Friday.Knockout.Types.SerializationFilter.ObservablesOnly) return false;
 
     //Serialization mode set to Include Selected
-    if (serializationMode === Friday.Knockout.ViewModels.SerializationMode.Include &&
-        value.SerializationMode === Friday.Knockout.ViewModels.SerializationMode.Include) return true;
+    if (serializationMode === Friday.Knockout.Types.SerializationMode.Include &&
+        value.SerializationMode === Friday.Knockout.Types.SerializationMode.Include) return true;
     //Serialization mode set to Exclude Selected
-    if (serializationMode === Friday.Knockout.ViewModels.SerializationMode.Exclude &&
-        value.SerializationMode !== Friday.Knockout.ViewModels.SerializationMode.Exclude) return true;
+    if (serializationMode === Friday.Knockout.Types.SerializationMode.Exclude &&
+        value.SerializationMode !== Friday.Knockout.Types.SerializationMode.Exclude) return true;
     //Filter not passed
     return false;
 
 }
 
-ko.ToDto = function (viewModel: Friday.Knockout.ViewModels.SerializableViewModel): object {
+ko.ToDto = function(viewModel: Friday.Knockout.ViewModels.SerializableViewModel |
+                               Friday.Knockout.Models.SerializableModel<any>): object {
     let dto: object = {};
     let keys = Object.keys(viewModel);
     for (let i = 0; i < keys.length; i++) {
         let propName = keys[i];
         let propValue: any;
-        if(propName === "SerializationFilter" || propName === "SerializationMode") continue;
-        if (ko.isObservable(viewModel[propName])) {
-            if (isPassingFilters(viewModel.SerializationMode, viewModel.SerializationFilter, viewModel[propName])) {
-                propValue = ko.unwrap(viewModel[propName]);
-                if (isSerializable(propValue)) propValue = (viewModel[propName] as Friday.ValueTypes.ISerializable<any>).ToDto();
-                (dto as any)[propName] = propValue;
+        let property = viewModel[propName];
+
+        if (propName === "SerializationFilter" || propName === "SerializationMode") continue;
+
+        if (ko.isObservable(property)) {
+            if (isPassingFilters(viewModel.SerializationMode, viewModel.SerializationFilter, property)) {
+                propValue = ko.unwrap(property);
+
+                if (isSerializable(propValue))
+                    propValue = (propValue as Friday.ValueTypes.ISerializable<any>).ToDto();
+                if (typeof (property as KnockoutObservable<any>).FieldName !== "undefined")
+                    propName = property.FieldName;
             }
-        } else if(viewModel.SerializationFilter !== Friday.Knockout.ViewModels.SerializationFilter.ObservablesOnly) {
-            if (typeIsFunction(viewModel[propName])) continue;
+        } else if (viewModel.SerializationFilter !== Friday.Knockout.Types.SerializationFilter.ObservablesOnly) {
+            if (typeIsFunction(property)) continue;
 
-            if (isSerializable(viewModel[propName]))
-                propValue = (viewModel[propName] as Friday.ValueTypes.ISerializable<any>).ToDto();
-
+            if (isSerializable(property))
+                propValue = (property as Friday.ValueTypes.ISerializable<any>).ToDto();
             else propValue = viewModel[propName];
-            (dto as any)[propName] = propValue;
-        }
 
+
+        }
+        if(typeof propValue !== "undefined")
+            (dto as any)[propName] = propValue;        
     }
     return dto;
 }
