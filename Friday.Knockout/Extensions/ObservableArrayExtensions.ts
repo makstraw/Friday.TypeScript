@@ -4,7 +4,7 @@ interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;
     UpdateRecords(records: Array<T>, unshift?: boolean): void;
-    InsertOrUpdate(newRecord: T, objectPropertyName: string, unshift?: boolean, ): void;
+    InsertOrUpdate(newRecord: T | Friday.ValueTypes.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void;
     FindRecord(matchRecord: T, objectPropertyName: string): object;
     FindRecordByProperty(propertyName: string, propertyValue: any): object | null;
     FindRecordIndex(matchRecord: T): number;
@@ -43,12 +43,17 @@ ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<
     return null;
 }
 
-ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<any>, newRecord: object, objectPropertyName: string, unshift?: boolean, ): void {
+ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<any>, newRecord: object | Friday.ValueTypes.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void {
     if (!unshift) unshift = false;
-    var itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
+    let itemIndex : number;
+
+    if (Friday.ValueTypes.IsEquatable(newRecord) && (typeof objectPropertyName === "undefined" || objectPropertyName === null)) {
+        itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
+    }else
+        itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
+
     if (itemIndex != null) {
         this().splice(itemIndex, 1, newRecord);
-        console.log(this());
         this.notifySubscribers();
     } else {
         if (unshift) this.unshift(newRecord);
