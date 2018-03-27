@@ -20,6 +20,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
         public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
 
+        public Exception: KnockoutObservable<boolean> = ko.observable(false);
+
         public OnDragStart(target: Widget, event: any): boolean {
             let originalEvent: DragEvent = event.originalEvent;
             var style = window.getComputedStyle(originalEvent.target as Element, null);
