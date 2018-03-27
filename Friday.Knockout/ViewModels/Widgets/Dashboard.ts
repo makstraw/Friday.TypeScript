@@ -57,6 +57,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public AddWidget(widget: Widget) {
+            if (typeof widget === "function") widget = widget();
             this.CurrentLayout().AddWidget(widget);
         }
 
