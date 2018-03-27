@@ -1,7 +1,7 @@
 ﻿///<reference path="DateTime.ts"/>
 ///<reference path="../../Extensions/StringExtensions.ts"/>
-///<reference path="../IComparable.ts"/>
-namespace Friday.ValueTypes {
+///<reference path="../../System/Interfaces/IComparable.ts"/>
+namespace Friday.System {
     import NotImplementedException = Exceptions.NotImplementedException;
 
     export interface IFormatProvider {

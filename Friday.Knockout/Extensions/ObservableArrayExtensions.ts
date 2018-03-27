@@ -1,15 +1,16 @@
 ﻿///<reference path="../../Friday.Base/Utility/ObjectComparison.ts"/>
-///<reference path="../../Friday.Base/ValueObjects/IEquatable.ts"/>
+///<reference path="../../Friday.Base/System/Interfaces/IEquatable.ts"/>
+/// <reference path="../../Friday.Base/ValueObjects/LegacyDateTime.ts" />
 interface KnockoutObservableArray<T> {
     RemoveDeleted(records: Array<T>): void;
     AddNew(records: Array<T>, unshift?: boolean): void;
     UpdateRecords(records: Array<T>, unshift?: boolean): void;
-    InsertOrUpdate(newRecord: T | Friday.ValueTypes.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void;
+    InsertOrUpdate(newRecord: T | Friday.System.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void;
     FindRecord(matchRecord: T, objectPropertyName: string): object;
     FindRecordByProperty(propertyName: string, propertyValue: any): object | null;
     FindRecordIndex(matchRecord: T): number;
     FindRecordIndex(matchRecord: T, objectPropertyName: string): number;
-    FindRecordIndex(matchRecord: Friday.ValueTypes.IEquatable<any>): number;
+    FindRecordIndex(matchRecord: Friday.System.IEquatable<any>): number;
 }
 
 ko.observableArray.fn.FindRecord = function (this: KnockoutObservableArray<any>, matchRecord: any, objectPropertyName: string): object {
@@ -27,11 +28,11 @@ ko.observableArray.fn.FindRecordByProperty = function(this: KnockoutObservableAr
     return null;
 }
 
-ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<any>, matchRecord: any | Friday.ValueTypes.IEquatable<any>, objectPropertyName?: string): number {
+ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<any>, matchRecord: any | Friday.System.IEquatable<any>, objectPropertyName?: string): number {
     for (let i = 0; i < this().length;i++) {
         var item = this()[i];
         if (item === matchRecord) return i;
-        if (Friday.ValueTypes.IsEquatable(item) && item.Equals(matchRecord)) return i;
+        if (Friday.System.IsEquatable(item) && item.Equals(matchRecord)) return i;
         if(typeof objectPropertyName !== "undefined")
         if ((typeof item[objectPropertyName] == "object" &&
                 compareObjects(item[objectPropertyName], matchRecord[objectPropertyName])) ||
@@ -43,11 +44,11 @@ ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<
     return null;
 }
 
-ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<any>, newRecord: object | Friday.ValueTypes.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void {
+ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<any>, newRecord: object | Friday.System.IEquatable<any>, objectPropertyName?: string, unshift?: boolean, ): void {
     if (!unshift) unshift = false;
     let itemIndex : number;
 
-    if (Friday.ValueTypes.IsEquatable(newRecord) && (typeof objectPropertyName === "undefined" || objectPropertyName === null)) {
+    if (Friday.System.IsEquatable(newRecord) && (typeof objectPropertyName === "undefined" || objectPropertyName === null)) {
         itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
     }else
         itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);

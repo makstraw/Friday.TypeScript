@@ -1,6 +1,6 @@
-﻿///<reference path="../../../Friday.Base/ValueObjects/ISerializable.ts"/>
+﻿///<reference path="../../../Friday.Base/System/Interfaces/ISerializable.ts"/>
 namespace Friday.Knockout.Types {
-    import ISerializable = Friday.ValueTypes.ISerializable;
+    import ISerializable = Friday.System.ISerializable;
 
     export enum SerializationMode {
         Include,

@@ -1,5 +1,5 @@
 ﻿namespace Friday.Knockout.ViewModels.Widgets {
-    import IEquatable = Friday.ValueTypes.IEquatable;
+    import IEquatable = Friday.System.IEquatable;
 
     export class WidgetSize implements IEquatable<WidgetSize>{
 

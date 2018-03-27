@@ -1,8 +1,8 @@
 ﻿///<reference path="../../Utility/MethodHelper.ts"/>
 ///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
-///<reference path="../IComparable.ts"/>
+///<reference path="../../System/Interfaces/IComparable.ts"/>
 ///<reference path="TimeSpan.ts"/>
-namespace Friday.ValueTypes {
+namespace Friday.System {
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
     import ArgumentException = Exceptions.ArgumentException;
     import checkArgumentType = Utility.checkArgumentType;

@@ -1,9 +1,9 @@
-﻿///<reference path="ISerializable.ts"/>
+﻿///<reference path="../System/Interfaces/ISerializable.ts"/>
 ///<reference path="../Collections/KeyValuePair.ts"/>
-namespace Friday.ValueTypes {
+namespace Friday.System {
     import KeyValuePair = Collections.KeyValuePair;
 
-    export class RequestId implements ValueTypes.ISerializable<number> {
+    export class RequestId implements System.ISerializable<number> {
         private id: number;
         private static readonly maxUint32Value = 0xFFFFFFFF;
         private static readonly maxInt32Value = 0x7FFFFFFF;

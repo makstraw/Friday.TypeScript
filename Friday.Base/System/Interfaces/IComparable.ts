@@ -1,5 +1,5 @@
 ﻿///<reference path="IEqualityComparer.ts"/>
-namespace Friday.ValueTypes {
+namespace Friday.System {
 
     export interface IComparable<T> extends IEqualityComparer<T>{
         CompareTo(other: T): number;

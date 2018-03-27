@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Friday.Base/ValueObjects/ISerializable.ts" />
+﻿/// <reference path="../../../Friday.Base/System/Interfaces/ISerializable.ts" />
 // ReSharper disable once InconsistentNaming
 
 interface IKnockoutExtendersSerializeOptions {
@@ -69,7 +69,7 @@ ko.ToDto = function(viewModel: Friday.Knockout.ViewModels.SerializableViewModel 
                 propValue = ko.unwrap(property);
 
                 if (isSerializable(propValue))
-                    propValue = (propValue as Friday.ValueTypes.ISerializable<any>).ToDto();
+                    propValue = (propValue as Friday.System.ISerializable<any>).ToDto();
                 if (typeof (property as KnockoutObservable<any>).FieldName !== "undefined")
                     propName = property.FieldName;
             }
@@ -77,7 +77,7 @@ ko.ToDto = function(viewModel: Friday.Knockout.ViewModels.SerializableViewModel 
             if (typeIsFunction(property)) continue;
 
             if (isSerializable(property))
-                propValue = (property as Friday.ValueTypes.ISerializable<any>).ToDto();
+                propValue = (property as Friday.System.ISerializable<any>).ToDto();
             else propValue = viewModel[propName];
 
 

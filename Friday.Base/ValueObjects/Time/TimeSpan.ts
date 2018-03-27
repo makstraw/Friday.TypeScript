@@ -1,6 +1,6 @@
 ﻿///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
-///<reference path="../IComparable.ts"/>
-namespace Friday.ValueTypes {
+///<reference path="../../System/Interfaces/IComparable.ts"/>
+namespace Friday.System {
     import NotImplementedException = Exceptions.NotImplementedException;
     import ArgumentException = Exceptions.ArgumentException;
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
