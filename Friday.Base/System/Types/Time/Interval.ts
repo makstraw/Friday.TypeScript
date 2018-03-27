@@ -1,5 +1,5 @@
 ﻿///<reference path="UnixTime.ts"/>
-///<reference path="../../System/Interfaces/IComparable.ts"/>
+///<reference path="../../Interfaces/IComparable.ts"/>
 namespace Friday.System {
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
     import ArgumentException = Exceptions.ArgumentException;

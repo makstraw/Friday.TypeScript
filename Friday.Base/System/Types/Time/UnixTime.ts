@@ -1,6 +1,6 @@
 ﻿///<reference path="DateTime.ts"/>
-///<reference path="../../Extensions/StringExtensions.ts"/>
-///<reference path="../../System/Interfaces/IComparable.ts"/>
+///<reference path="../../../Extensions/StringExtensions.ts"/>
+///<reference path="../../Interfaces/IComparable.ts"/>
 namespace Friday.System {
     import NotImplementedException = Exceptions.NotImplementedException;
 

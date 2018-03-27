@@ -1,6 +1,6 @@
 ﻿///<reference path="../System/Interfaces/ISerializable.ts"/>
 ///<reference path="../Collections/KeyValuePair.ts"/>
-namespace Friday.System {
+namespace Friday.ValueTypes {
     import KeyValuePair = Collections.KeyValuePair;
 
     export class RequestId implements System.ISerializable<number> {

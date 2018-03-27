@@ -1,6 +1,6 @@
 /// <reference path="../ValueObjects/RequestId.ts" />
 namespace Friday.Transport {
-    import RequestId = System.RequestId;
+    import RequestId = Friday.ValueTypes.RequestId;
 
     export interface IServerResponseWithId {
         ResponseId: number;

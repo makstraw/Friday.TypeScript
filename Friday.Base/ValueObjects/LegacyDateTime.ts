@@ -1,4 +1,4 @@
-﻿namespace Friday.System {
+﻿namespace Friday.ValueTypes {
     export class LegacyDateTime {
         public static FromCSharp(dateTime: string): Date {
             var tmpArray: Array<string>;

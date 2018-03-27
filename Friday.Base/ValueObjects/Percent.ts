@@ -1,6 +1,9 @@
 ﻿///<reference path="../System/Interfaces/IComparable.ts"/>
 ///<reference path="../System/Interfaces/IBasicArithmetic.ts"/>
-namespace Friday.System {
+namespace Friday.ValueTypes {
+    import IComparable = System.IComparable;
+    import IBasicArithmetic = System.IBasicArithmetic;
+
     export class Percent implements IComparable<Percent>, IBasicArithmetic<Percent>, IBasicArithmetic<number>{
         public Add(value: number): number;
         public Add(value: Percent): Percent;

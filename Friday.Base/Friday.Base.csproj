@@ -125,16 +125,15 @@
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
     <TypeScriptCompile Include="ValueObjects\Percent.ts" />
     <TypeScriptCompile Include="ValueObjects\RequestId.ts" />
-    <TypeScriptCompile Include="ValueObjects\Time\DateTime.ts" />
+    <TypeScriptCompile Include="System\Types\Time\DateTime.ts" />
     <TypeScriptCompile Include="System\Interfaces\IComparable.ts" />
-    <TypeScriptCompile Include="ValueObjects\Time\Interval.ts" />
-    <TypeScriptCompile Include="ValueObjects\Time\TimeConstants.ts" />
-    <TypeScriptCompile Include="ValueObjects\Time\TimeSpan.ts" />
-    <TypeScriptCompile Include="ValueObjects\Time\UnixTime.ts" />
+    <TypeScriptCompile Include="System\Types\Time\Interval.ts" />
+    <TypeScriptCompile Include="System\Types\Time\TimeConstants.ts" />
+    <TypeScriptCompile Include="System\Types\Time\TimeSpan.ts" />
+    <TypeScriptCompile Include="System\Types\Time\UnixTime.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jquery\" />
-    <Folder Include="System\Types\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

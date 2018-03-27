@@ -1,6 +1,6 @@
-﻿///<reference path="../../Utility/MethodHelper.ts"/>
-///<reference path="../../Exceptions/reference_basicexceptions.ts"/>
-///<reference path="../../System/Interfaces/IComparable.ts"/>
+﻿///<reference path="../../../Utility/MethodHelper.ts"/>
+///<reference path="../../../Exceptions/reference_basicexceptions.ts"/>
+///<reference path="../../Interfaces/IComparable.ts"/>
 ///<reference path="TimeSpan.ts"/>
 namespace Friday.System {
     import ArgumentOutOfRangeException = Exceptions.ArgumentOutOfRangeException;
