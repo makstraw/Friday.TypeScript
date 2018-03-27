@@ -10,6 +10,7 @@
 
 namespace Friday.Knockout.ViewModels.Widgets {
     import EventHandler = Friday.Utility.EventHandler;
+    import InvalidWidgetArguments = Friday.Exceptions.InvalidWidgetArguments;
 
     export class Dashboard {
         public OnWidgetCreated: EventHandler<ISavedWidgetDto> = new EventHandler<ISavedWidgetDto>();
@@ -40,11 +41,19 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public CreateWidget() {
-            let dto = this.Wizard.Save();
-       
-            let widget = this.CurrentLayout().AddWidget(dto);
-            dto = this.SaveWidget(widget);
-            this.OnWidgetCreated.Call(dto);
+            let dto: ISavedWidgetDto;
+            try {
+                dto = this.Wizard.Save();
+                this.Wizard.ArgumentError(false);
+                let widget = this.CurrentLayout().AddWidget(dto);
+                dto = this.SaveWidget(widget);
+                this.OnWidgetCreated.Call(dto);
+            } catch (e) {
+                if (e instanceof InvalidWidgetArguments) {
+                    this.Wizard.ArgumentError(true);
+                }
+            }
+
         }
 
         public AddWidget(widget: Widget) {
@@ -82,9 +91,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public ClearLayout() {
-            for (let i = 0; i < this.CurrentLayout().Widgets().length; i++) {
+            while (this.CurrentLayout().Widgets().length > 0) {
 
-                let widget = this.CurrentLayout().Widgets()[i];
+                let widget = this.CurrentLayout().Widgets.pop();
                 if (typeof widget !== "undefined" && widget !== null)
                     this.RemoveWidget(this.CurrentLayout(), widget);
             }

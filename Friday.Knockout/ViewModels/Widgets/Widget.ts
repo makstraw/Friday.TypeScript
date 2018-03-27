@@ -71,6 +71,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public abstract Destroy();
 
+        public abstract Validate(): boolean;
+
 
         constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport, registry);

@@ -46,6 +46,7 @@
     <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
     <TypeScriptCompile Include="Bindings\DataListBinding.ts" />
+    <TypeScriptCompile Include="Exceptions\InvalidWidgetArguments.ts" />
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Default.ts" />
     <TypeScriptCompile Include="Extensions\ObservableExtension\Cookie.ts" />

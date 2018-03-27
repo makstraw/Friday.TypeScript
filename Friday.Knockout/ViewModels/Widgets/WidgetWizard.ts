@@ -1,8 +1,11 @@
 ﻿/// <reference path="../../../Friday.Base/Reflection/INamespaceObject.ts" />
+///<reference path="../../Exceptions/InvalidWidgetArguments.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import INamespaceObject = Friday.Reflection.INamespaceObject;
+    import InvalidWidgetArguments = Friday.Exceptions.InvalidWidgetArguments;
 
     export class WidgetWizard {
+        public readonly ArgumentError: KnockoutObservable<boolean> = ko.observable(false);
         private readonly widgetNotSelectedTemplate: string = "widget-not-selected";
 
         public Widget: KnockoutObservable<Widget> = ko.observable(null).extend({ Default: null });
@@ -33,6 +36,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public Save(): ISavedWidgetDto {
+            if (!this.Widget().Validate()) throw new InvalidWidgetArguments();
             let output = this.Widget().Save();
             this.SelectedWidgetType.Reset();
             return output;

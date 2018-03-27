@@ -82,6 +82,7 @@
     <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
     <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
     <TypeScriptCompile Include="Extensions\TypedArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\Uint8ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\WindowLocationExtensions.ts" />
     <TypeScriptCompile Include="Locale\localeNumbers.ts" />
     <TypeScriptCompile Include="Logging\ConsoleLogger.ts" />
