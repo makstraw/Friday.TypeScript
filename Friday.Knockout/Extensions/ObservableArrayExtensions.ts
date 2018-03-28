@@ -54,7 +54,9 @@ ko.observableArray.fn.FindRecordIndex = function (this: KnockoutObservableArray<
     for (let i = 0; i < this().length;i++) {
         var item = this()[i];
         if (item === matchRecord) return i;
+
         if (Friday.System.IsEquatable(item) && item.Equals(matchRecord)) return i;
+
         if(typeof objectPropertyName !== "undefined")
         if ((typeof item[objectPropertyName] == "object" &&
                 compareObjects(item[objectPropertyName], matchRecord[objectPropertyName])) ||
@@ -70,10 +72,10 @@ ko.observableArray.fn.InsertOrUpdate = function (this: KnockoutObservableArray<a
     if (!unshift) unshift = false;
     let itemIndex : number;
 
-    if (Friday.System.IsEquatable(newRecord) && (typeof objectPropertyName === "undefined" || objectPropertyName === null)) {
-        itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
-    }else
-        itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
+//    if (Friday.System.IsEquatable(newRecord) && (typeof objectPropertyName === "undefined" || objectPropertyName === null)) {
+//        itemIndex = this.FindRecordIndex(newRecord);
+//    }else
+    itemIndex = this.FindRecordIndex(newRecord, objectPropertyName);
 
     if (itemIndex != null) {
         this().splice(itemIndex, 1, newRecord);

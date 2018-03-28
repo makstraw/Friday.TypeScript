@@ -43,5 +43,10 @@ namespace Friday.Knockout.ViewModels {
             ModalViewModel.HideAll();
             this.ShowModal(true);
         }
+
+        public Toggle() {
+            if (this.ShowModal()) this.ShowModal(false);
+            else this.Show();
+        }
     }
 }

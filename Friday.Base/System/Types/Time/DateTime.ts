@@ -288,7 +288,8 @@ namespace Friday.System {
             let ticks = this.InternalTicks;
             if (value.greaterThan(DateTime.MaxTicks.sub(ticks)) || value.lessThan(DateTime.MinTicks.sub(ticks)))
                 throw new ArgumentOutOfRangeException("value");
-            return new DateTime(ticks.add(value).or(this.InternalKind));
+            return new DateTime(ticks.add(value));
+//            return new DateTime(ticks.add(value).or(this.InternalKind));
         }
 
         public Add(value: TimeSpan): DateTime;

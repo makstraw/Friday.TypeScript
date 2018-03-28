@@ -138,7 +138,8 @@ namespace Friday.System {
         }
 
         public static FromDto(dto): UnixTime {
-            return new UnixTime(Long.fromNumber(dto.TimeStamp));
+            return UnixTime.FromTimeStampSeconds(Long.fromNumber(dto.TimeStamp));
+            //return new UnixTime(Long.fromNumber(dto.TimeStamp));
         }
 
     }

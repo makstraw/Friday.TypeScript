@@ -79,9 +79,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
-        public RemoveWidget(layout: Layout, widget: Widget) {
+        public RemoveWidget(layout: Layout, widget: Widget, index?: number) {
             let dto = widget.Save();
-            dto.Id = layout.Widgets.FindRecordIndex(widget);
+            if (typeof index === "number") dto.Id = index;
+            else dto.Id = layout.Widgets.FindRecordIndex(widget);
             dto.Layout = this.Layouts.FindRecordIndex(layout);
             layout.RemoveWidget(widget);
             this.OnWidgetDeleted.Call(dto);
@@ -107,8 +108,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
             while (this.CurrentLayout().Widgets().length > 0) {
 
                 let widget = this.CurrentLayout().Widgets.pop();
-                if (typeof widget !== "undefined" && widget !== null)
-                    this.RemoveWidget(this.CurrentLayout(), widget);
+                if (typeof widget !== "undefined" && widget !== null) {
+//                    console.log(widget.Id, widget.Id.split('-'));
+                    let index = parseInt(widget.Id.split('-')[1].split('w')[1]);
+                    this.RemoveWidget(this.CurrentLayout(), widget, index);
+                }
+
             }
         }
 
