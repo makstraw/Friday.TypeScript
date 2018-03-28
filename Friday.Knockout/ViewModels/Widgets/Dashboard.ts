@@ -56,6 +56,18 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
+
+
+        public ScrollLayout(currentLayout: Layout, event: JQueryEventObject) {
+            let e = event.originalEvent as any;
+            let delta = Math.max(-1, Math.min(1, (e.deltaY || -e.detail)));
+            let newCurrentLayout: Layout;
+            if (delta < 0) newCurrentLayout = this.Layouts.FindNext(currentLayout);
+            else newCurrentLayout = this.Layouts.FindPrev(currentLayout);
+            if (newCurrentLayout !== null) this.CurrentLayout(newCurrentLayout);
+        }
+
+
         public AddWidget(widget: Widget) {
             if (typeof widget === "function") widget = widget();
             this.CurrentLayout().AddWidget(widget);

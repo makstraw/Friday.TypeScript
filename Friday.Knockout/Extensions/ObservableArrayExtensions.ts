@@ -11,11 +11,33 @@ interface KnockoutObservableArray<T> {
     FindRecordIndex(matchRecord: T): number;
     FindRecordIndex(matchRecord: T, objectPropertyName: string): number;
     FindRecordIndex(matchRecord: Friday.System.IEquatable<any>): number;
+    FindNext(currentRecord: any, objectPropertyName?: string): any;
+    FindPrev(currentRecord: any, objectPropertyName?: string): any;
 }
 
 ko.observableArray.fn.FindRecord = function (this: KnockoutObservableArray<any>, matchRecord: any, objectPropertyName: string): object {
     var index = this.FindRecordIndex(matchRecord, objectPropertyName);
     if (index != null) return this()[index];
+    return null;
+}
+
+ko.observableArray.fn.FindNext = function (this: KnockoutObservableArray<any>, currentRecord: any, objectPropertyName?: string): any {
+    let index = this.FindRecordIndex(currentRecord, objectPropertyName);
+    if (index === null) return null;
+    for (let i=index+1;i<this().length;i++) {
+        let nextItem = this()[i];
+        if (typeof nextItem !== "undefined" && nextItem !== null) return nextItem;
+    }
+    return null;
+}
+
+ko.observableArray.fn.FindPrev = function (this: KnockoutObservableArray<any>, currentRecord: any, objectPropertyName?: string): any {
+    let index = this.FindRecordIndex(currentRecord, objectPropertyName);
+    if (index === null) return null;
+    for (let i = index - 1; i >= 0; i--) {
+        let prevItem = this()[i];
+        if (typeof prevItem !== "undefined" && prevItem !== null) return prevItem;
+    }
     return null;
 }
 
