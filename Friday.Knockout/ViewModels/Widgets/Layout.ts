@@ -72,7 +72,6 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 let dto = x;
                 dto.Options.Wizard = false;
                 let widget = this.factory.GetWidget(dto.Name, dto.Options);
-
                 if (widget != null) {
                     if (widget.Size.Equals(WidgetSize.Zero)) {
                         widget.Size = WidgetSize.FromDto(widget.MinimumSize);
