@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../../Friday.Base/System/Interfaces/ISerializable.ts" />
+///<reference path="../../../Friday.Knockout/Models/SerializableModel.ts"/>
 // ReSharper disable once InconsistentNaming
 
 interface IKnockoutExtendersSerializeOptions {
