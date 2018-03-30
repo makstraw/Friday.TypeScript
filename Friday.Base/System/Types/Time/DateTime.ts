@@ -83,7 +83,7 @@ namespace Friday.System {
         }
 
         public static get Now(): DateTime {
-            let milliseconds = Date.now();
+            let milliseconds = Date.now() - (new Date().getTimezoneOffset() * DateTime.MillisPerMinute);
             return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond).add(Long.fromNumber(DateTime.DaysTo1970).mul(DateTime.TicksPerDay)));
         }
 
