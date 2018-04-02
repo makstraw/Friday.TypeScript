@@ -1,4 +1,4 @@
-﻿///<reference path="../../Friday.Base/Exceptions/Exception.ts"/>
+﻿/// <reference path="../../Friday.Base/Exceptions/Basic/Exception.ts" />
 namespace Friday.Exceptions {
     export class InvalidWidgetArguments extends Exception {
         constructor() {

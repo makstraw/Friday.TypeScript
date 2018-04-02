@@ -1,4 +1,4 @@
-﻿///<reference path="../../../Exceptions/reference_basicexceptions.ts"/>
+﻿///<reference path="../../../Exceptions/Basic/reference_basicexceptions.ts"/>
 ///<reference path="../../Interfaces/IComparable.ts"/>
 namespace Friday.System {
     import NotImplementedException = Exceptions.NotImplementedException;
