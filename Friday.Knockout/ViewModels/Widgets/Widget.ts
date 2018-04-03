@@ -27,7 +27,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             var style = window.getComputedStyle(originalEvent.target as Element, null);
             originalEvent.dataTransfer.effectAllowed = "move";
             originalEvent.dataTransfer.dropEffect = "move";
-            originalEvent.dataTransfer.setData("text/plain", (parseInt(style.getPropertyValue("left"), 10) - originalEvent.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - originalEvent.clientY) + ','+(originalEvent.target as HTMLElement).getAttribute('id'));
+            originalEvent.dataTransfer.setData("text/plain", (parseInt(style.getPropertyValue("left"), 10) - originalEvent.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - originalEvent.clientY) + ',' + (originalEvent.target as HTMLElement).getAttribute('id'));
             return true;
         }
 
@@ -35,11 +35,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         }
 
-        public OnDragOver(vent: DragEvent) {
+        public OnDragOver(event: DragEvent) {
 
         }
 
-        public OnDrop(event: DragEvent){
+        public OnDrop(event: DragEvent) {
 
         }
 

@@ -77,7 +77,14 @@
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\Array\Except.ts" />
     <TypeScriptCompile Include="Extensions\Array\Has.ts" />
+    <TypeScriptCompile Include="Extensions\Array\linq_reference.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Predictate.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\PredictateWithIndex.ts" />
+    <TypeScriptCompile Include="Extensions\Array\Select.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Selector.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\SelectorWithIndex.ts" />
     <TypeScriptCompile Include="Extensions\Array\SetEquals.ts" />
+    <TypeScriptCompile Include="Extensions\Array\Where.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
     <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />

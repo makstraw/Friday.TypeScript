@@ -42,7 +42,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public RemoveWidget(widget: Widget) {
-            this.Widgets.remove(widget);
+            let id = this.Widgets.FindRecordIndex(widget);
+            delete this.Widgets()[id];
+            this.Widgets.notifySubscribers();
+            //this.Widgets.remove(widget);
             widget.Destroy();
         }
 
