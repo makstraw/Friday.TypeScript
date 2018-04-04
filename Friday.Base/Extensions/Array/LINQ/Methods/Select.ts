@@ -1,11 +1,11 @@
-﻿///<reference path="../../Exceptions/Basic/ArgumentException.ts"/>
+﻿///<reference path="../../../../Exceptions/Basic/ArgumentException.ts"/>
 
 interface Array<T> {
-    Select<TResult>(selector: (arg: T) => TResult): Array<TResult>;
-    Select<TResult>(selector: (arg: T, index: number) => TResult): Array<TResult>;
+    Select<TResult>(selector: Selector<T, TResult>): Array<TResult>;
+    Select<TResult>(selector: SelectorWithIndex<T, TResult>): Array<TResult>;
 }
 
-Array.prototype.Select = function (selector: ((arg: any) => any) | ((arg: any, index: number) => any)): Array<any> {
+Array.prototype.Select = function (selector: Selector<any, any> | SelectorWithIndex<any,any>): Array<any> {
     if (typeof selector !== "function") throw new Friday.Exceptions.ArgumentException('selector');
     let output: Array<any> = [];
     let argCount = selector.length;

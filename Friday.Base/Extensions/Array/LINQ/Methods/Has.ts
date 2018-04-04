@@ -1,4 +1,4 @@
-﻿///<reference path="../../System/Interfaces/IEquatable.ts"/>
+﻿///<reference path="../../../../System/Interfaces/IEquatable.ts"/>
 interface Array<T> {
     Has(otherValue: Friday.System.IEquatable<any> | string | number): boolean;
 }

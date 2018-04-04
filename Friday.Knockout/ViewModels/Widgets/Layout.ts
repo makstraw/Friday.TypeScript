@@ -1,4 +1,4 @@
-﻿///<reference path="../../../Friday.Base/Extensions/Array/Has.ts"/>
+﻿///<reference path="../../../Friday.Base/Extensions/Array/LINQ/Methods/Has.ts"/>
 ///<reference path="IWidgetOptions.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import EventHandler = Friday.Utility.EventHandler;

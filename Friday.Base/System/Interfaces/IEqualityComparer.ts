@@ -4,4 +4,7 @@ namespace Friday.System {
         GetHashCode(): number;
     }
 
+    export function IsEqualityComparer(value: any): boolean {
+        return typeof value === "object" && typeof value["GetHashCode"] === "function";
+    }
 }

@@ -1,0 +1,11 @@
+﻿///<reference path="Selector.ts"/>
+///<reference path="SelectorWithIndex.ts"/>
+///<reference path="Predictate.ts"/>
+///<reference path="PredictateWithIndex.ts"/>
+///<reference path="HashSelector.ts"/>
+///<reference path="Func.ts"/>
+///<reference path="Comparison.ts"/>
+///<reference path="EqualityComparison.ts"/>
+///<reference path="Action.ts"/>
+///<reference path="ActionWithIndex.ts"/>
+///<reference path="Closure.ts"/>

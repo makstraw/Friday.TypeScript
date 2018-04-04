@@ -1,4 +1,4 @@
-﻿///<reference path="Has.ts"/>
+﻿///<reference path="LINQ/Methods/Has.ts"/>
 interface Array<T> {
     SetEquals(otherArray: Array<T>): boolean;
 }

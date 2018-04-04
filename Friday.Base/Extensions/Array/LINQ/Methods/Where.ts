@@ -1,11 +1,11 @@
-﻿///<reference path="../../Exceptions/Basic/ArgumentException.ts"/>
+﻿///<reference path="../../../../Exceptions/Basic/ArgumentException.ts"/>
 
 interface Array<T> {
-    Where(predictate: (arg: T) => boolean): Array<T>;
-    Where(predictate: (arg: T, index: number) => boolean): Array<T>;
+    Where(predictate: Predictate<T>): Array<T>;
+    Where(predictate: PredictateWithIndex<T>): Array<T>;
 }
 
-Array.prototype.Where = function (predictate: ((arg: any) => boolean) | ((arg: any, index: number) => boolean)): Array<any> {
+Array.prototype.Where = function (predictate: Predictate<any> | PredictateWithIndex<any>): Array<any> {
     if (typeof predictate !== "function") throw new Friday.Exceptions.ArgumentException('predictate');
     let output: Array<any> = [];
 

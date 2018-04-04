@@ -1,0 +1,3 @@
+﻿interface Closure {
+    (): void;
+}
