@@ -77,6 +77,7 @@
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Any.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Count.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Distinct.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Except.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\First.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\GroupBy.ts" />
