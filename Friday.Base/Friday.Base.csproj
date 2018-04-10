@@ -75,6 +75,7 @@
     <TypeScriptCompile Include="Exceptions\Basic\reference_basicexceptions.ts" />
     <TypeScriptCompile Include="Exceptions\Factory\StaticFactoryNotInitialisedException.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Any.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Count.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Except.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\First.ts" />
@@ -97,6 +98,7 @@
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Select.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\Selector.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\SelectorWithIndex.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\SelectMany.ts" />
     <TypeScriptCompile Include="Extensions\Array\SetEquals.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Where.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />

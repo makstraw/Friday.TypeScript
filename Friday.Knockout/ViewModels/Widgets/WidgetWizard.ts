@@ -5,6 +5,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import InvalidWidgetArguments = Friday.Exceptions.InvalidWidgetArguments;
 
     export class WidgetWizard {
+        public readonly Display: KnockoutObservable<boolean> = ko.observable(false).extend({ notify: 'always' });
         public readonly ArgumentError: KnockoutObservable<boolean> = ko.observable(false);
         private readonly widgetNotSelectedTemplate: string = "widget-not-selected";
 

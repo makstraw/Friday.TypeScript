@@ -48,6 +48,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 let widget = this.CurrentLayout().AddWidget(dto);
                 dto = this.SaveWidget(widget);
                 this.OnWidgetCreated.Call(dto);
+                this.Wizard.Display(false);
             } catch (e) {
                 if (e instanceof InvalidWidgetArguments) {
                     this.Wizard.ArgumentError(true);

@@ -9,3 +9,4 @@
 ///<reference path="Count.ts"/>
 ///<reference path="Any.ts"/>
 ///<reference path="SelectMany.ts"/>
+///<reference path="Distinct.ts"/>
