@@ -118,6 +118,18 @@ namespace Friday.Knockout.ViewModels.Widgets {
             }
         }
 
+        public ClearAll() {
+            this.Layouts().forEach(layout => {
+                if (layout instanceof Layout) {
+                    this.CurrentLayout(layout);
+                    this.ClearLayout();
+                }
+            });
+            this.Layouts.removeAll();
+            this.CurrentLayout(null);
+        }
+        
+
         private createOrGetLayout(index: number): Layout {
             let layout: Layout;
             if (typeof this.Layouts()[index] === "undefined") layout = this.createLayout(index);
@@ -133,7 +145,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
             } else {
                  this.Layouts.push(layout);
             }
-            if (typeof this.CurrentLayout === "undefined" || this.CurrentLayout() === null) this.CurrentLayout = ko.observable(layout);
+            if (typeof this.CurrentLayout === "undefined") this.CurrentLayout = ko.observable(layout);
+            if (this.CurrentLayout() === null) this.CurrentLayout(layout);
             layout.CoordinatesUpdated.Subscribe(this.UpdateWidget.bind(this));
             return layout;
         }
