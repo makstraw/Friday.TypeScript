@@ -113,6 +113,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 //                    console.log(widget.Id, widget.Id.split('-'));
                     let index = parseInt(widget.Id.split('-')[1].split('w')[1]);
                     this.RemoveWidget(this.CurrentLayout(), widget, index);
+                    widget.Destroy();
                 }
 
             }
