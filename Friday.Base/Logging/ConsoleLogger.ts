@@ -26,7 +26,7 @@ namespace Friday.Logging {
         }
 
         LogLine(level: LogLevel, line: string, ...args: any[]): void {
-            if (level < this.minLogLevel) return;
+            if (this.minLogLevel === LogLevel.Disabled || level < this.minLogLevel) return;
 
             if (level === LogLevel.Trace) console.trace(line, ...args);
             else console.log(line, ...args);
