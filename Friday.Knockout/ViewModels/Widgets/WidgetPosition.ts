@@ -1,5 +1,10 @@
 ﻿namespace Friday.Knockout.ViewModels.Widgets {
-    export class WidgetPosition {
+    import IEquatable = Friday.System.IEquatable;
+    export class WidgetPosition implements IEquatable<WidgetPosition>{
+        Equals(other: WidgetPosition): boolean {
+            return this.Top() === other.Top() && this.Left() === other.Left();
+        }
+
         Top: KnockoutObservable<number>;
         Left: KnockoutObservable<number>;
 

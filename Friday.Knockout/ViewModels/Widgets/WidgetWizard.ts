@@ -5,6 +5,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import InvalidWidgetArguments = Friday.Exceptions.InvalidWidgetArguments;
 
     export class WidgetWizard {
+        public DefaultPosition: WidgetPosition = WidgetPosition.Zero;
         public readonly Display: KnockoutObservable<boolean> = ko.observable(false).extend({ notify: 'always' });
         public readonly ArgumentError: KnockoutObservable<boolean> = ko.observable(false);
         private readonly widgetNotSelectedTemplate: string = "widget-not-selected";
@@ -19,7 +20,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.factory = factory;
             this.WidgetTypes = Friday.Reflection.ScanNamespace(namespace);
             this.SelectedWidgetType.subscribe(this.onWidgetTypeSelected.bind(this));
-
+            this.Display.subscribe(() => this.DefaultPosition = WidgetPosition.Zero);
         }
 
         private onWidgetTypeSelected(newValue: string) {
@@ -38,6 +39,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public Save(): ISavedWidgetDto {
             if (!this.Widget().Validate()) throw new InvalidWidgetArguments();
+            this.Widget().Position = this.DefaultPosition;
             let output = this.Widget().Save();
             this.SelectedWidgetType.Reset();
             return output;
