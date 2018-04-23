@@ -81,7 +81,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
                         if (widget.Position.Equals(WidgetPosition.Zero))
                             widget.Position = this.Grid.AllocateSpace(widget.Size);
-                        else widget.Position = this.Grid.AlignPositionToGrid(widget);
+                        else this.Grid.AlignPositionToGrid(widget.Position);
                     }
 
                     this.subscribeToWidgetEvents(widget);

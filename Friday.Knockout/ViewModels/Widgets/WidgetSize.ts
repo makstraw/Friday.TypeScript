@@ -12,6 +12,7 @@
         }
 
         public static FromDto(dto: WidgetSize): WidgetSize {
+            if (ko.isObservable(dto.Width)) return new WidgetSize(dto.Width() as any, dto.Height() as any);
             return new WidgetSize(dto.Width as any, dto.Height as any);
         }
 

@@ -19,6 +19,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public FontColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
         public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
+        public Draggable: KnockoutObservable<boolean> = ko.observable(true);
 
         public Exception: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -75,6 +76,16 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public abstract Validate(): boolean;
 
+        public FontStepUp() {
+            let fontSize = parseFloat(this.FontSize());
+            this.FontSize((fontSize += 0.5) + "rem");
+        }
+
+        public FontStepDown() {
+            let fontSize = parseFloat(this.FontSize());
+            if (fontSize === 1) return;
+            this.FontSize((fontSize -= 0.5) + "rem");
+        }
 
         constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport, registry);
@@ -84,6 +95,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.FontColor(options.FontColor);
             this.FontSize(options.FontSize);
             this.BackgroundColor(options.BackgroundColor);
+            if (!options.Wizard) {
+                this.FontSize.subscribe(() => this.OnSaveRequested.Call(this));
+                this.FontColor.subscribe(() => this.OnSaveRequested.Call(this));
+                this.BackgroundColor.subscribe(() => this.OnSaveRequested.Call(this));
+            }
         }
     }
 }
