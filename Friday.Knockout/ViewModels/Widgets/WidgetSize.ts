@@ -20,6 +20,22 @@
             return new WidgetSize(0, 0);
         }
 
+        public static get FullScreen(): WidgetSize {
+            return new WidgetSize(screen.width, screen.height);
+        }
+
+        public static get Huge(): WidgetSize {
+            return new WidgetSize(4096, 2160);
+        }
+
+        public static get FullHD(): WidgetSize {
+            return new WidgetSize(1920, 1080);
+        }
+
+        public static get HD(): WidgetSize {
+            return new WidgetSize(1280, 720);
+        }
+
         public Equals(other: WidgetSize): boolean {
             return this.Width() === other.Width() && this.Height() === other.Height();
         }
