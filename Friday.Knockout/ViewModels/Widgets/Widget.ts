@@ -20,8 +20,32 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
         public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
         public Draggable: KnockoutObservable<boolean> = ko.observable(true);
+        public FullWidth: KnockoutObservable<boolean> = ko.observable(false);
+        public FullHeight: KnockoutObservable<boolean> = ko.observable(false);
         public AutoWidth: boolean = false;
         public AutoHeight: boolean = false;
+
+        public Top: KnockoutComputed<string> = ko.pureComputed(function (this: Widget): string {
+            if (this.FullHeight()) return "0";
+            return this.Position.Top() + "px";
+        }, this);
+
+        public Left: KnockoutComputed<string> = ko.pureComputed(function (this: Widget): string {
+            if (this.FullWidth()) return "0";
+            return this.Position.Left() + "px";
+        }, this);
+
+        public Width: KnockoutComputed<string> = ko.pureComputed(function (this: Widget): string {
+            if (this.FullWidth()) return "100%";
+            if (this.AutoWidth) return "auto";
+            return this.Size.Width() + "px";
+        }, this);
+
+        public Height: KnockoutComputed<string> = ko.pureComputed(function (this: Widget): string {
+            if (this.FullHeight()) return "100%";
+            if (this.AutoHeight) return "auto";
+            return this.Size.Height() + "px";
+        }, this);
 
         public Exception: KnockoutObservable<boolean> = ko.observable(false);
 
@@ -63,7 +87,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 Size: this.Size,
                 FontColor: this.FontColor(),
                 FontSize: this.FontSize(),
-                BackgroundColor: this.BackgroundColor()
+                BackgroundColor: this.BackgroundColor(),
+                FullWidth: this.FullWidth(),
+                FullHeight: this.FullHeight()
             }
             options = this.saveOptions(options);
 
@@ -97,11 +123,24 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.FontColor(options.FontColor);
             this.FontSize(options.FontSize);
             this.BackgroundColor(options.BackgroundColor);
+            if (typeof options.FullWidth !== "undefined")
+                this.FullWidth(options.FullWidth)
+            if (typeof options.FullHeight !== "undefined")
+                this.FullHeight(options.FullHeight)
+
             if (!options.Wizard) {
-                this.FontSize.subscribe(() => this.OnSaveRequested.Call(this));
-                this.FontColor.subscribe(() => this.OnSaveRequested.Call(this));
-                this.BackgroundColor.subscribe(() => this.OnSaveRequested.Call(this));
+                this.subscribeToPropertyChanges();
+
+                
             }
+        }
+
+        private subscribeToPropertyChanges() {
+            this.FontSize.subscribe(() => this.OnSaveRequested.Call(this));
+            this.FontColor.subscribe(() => this.OnSaveRequested.Call(this));
+            this.BackgroundColor.subscribe(() => this.OnSaveRequested.Call(this));
+            this.FullWidth.subscribe(() => this.OnSaveRequested.Call(this));
+            this.FullHeight.subscribe(() => this.OnSaveRequested.Call(this));
         }
     }
 }

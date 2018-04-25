@@ -3,6 +3,8 @@
     export interface IWidgetOptions {
         Size: WidgetSize;
         Position: WidgetPosition;
+        FullWidth: boolean;
+        FullHeight: boolean;
         Wizard?: boolean;
         BackgroundColor?: string;
         FontColor?: string;
