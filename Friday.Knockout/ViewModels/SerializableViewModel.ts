@@ -20,7 +20,7 @@ namespace Friday.Knockout.ViewModels {
 
         public Clear() {
             for (var prop in this) {
-                if (this.hasOwnProperty(prop) && ko.isObservable(this[prop])) {
+                if (this.hasOwnProperty(prop) && ko.isObservable(this[prop]) && typeof (<KnockoutObservable<any>>this[prop]).Reset === "function") {
                     (<KnockoutObservable<any>>this[prop]).Reset();
                 }
             }
