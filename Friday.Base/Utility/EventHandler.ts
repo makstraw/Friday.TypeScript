@@ -3,9 +3,10 @@ namespace Friday.Utility {
         private handlers: Array<Function> = [];
         private readonly invokeOnSubscribeHandler: Function;
 
-        public Subscribe(arg: Function) {
+        public Subscribe(arg: Function): Function {
             this.handlers.push(arg);
             if (typeof this.invokeOnSubscribeHandler === "function" && this.invokeOnSubscribeHandler()) arg();
+            return arg;
         }
 
         public Unsubscribe(arg: Function) {
