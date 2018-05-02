@@ -114,6 +114,7 @@
     <TypeScriptCompile Include="Logging\ILogger.ts" />
     <TypeScriptCompile Include="Logging\LogLevel.ts" />
     <TypeScriptCompile Include="Reflection\Mirror.ts" />
+    <TypeScriptCompile Include="System\Interfaces\IDisposable.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
     <TypeScriptCompile Include="Transport\DummyPacketRegistry.ts" />
     <TypeScriptCompile Include="Transport\IRequestWithId.ts" />

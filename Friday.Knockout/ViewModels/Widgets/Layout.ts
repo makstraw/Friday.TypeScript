@@ -46,7 +46,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             delete this.Widgets()[id];
             this.Widgets.notifySubscribers();
             //this.Widgets.remove(widget);
-            widget.Destroy();
+            widget.Dispose();
         }
 
         private subscribeToWidgetEvents(widget: Widget) {

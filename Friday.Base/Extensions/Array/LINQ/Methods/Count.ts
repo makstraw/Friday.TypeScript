@@ -5,5 +5,5 @@ interface Array<T> {
 
 Array.prototype.Count = function(predictate?: Predictate<any> | PredictateWithIndex<any>):number {
     if (typeof predictate === "undefined") return this.length;
-    else this.Where(predictate).Count();
+    else return this.Where(predictate).Count();
 }

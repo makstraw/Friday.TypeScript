@@ -3,12 +3,14 @@
 ///<reference path="IWidgetOptions.ts"/>
 ///<reference path="../../../Friday.Base/Utility/EventHandler.ts"/>
 ///<reference path="../../../Friday.Base/Extensions/StringExtensions.ts"/>
+///<reference path="../../../Friday.Base/System/Interfaces/IDisposable.ts"/>
 namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;
     import EventHandler = Friday.Utility.EventHandler;
+    import IDisposable = Friday.System.IDisposable;
 
-    export abstract class Widget extends RoutedViewModel{
+    export abstract class Widget extends RoutedViewModel implements IDisposable{
         public Id: string;
         public WidgetName: string;
         public Position: WidgetPosition;
@@ -98,9 +100,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
             return dto;
         }
 
-        public abstract Setup();
+        protected koSubscriptions: Array<KnockoutSubscription> = [];
 
-        public abstract Destroy();
+        public Dispose() {
+            this.koSubscriptions.forEach(x=>x.dispose());
+        }
 
         public abstract Validate(): boolean;
 
