@@ -148,6 +148,7 @@
     <TypeScriptCompile Include="System\Interfaces\IEquatable.ts" />
     <TypeScriptCompile Include="Reflection\INamespaceObject.ts" />
     <TypeScriptCompile Include="System\Interfaces\ISerializable.ts" />
+    <TypeScriptCompile Include="ValueObjects\Guid.ts" />
     <TypeScriptCompile Include="ValueObjects\LegacyDateTime.ts" />
     <TypeScriptCompile Include="ValueObjects\Percent.ts" />
     <TypeScriptCompile Include="ValueObjects\RequestId.ts" />

@@ -4,14 +4,17 @@
 ///<reference path="../../../Friday.Base/Utility/EventHandler.ts"/>
 ///<reference path="../../../Friday.Base/Extensions/StringExtensions.ts"/>
 ///<reference path="../../../Friday.Base/System/Interfaces/IDisposable.ts"/>
+/// <reference path="../../../Friday.Base/ValueObjects/Guid.ts" />
 namespace Friday.Knockout.ViewModels.Widgets {
     import IMessageSend = Friday.Transport.IMessageSend;
     import IPacketRegistryRouteRegistration = Friday.Transport.IPacketRegistryRouteRegistration;
     import EventHandler = Friday.Utility.EventHandler;
     import IDisposable = Friday.System.IDisposable;
+    import Guid = Friday.ValueTypes.Guid;
 
     export abstract class Widget extends RoutedViewModel implements IDisposable{
-        public Id: string;
+        public Id: Guid;
+        public Layout: Guid;
         public WidgetName: string;
         public Position: WidgetPosition;
         public Size: WidgetSize;
@@ -91,12 +94,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 FontSize: this.FontSize(),
                 BackgroundColor: this.BackgroundColor(),
                 FullWidth: this.FullWidth(),
-                FullHeight: this.FullHeight()
+                FullHeight: this.FullHeight(),
             }
             options = this.saveOptions(options);
 
 
-            let dto: ISavedWidgetDto = { Name: this.WidgetName, Options: ko.toJS(options) };
+            let dto: ISavedWidgetDto = { Name: this.WidgetName, Options: ko.toJS(options), Id: this.Id, Layout: this.Layout };
             return dto;
         }
 
