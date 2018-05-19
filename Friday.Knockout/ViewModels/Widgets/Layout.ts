@@ -7,9 +7,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
     export class Layout {
         public Id: Guid;
-        public CoordinatesUpdated: EventHandler<Widget> = new EventHandler();
+        public CoordinatesUpdated: EventHandler<Widget> = new EventHandler<Widget>();
+        public WidgetsOrderUpdated: EventHandler<Layout> = new EventHandler<Layout>();
         public Grid: Grid;
         public Widgets: KnockoutObservableArray<Widget> = ko.observableArray([]);
+        public WidgetsOrder: KnockoutObservableArray<Guid> = ko.observableArray([]);
         private factory: WidgetFactory;
         public OnDragOver(target: any, event: any) {
 
@@ -52,19 +54,31 @@ namespace Friday.Knockout.ViewModels.Widgets {
             
         }
 
+        private bringWidgetToFront(widget) {
+            if (!this.WidgetsOrder().Last().Equals(widget.Id)) {
+                this.WidgetsOrder.remove(this.WidgetsOrder().First(guid => guid.Equals(widget.Id)))
+                this.WidgetsOrder.push(widget.Id);
+                this.WidgetsOrderUpdated.Call(this);
+            }
+        }
+
         private subscribeToWidgetEvents(widget: Widget) {
-//            widget.OnSaveRequested.Subscribe((widget: Widget) => this.CoordinatesUpdated.Call(widget));
-            if(widget.AutoWidth === false)
-            widget.OnWidgetWidthResized.Subscribe((newDimension: KnockoutObservable<number>) => {
-                newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.HorizontalGridStepPx()));
-                this.CoordinatesUpdated.Call(widget);
-                })
+            widget.OnSaveRequested.Subscribe((widget: Widget) => this.CoordinatesUpdated.Call(widget));
+            widget.OnWidgetClicked.Subscribe((widget: Widget) => {
+                this.bringWidgetToFront(widget);
+            });
+
+            if (widget.AutoWidth === false)
+                widget.OnWidgetWidthResized.Subscribe((newDimension: KnockoutObservable<number>) => {
+                    newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.HorizontalGridStepPx()));
+                    this.CoordinatesUpdated.Call(widget);
+                });
 
             if (widget.AutoHeight === false)
-            widget.OnWidgetHeightResized.Subscribe((newDimension: KnockoutObservable<number>) => {
-                newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.VerticalGridStepPx()));
-                this.CoordinatesUpdated.Call(widget);
-            })
+                widget.OnWidgetHeightResized.Subscribe((newDimension: KnockoutObservable<number>) => {
+                    newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.VerticalGridStepPx()));
+                    this.CoordinatesUpdated.Call(widget);
+                });
         }
 
         public AddWidget(widget: Widget): Widget;
@@ -74,7 +88,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 let widget = x as Widget;
                 this.Widgets.push(widget);
                 this.subscribeToWidgetEvents(widget);
-
+                this.WidgetsOrder.push(widget.Id);
                 return widget;
             } else {
                 let dto = x;
@@ -98,8 +112,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
                     }
 
                     this.subscribeToWidgetEvents(widget);
-
+                    
                     this.Widgets.push(widget);
+                    this.WidgetsOrder.push(widget.Id);
                     return widget;
                 }
                 

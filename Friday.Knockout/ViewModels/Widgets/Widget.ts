@@ -26,6 +26,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
         public OnWidgetWidthResized: EventHandler<KnockoutObservable<number>> = new EventHandler<KnockoutObservable<number>>();
         public OnWidgetHeightResized: EventHandler<KnockoutObservable<number>> = new EventHandler<KnockoutObservable<number>>();
+        public OnWidgetClicked: EventHandler<Widget> = new EventHandler<Widget>();
 
         public Draggable: KnockoutObservable<boolean> = ko.observable(true);
         public FullWidth: KnockoutObservable<boolean> = ko.observable(false);
@@ -113,6 +114,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.OnSaveRequested.UnsubscribeAll();
             this.OnWidgetHeightResized.UnsubscribeAll();
             this.OnWidgetWidthResized.UnsubscribeAll();
+            this.OnWidgetClicked.UnsubscribeAll();
         }
 
         public abstract Validate(): boolean;
@@ -124,7 +126,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public FontStepDown() {
             let fontSize = parseFloat(this.FontSize());
-            if (fontSize === 0.7) return;
+            if (fontSize <= 0.7) return;
             this.FontSize((fontSize -= 0.1) + "rem");
         }
 
@@ -146,6 +148,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
                 
             }
+        }
+
+        public OnClick() {
+            this.OnWidgetClicked.Call(this);
         }
 
         private subscribeToPropertyChanges() {
