@@ -126,7 +126,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
 
         public AddWidget(widget: Widget | Function) {
-            if (typeof widget === "function") widget = (widget as Function)();
+            if (typeof widget === "function") widget = (widget as Function)() as Widget;
+            if (typeof widget.Id === "undefined") widget.Id = Guid.NewGuid();
             this.CurrentLayout().AddWidget(widget as Widget);
         }
 
