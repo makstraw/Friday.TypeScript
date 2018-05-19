@@ -18,13 +18,15 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public OnDrop(target: any, event: any) {
             let originalEvent: DragEvent = event.originalEvent;
             let offset = originalEvent.dataTransfer.getData("text/plain").split(',');
+            let widget = this.Widgets().First(w => w.Id.Equals(offset[2])) as Widget;
 
-            let widget = this.Widgets.FindRecordByProperty('Id', offset[2]) as Widget;
-            if (typeof widget != null) {
+            if (widget !== null) {
+                let oldPosition = WidgetPosition.FromDto(widget.Position);
                 widget.Position.Left(event.clientX + parseInt(offset[0], 10));
                 widget.Position.Top(event.clientY + parseInt(offset[1], 10));
                 this.Grid.AlignPositionToGrid(widget.Position);
-                this.CoordinatesUpdated.Call(widget);
+                if(!widget.Position.Equals(oldPosition))
+                    this.CoordinatesUpdated.Call(widget);
             }
              
         }
@@ -47,20 +49,22 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public RemoveWidget(widget: Widget) {
             widget.Dispose();
             this.Widgets.remove(widget);
+            
         }
 
         private subscribeToWidgetEvents(widget: Widget) {
-            widget.OnSaveRequested.Subscribe((widget: Widget) => this.CoordinatesUpdated.Call(widget));
-
-            widget.Size.Width.subscribe((newValue: number) => {
-                widget.Size.Width(this.Grid.AlignSizeToGrid(newValue, this.Grid.HorizontalGridStepPx()));
+//            widget.OnSaveRequested.Subscribe((widget: Widget) => this.CoordinatesUpdated.Call(widget));
+            if(widget.AutoWidth === false)
+            widget.OnWidgetWidthResized.Subscribe((newDimension: KnockoutObservable<number>) => {
+                newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.HorizontalGridStepPx()));
                 this.CoordinatesUpdated.Call(widget);
-            });
+                })
 
-            widget.Size.Height.subscribe((newValue: number) => {
-                widget.Size.Height(this.Grid.AlignSizeToGrid(newValue, this.Grid.VerticalGridStepPx()));
+            if (widget.AutoHeight === false)
+            widget.OnWidgetHeightResized.Subscribe((newDimension: KnockoutObservable<number>) => {
+                newDimension(this.Grid.AlignSizeToGrid(newDimension(), this.Grid.VerticalGridStepPx()));
                 this.CoordinatesUpdated.Call(widget);
-            });
+            })
         }
 
         public AddWidget(widget: Widget): Widget;

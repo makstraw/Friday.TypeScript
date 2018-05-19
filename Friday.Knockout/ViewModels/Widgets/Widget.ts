@@ -24,6 +24,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public FontColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
         public OnSaveRequested: EventHandler<Widget> = new EventHandler<Widget>();
+        public OnWidgetWidthResized: EventHandler<KnockoutObservable<number>> = new EventHandler<KnockoutObservable<number>>();
+        public OnWidgetHeightResized: EventHandler<KnockoutObservable<number>> = new EventHandler<KnockoutObservable<number>>();
+
         public Draggable: KnockoutObservable<boolean> = ko.observable(true);
         public FullWidth: KnockoutObservable<boolean> = ko.observable(false);
         public FullHeight: KnockoutObservable<boolean> = ko.observable(false);
@@ -106,7 +109,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
         protected koSubscriptions: Array<KnockoutSubscription> = [];
 
         public Dispose() {
-            this.koSubscriptions.forEach(x=>x.dispose());
+            this.koSubscriptions.forEach(x => x.dispose());
+            this.OnSaveRequested.UnsubscribeAll();
+            this.OnWidgetHeightResized.UnsubscribeAll();
+            this.OnWidgetWidthResized.UnsubscribeAll();
         }
 
         public abstract Validate(): boolean;
@@ -143,11 +149,13 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         private subscribeToPropertyChanges() {
-            this.FontSize.subscribe(() => this.OnSaveRequested.Call(this));
-            this.FontColor.subscribe(() => this.OnSaveRequested.Call(this));
-            this.BackgroundColor.subscribe(() => this.OnSaveRequested.Call(this));
-            this.FullWidth.subscribe(() => this.OnSaveRequested.Call(this));
-            this.FullHeight.subscribe(() => this.OnSaveRequested.Call(this));
+            this.koSubscriptions.push(this.FontSize.subscribe(() => this.OnSaveRequested.Call(this)));
+            this.koSubscriptions.push(this.FontColor.subscribe(() => this.OnSaveRequested.Call(this)));
+            this.koSubscriptions.push(this.BackgroundColor.subscribe(() => this.OnSaveRequested.Call(this)));
+            this.koSubscriptions.push(this.FullWidth.subscribe(() => this.OnSaveRequested.Call(this)));
+            this.koSubscriptions.push(this.FullHeight.subscribe(() => this.OnSaveRequested.Call(this)));
+            this.koSubscriptions.push(this.Size.Width.subscribe(() => this.OnWidgetWidthResized.Call(this.Size.Width)));
+            this.koSubscriptions.push(this.Size.Height.subscribe(() => this.OnWidgetHeightResized.Call(this.Size.Height)));
         }
     }
 }

@@ -15,6 +15,10 @@ namespace Friday.Utility {
             }
         }
 
+        public UnsubscribeAll() {
+            this.handlers = [];
+        }
+
         public Call(arg?: T) {
             for (let i = 0; i < this.handlers.length; i++) {
                 if (typeof arg != "undefined") this.handlers[i](arg);

@@ -17,7 +17,10 @@
 
         public GetHashCode(): number { throw new Error("Not implemented"); }
 
-        public Equals(other: Guid): boolean { return this.Value === other.Value }
+        public Equals(other: Guid | string): boolean {
+            if (typeof other === "string") return this.Value === other
+            else return this.Value === other.Value
+        }
 
         public static get Empty(): Guid {
             return new Guid("00000000-0000-0000-0000-000000000000");
