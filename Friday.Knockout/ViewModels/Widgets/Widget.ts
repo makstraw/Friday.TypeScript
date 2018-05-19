@@ -119,13 +119,13 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public FontStepUp() {
             let fontSize = parseFloat(this.FontSize());
-            this.FontSize((fontSize += 0.5) + "rem");
+            this.FontSize((fontSize += 0.1) + "rem");
         }
 
         public FontStepDown() {
             let fontSize = parseFloat(this.FontSize());
-            if (fontSize === 1) return;
-            this.FontSize((fontSize -= 0.5) + "rem");
+            if (fontSize === 0.7) return;
+            this.FontSize((fontSize -= 0.1) + "rem");
         }
 
         constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
