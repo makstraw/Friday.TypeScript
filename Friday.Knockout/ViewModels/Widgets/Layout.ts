@@ -4,6 +4,9 @@
 namespace Friday.Knockout.ViewModels.Widgets {
     import EventHandler = Friday.Utility.EventHandler;
     import Guid = Friday.ValueTypes.Guid;
+    import ArgumentException = Friday.Exceptions.ArgumentException;
+
+    type Position = "Top" | "Bottom" | "Left" | "Right" | "TopLeft" | "TopRight" | "BottomLeft" | "BottomRight" | "Full";
 
     export class Layout {
         public Id: Guid;
@@ -11,7 +14,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public WidgetsOrderUpdated: EventHandler<Layout> = new EventHandler<Layout>();
         public Grid: Grid;
         public Widgets: KnockoutObservableArray<Widget> = ko.observableArray([]);
-        public WidgetsOrder: KnockoutObservableArray<Guid> = ko.observableArray([]);
+        public WidgetsOrder: KnockoutObservableArray<Guid> = ko.observableArray([]).extend({rateLimit: 100});
         private factory: WidgetFactory;
         public OnDragOver(target: any, event: any) {
 
@@ -54,12 +57,17 @@ namespace Friday.Knockout.ViewModels.Widgets {
             
         }
 
-        private bringWidgetToFront(widget) {
+        private bringWidgetToFront(widget: Widget) {
             if (!this.WidgetsOrder().Last().Equals(widget.Id)) {
                 this.WidgetsOrder.remove(this.WidgetsOrder().First(guid => guid.Equals(widget.Id)))
                 this.WidgetsOrder.push(widget.Id);
                 this.WidgetsOrderUpdated.Call(this);
             }
+        }
+
+        private addWidgetToFront(widget: Widget) {
+            this.WidgetsOrder.push(widget.Id);
+            this.WidgetsOrderUpdated.Call(this);
         }
 
         private subscribeToWidgetEvents(widget: Widget) {
@@ -88,7 +96,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 let widget = x as Widget;
                 this.Widgets.push(widget);
                 this.subscribeToWidgetEvents(widget);
-                this.WidgetsOrder.push(widget.Id);
+                this.addWidgetToFront(widget);
                 return widget;
             } else {
                 let dto = x;
@@ -114,7 +122,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
                     this.subscribeToWidgetEvents(widget);
                     
                     this.Widgets.push(widget);
-                    this.WidgetsOrder.push(widget.Id);
+                    this.addWidgetToFront(widget);
                     return widget;
                 }
                 
@@ -133,6 +141,77 @@ namespace Friday.Knockout.ViewModels.Widgets {
             });
             return dto;
         }
+
+        public MoveTo(widget: Widget, position: Position) {
+            let top, left, width, height: number;
+
+            let layout = $("#" + this.Id)[0];           
+
+            switch (position) {
+                case "Top":
+                    top = 0;
+                    left = 0;
+                    width = layout.clientWidth
+                    height = Math.floor(layout.clientHeight / 2);
+                    break;
+                case "Bottom":
+                    left = 0;
+                    width = layout.clientWidth
+                    height = Math.floor(layout.clientHeight / 2);
+                    top = layout.clientHeight - height;
+                    break;
+                case "Left":
+                    top = 0;
+                    left = 0;
+                    height = layout.clientHeight;
+                    width = Math.floor(layout.clientWidth / 2);
+                    break;
+                case "Right":
+                    top = 0;
+                    height = layout.clientHeight;
+                    width = Math.floor(layout.clientWidth / 2);
+                    left = layout.clientWidth - width;
+                    break;
+                case "TopLeft":
+                    top = 0;
+                    left = 0;
+                    width = Math.floor(layout.clientWidth / 2);
+                    height = Math.floor(layout.clientHeight / 2);
+                    break;
+                case "TopRight":
+                    top = 0;
+                    width = Math.floor(layout.clientWidth / 2);
+                    height = Math.floor(layout.clientHeight / 2);
+                    left = layout.clientWidth - width
+                    break;
+                case "BottomLeft":
+                    left = 0;
+                    width = Math.floor(layout.clientWidth / 2);
+                    height = Math.floor(layout.clientHeight / 2);
+                    top = layout.clientHeight - height;
+                    break;
+                case "BottomRight":
+                    width = Math.floor(layout.clientWidth / 2);
+                    height = Math.floor(layout.clientHeight / 2);
+                    top = layout.clientHeight - height;
+                    left = layout.clientWidth - width;
+                    break;
+                case "Full":
+                    width = layout.clientWidth;
+                    height = layout.clientHeight;
+                    left = 0;
+                    top = 0;
+                    break;
+                default:
+                    throw new ArgumentException("position");
+            }
+            widget.Position.Top(top);
+            widget.Position.Left(left);
+            widget.Size.Width(width);
+            widget.Size.Height(height);
+//            this.Grid.AlignPositionToGrid(widget.Position);
+        }
+
 
         constructor(cfg: IDashboardConfiguration, factory: WidgetFactory) {
             this.Grid = new Grid(cfg.HorizontalGridStepPx, cfg.VerticalGridStepPx);

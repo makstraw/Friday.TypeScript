@@ -31,6 +31,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public Draggable: KnockoutObservable<boolean> = ko.observable(true);
         public FullWidth: KnockoutObservable<boolean> = ko.observable(false);
         public FullHeight: KnockoutObservable<boolean> = ko.observable(false);
+        public FullscreenAllowed: boolean = false;
         public AutoWidth: boolean = false;
         public AutoHeight: boolean = false;
 

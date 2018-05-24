@@ -9,8 +9,8 @@
         Left: KnockoutObservable<number>;
 
         constructor(top: number, left: number) {
-            this.Top = ko.observable(top);
-            this.Left = ko.observable(left);
+            this.Top = ko.observable(top).extend({rateLimit: 100});
+            this.Left = ko.observable(left).extend({ rateLimit: 100 });
         }
 
         public static FromDto(dto: WidgetPosition): WidgetPosition {
