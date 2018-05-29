@@ -59,7 +59,7 @@ namespace Friday.Transport {
 
         public SendMessage(message: IMessage): void {
             this.logger.LogDebug("Sending packet: ", message);
-            this.logger.Trace(message);
+            this.logger.Trace(JSON.stringify(message));
             if (this.isReady())
                 this.socket.send(JSON.stringify(message));
             else this.logger.Trace("Not sent, socket is not ready");

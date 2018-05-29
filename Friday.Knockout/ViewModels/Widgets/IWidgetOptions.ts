@@ -5,7 +5,6 @@
         Position: WidgetPosition;
         FullWidth: boolean;
         FullHeight: boolean;
-        Wizard?: boolean;
         BackgroundColor?: string;
         FontColor?: string;
         FontSize?: string;

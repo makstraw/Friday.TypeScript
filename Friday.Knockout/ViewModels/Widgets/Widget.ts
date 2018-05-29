@@ -13,6 +13,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import Guid = Friday.ValueTypes.Guid;
 
     export abstract class Widget extends RoutedViewModel implements IDisposable{
+        protected abstract DefaultConfiguration: IWidgetOptions;
         public Id: Guid;
         public Layout: Guid;
         public WidgetName: string;
@@ -118,8 +119,6 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.OnWidgetClicked.UnsubscribeAll();
         }
 
-        public abstract Validate(): boolean;
-
         public FontStepUp() {
             let fontSize = parseFloat(this.FontSize());
             this.FontSize((fontSize += 0.1) + "rem");
@@ -143,12 +142,8 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 this.FullWidth(options.FullWidth)
             if (typeof options.FullHeight !== "undefined")
                 this.FullHeight(options.FullHeight)
+            this.subscribeToPropertyChanges();
 
-            if (!options.Wizard) {
-                this.subscribeToPropertyChanges();
-
-                
-            }
         }
 
         public OnClick() {

@@ -38,7 +38,6 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public Save(): ISavedWidgetDto {
-            if (!this.Widget().Validate()) throw new InvalidWidgetArguments();
             this.Widget().Position = this.DefaultPosition;
             let output = this.Widget().Save();
             this.SelectedWidgetType.Reset();
