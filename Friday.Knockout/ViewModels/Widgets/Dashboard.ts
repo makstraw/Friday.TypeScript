@@ -179,6 +179,14 @@ namespace Friday.Knockout.ViewModels.Widgets {
             });
         }
 
+        public CloseLayout() {
+            this.ClearLayout();
+            this.Layouts.remove(this.CurrentLayout());
+            if (this.Layouts().length === 0) {
+                this.AddLayout();
+            } else this.CurrentLayout(this.Layouts().First());
+        }
+
         public ClearAll() {
             this.Layouts().forEach(layout => {
                 if (layout instanceof Layout) {
