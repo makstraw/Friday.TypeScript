@@ -148,6 +148,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public OnClick() {
             this.OnWidgetClicked.Call(this);
+            return true;
         }
 
         private subscribeToPropertyChanges() {
