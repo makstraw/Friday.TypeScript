@@ -61,35 +61,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
 
         public Exception: KnockoutObservable<boolean> = ko.observable(false);
 
-        public OnDragStart(target: Widget, event: any): boolean {
-            let originalEvent: DragEvent = event.originalEvent;
-            var style = window.getComputedStyle(originalEvent.target as Element, null);
-            originalEvent.dataTransfer.effectAllowed = "move";
-            originalEvent.dataTransfer.dropEffect = "move";
-            originalEvent.dataTransfer.setData("text/plain", (parseInt(style.getPropertyValue("left"), 10) - originalEvent.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - originalEvent.clientY) + ',' + (originalEvent.target as HTMLElement).getAttribute('id'));
-            return true;
-        }
 
-        public OnDragEnd(event: DragEvent) {
-
-        }
-
-        public OnDragOver(event: DragEvent) {
-
-        }
-
-        public OnDrop(event: DragEvent) {
-
-        }
-
-
-        public OnDragLeave(event: DragEvent) {
-
-        }
-
-        public OnDragEnter(event: DragEvent) {
-
-        }
 
         protected abstract saveOptions(options: IWidgetOptions): IWidgetOptions;
 
