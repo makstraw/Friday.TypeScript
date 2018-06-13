@@ -145,62 +145,167 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public MoveTo(widget: Widget, position: Position) {
             let top, left, width, height: number;
 
-            let layout = $("#" + this.Id)[0];           
+            let layout = $("#" + this.Id)[0];
+            let widgetElement = $("#" + widget.Id)[0];
 
             switch (position) {
                 case "Top":
+                    if (widget.AutoWidth) {
+                        left = layout.clientWidth / 2 - widgetElement.clientWidth / 2;
+                        width = widgetElement.clientWidth;
+                    } else {
+                        left = 0;
+                        width = layout.clientWidth
+                    }
+
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
+
                     top = 0;
-                    left = 0;
-                    width = layout.clientWidth
-                    height = Math.floor(layout.clientHeight / 2);
                     break;
+
                 case "Bottom":
-                    left = 0;
-                    width = layout.clientWidth
-                    height = Math.floor(layout.clientHeight / 2);
+                    if (widget.AutoWidth) {
+                        left = layout.clientWidth / 2 - widgetElement.clientWidth / 2;
+                        width = widgetElement.clientWidth;
+                    } else {
+                        left = 0;
+                        width = layout.clientWidth
+                    }
+
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
+
                     top = layout.clientHeight - height;
                     break;
+
                 case "Left":
-                    top = 0;
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+                    }
+
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                        top = layout.clientHeight / 2 - widgetElement.clientHeight / 2;
+                    } else {
+                        top = 0;
+                        height = layout.clientHeight;
+                    }
+
                     left = 0;
-                    height = layout.clientHeight;
-                    width = Math.floor(layout.clientWidth / 2);
+
+
                     break;
                 case "Right":
-                    top = 0;
-                    height = layout.clientHeight;
-                    width = Math.floor(layout.clientWidth / 2);
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+                    }
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                        top = layout.clientHeight / 2 - widgetElement.clientHeight / 2;
+                    } else {
+                        top = 0;
+                        height = layout.clientHeight;
+                    }
                     left = layout.clientWidth - width;
                     break;
+
                 case "TopLeft":
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+                    }
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
                     top = 0;
                     left = 0;
-                    width = Math.floor(layout.clientWidth / 2);
-                    height = Math.floor(layout.clientHeight / 2);
+
+
                     break;
+
                 case "TopRight":
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+
+                    }
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
+
                     top = 0;
-                    width = Math.floor(layout.clientWidth / 2);
-                    height = Math.floor(layout.clientHeight / 2);
                     left = layout.clientWidth - width
+
+
                     break;
+
                 case "BottomLeft":
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+                    }
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
                     left = 0;
-                    width = Math.floor(layout.clientWidth / 2);
-                    height = Math.floor(layout.clientHeight / 2);
                     top = layout.clientHeight - height;
                     break;
+
                 case "BottomRight":
-                    width = Math.floor(layout.clientWidth / 2);
-                    height = Math.floor(layout.clientHeight / 2);
+                    if (widget.AutoWidth) {
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = Math.floor(layout.clientWidth / 2);
+                    }
+                    if (widget.AutoHeight) {
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = Math.floor(layout.clientHeight / 2);
+                    }
+
+
                     top = layout.clientHeight - height;
                     left = layout.clientWidth - width;
                     break;
+
                 case "Full":
-                    width = layout.clientWidth;
-                    height = layout.clientHeight;
-                    left = 0;
-                    top = 0;
+                    if (widget.AutoWidth) {
+                        left = layout.clientWidth / 2 - widgetElement.clientWidth / 2;
+                        width = widgetElement.clientWidth;
+                    } else {
+                        width = layout.clientWidth;
+                        left = 0;
+                    }
+
+                    if (widget.AutoHeight) {
+                        top = layout.clientHeight / 2 - widgetElement.clientHeight / 2;
+                        height = widgetElement.clientHeight;
+                    } else {
+                        height = layout.clientHeight;
+                        top = 0;
+                    }
+
                     break;
                 default:
                     throw new ArgumentException("position");
@@ -210,6 +315,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
             widget.Size.Width(width);
             widget.Size.Height(height);
 //            this.Grid.AlignPositionToGrid(widget.Position);
+            widget.OnSaveRequested.Call(widget);
         }
 
 

@@ -35,6 +35,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public FullscreenAllowed: boolean = false;
         public AutoWidth: boolean = false;
         public AutoHeight: boolean = false;
+        public FontAdjust: boolean = false;
 
         public Top: KnockoutComputed<string> = ko.pureComputed(function (this: Widget): string {
             if (this.FullHeight()) return "0";
