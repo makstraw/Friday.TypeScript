@@ -5,6 +5,10 @@
     update: function (element, valueAccessor) {
         let output: string;
         let value = ko.unwrap(valueAccessor());
+        if (typeof value === "undefined") {
+            console.trace(value);
+            return;
+        }
         if (typeof value == "string") {
             output = $.i18n(value);
             $(element).text(output);
