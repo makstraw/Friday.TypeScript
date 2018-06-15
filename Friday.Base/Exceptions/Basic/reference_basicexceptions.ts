@@ -2,3 +2,4 @@
 ///<reference path="ArgumentOutOfRangeException.ts"/>
 ///<reference path="NotImplementedException.ts"/>
 ///<reference path="OverflowException.ts"/>
+///<reference path="NotInitializedException.ts"/>

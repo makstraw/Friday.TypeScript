@@ -71,6 +71,7 @@
     <TypeScriptCompile Include="Exceptions\Basic\ArgumentOutOfRangeException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\Exception.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\NotImplementedException.ts" />
+    <TypeScriptCompile Include="Exceptions\Basic\NotInitializedException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\OverflowException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\reference_basicexceptions.ts" />
     <TypeScriptCompile Include="Exceptions\Factory\StaticFactoryNotInitialisedException.ts" />
