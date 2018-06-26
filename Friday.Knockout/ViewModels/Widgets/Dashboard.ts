@@ -173,10 +173,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
         }
 
         public ClearLayout() {
-            this.CurrentLayout().Widgets().forEach(widget => {
-                widget.Dispose();
+            while (this.CurrentLayout().Widgets().length > 0) {
+                let widget = this.CurrentLayout().Widgets().First();
                 this.RemoveWidget(this.CurrentLayout(), widget);
-            });
+            }
         }
 
         public CloseLayout() {
