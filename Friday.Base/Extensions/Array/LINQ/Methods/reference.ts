@@ -10,3 +10,4 @@
 ///<reference path="Any.ts"/>
 ///<reference path="SelectMany.ts"/>
 ///<reference path="Distinct.ts"/>
+///<reference path="Intersect.ts"/>
