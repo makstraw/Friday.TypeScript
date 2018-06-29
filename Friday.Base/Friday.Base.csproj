@@ -94,6 +94,7 @@
     <TypeScriptCompile Include="Extensions\Array\LINQ\linq_reference.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\Predictate.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\PredictateWithIndex.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Intersect.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Last.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\OrderBy.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\reference.ts" />
