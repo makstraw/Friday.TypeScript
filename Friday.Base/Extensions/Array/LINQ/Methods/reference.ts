@@ -11,3 +11,5 @@
 ///<reference path="SelectMany.ts"/>
 ///<reference path="Distinct.ts"/>
 ///<reference path="Intersect.ts"/>
+///<reference path="Take.ts"/>
+///<reference path="Skip.ts"/>

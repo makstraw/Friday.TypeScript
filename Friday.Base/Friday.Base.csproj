@@ -102,6 +102,8 @@
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\Selector.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\FunctionTypes\SelectorWithIndex.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\SelectMany.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Skip.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Take.ts" />
     <TypeScriptCompile Include="Extensions\Array\SetEquals.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Where.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
