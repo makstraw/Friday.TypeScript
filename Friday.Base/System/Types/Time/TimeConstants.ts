@@ -6,6 +6,7 @@
         public static readonly DaysInWeek = 7;
 
         public static readonly SecondsInDay = 86400;
+        public static readonly MinutesInDay = 1440;
         public static readonly MillisecondsInSecond = 1000;
     }
 }
