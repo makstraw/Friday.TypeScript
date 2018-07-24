@@ -13,3 +13,4 @@
 ///<reference path="Intersect.ts"/>
 ///<reference path="Take.ts"/>
 ///<reference path="Skip.ts"/>
+///<reference path="Sum.ts"/>
