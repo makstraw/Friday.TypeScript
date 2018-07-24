@@ -42,8 +42,12 @@ namespace Friday.ValueTypes {
             this.Value = value;
         }
 
-        public static CalculatePercentAmountFromValue(value: number, percent: Percent){
+        public static CalculatePercentAmountFromValue(value: number, percent: Percent): number{
             return value * percent.Value / 100;
+        }
+
+        public static CalculatePercentOfFractionFromMax(fraction: number, max: number): Percent {
+            return Percent.From(100 / (max / fraction));
         }
 
         public CompareTo(other: Percent): number {
