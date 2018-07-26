@@ -11,6 +11,8 @@ namespace Friday.Knockout.ViewModels {
         
         private element: HTMLElement;
 
+        private callbacks: Array<Function> = []
+
         constructor(element?: HTMLElement) {
             if (typeof element === "undefined") element = document.documentElement;
             this.SetElement(element);
@@ -34,9 +36,9 @@ namespace Friday.Knockout.ViewModels {
             this.requestFunction = this.requestFunction.bind(element);
         }
 
-        public Toggle(element?: HTMLElement) {
+        public Toggle(element?: HTMLElement, callback?: Function) {
             if (typeof element !== "undefined") this.SetElement(element);
-
+            if (typeof callback === "function") this.callbacks.push(callback);
             if (!this.fullscreenElement()) {
                 this.requestFunction();
             } else {
@@ -54,6 +56,10 @@ namespace Friday.Knockout.ViewModels {
 
         private stateChanged(event: Event) {
             this.Status(this.fullscreenElement() ? true : false);
+            while (this.callbacks.length > 0) {
+                let callback = this.callbacks.pop();
+                callback(this.Status());
+            }
         }
 
         private error(event: Event) {
