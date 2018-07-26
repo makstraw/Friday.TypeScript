@@ -124,6 +124,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
             return true;
         }
 
+        public OnFullscreen() {
+            this.Size.Height.notifySubscribers(this.Size.Height());
+        }
+
         private subscribeToPropertyChanges() {
             this.koSubscriptions.push(this.FontSize.subscribe(() => this.OnSaveRequested.Call(this)));
             this.koSubscriptions.push(this.FontColor.subscribe(() => this.OnSaveRequested.Call(this)));
