@@ -16,6 +16,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public Widgets: KnockoutObservableArray<Widget> = ko.observableArray([]);
         public WidgetsOrder: KnockoutObservableArray<Guid> = ko.observableArray([]).extend({rateLimit: 100});
         private factory: WidgetFactory;
+
+        public IsEmpty: KnockoutComputed<boolean> = ko.pureComputed(function(this: Layout): boolean {
+            return this.Widgets().length === 0;
+        },this);
+
         public OnDragOver(target: any, event: any) {
 
         }

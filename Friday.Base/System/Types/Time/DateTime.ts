@@ -82,6 +82,19 @@ namespace Friday.System {
             return this.GetDatePart(DateTime.DatePartMonth);
         }
 
+        public static FromCSharpString(dateTime: string): DateTime {
+            var tmpArray: Array<string>;
+            tmpArray = dateTime.split("T");
+            var dateArray = tmpArray[0].split("-");
+            tmpArray = tmpArray[1].split("+");
+            var gmt = tmpArray[1];
+            tmpArray = tmpArray[0].split(".");
+            var microSeconds = tmpArray[1];
+            if (typeof (microSeconds) == "undefined") microSeconds = "0";
+            var timeArray = tmpArray[0].split(":");
+            return new DateTime(Number(dateArray[0]), Number(dateArray[1]), Number(dateArray[2]), Number(timeArray[0]), Number(timeArray[1]), Number(timeArray[2]), Number(microSeconds.substr(0, 3)));
+        }
+
         public static get Now(): DateTime {
             let milliseconds = Date.now() - (new Date().getTimezoneOffset() * DateTime.MillisPerMinute);
             return new DateTime(Long.fromNumber(milliseconds, true).multiply(DateTime.TicksPerMillisecond).add(Long.fromNumber(DateTime.DaysTo1970).mul(DateTime.TicksPerDay)));
