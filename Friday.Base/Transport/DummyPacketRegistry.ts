@@ -3,6 +3,7 @@
 ///<reference path="IPacketRegistryRouteRegistration.ts"/>
 namespace Friday.Transport {
     export class DummyPacketRegistry implements IPacketRegistryRouteFind, IPacketRegistryRouteRegistration {
+
         public FindRoute(packet: BasicMessage): void {
 
         }
@@ -16,6 +17,10 @@ namespace Friday.Transport {
         }
 
         public RegisterRoute(functionPointer: Function, packetType): void {
+
+        }
+
+        public RegisterUnhandledRoute(functionPointer: Function, packetType: any): void {
 
         }
     }
