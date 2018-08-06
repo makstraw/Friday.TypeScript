@@ -11,7 +11,9 @@ namespace Friday.Transport{
     }
 
     export class PacketRegistry implements IPacketRegistryRouteFind, IPacketRegistryRouteRegistration {
+
         private readonly registry: Array<PacketRegistryEntry> = [];
+        private readonly unhandledRegistry: Array<PacketRegistryEntry> = [];
         private readonly binaryRegistry: Array<PacketRegistryEntry> = [];
         private logger: ILogger;
 
@@ -34,16 +36,38 @@ namespace Friday.Transport{
             this.binaryRegistry.push(route);
         }
 
+        public RegisterUnhandledRoute(functionPointer: Function, packetType: any): void {
+            var route = new PacketRegistryEntry();
+            route.PacketType = packetType;
+            route.FunctionPointer = functionPointer;
+
+            this.unhandledRegistry.push(route);
+        }
+
         public FindRoute(packet: BasicMessage) {
             let found: boolean = false;
+            let handled: boolean = false;
             for (let i = 0; i < this.registry.length; i++) {
                 if (this.registry[i].PacketType == packet.MessageType) {
-                    this.logger.LogDebug(this.registry[i].FunctionPointer.toString());
-                    this.registry[i].FunctionPointer(packet);
+                    this.logger.LogDebug(this.registry[i].FunctionPointer.name);
+                    handled = handled || this.registry[i].FunctionPointer(packet);
                     found = true;
                 }
             }
-            if(!found) this.logger.LogDebug("Route not found for: " + packet.MessageType);
+            if (!handled) found = found || this.findUnhandledRoute(packet);
+            if (!found) this.logger.LogDebug("Route not found for: " + packet.MessageType);
+        }
+
+        private findUnhandledRoute(packet: BasicMessage): boolean {
+            let found: boolean = false;
+            for (let i = 0; i < this.unhandledRegistry.length; i++) {
+                if (this.unhandledRegistry[i].PacketType == packet.MessageType) {
+                    this.logger.LogDebug(this.registry[i].FunctionPointer.name);
+                    this.unhandledRegistry[i].FunctionPointer(packet);
+                    found = true;
+                }
+            }
+            return found;
         }
 
         public FindBinaryRoute(type: number, buffer: Uint8Array) {
