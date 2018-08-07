@@ -50,7 +50,7 @@ namespace Friday.Transport{
             for (let i = 0; i < this.registry.length; i++) {
                 if (this.registry[i].PacketType == packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.name);
-                    handled = handled || this.registry[i].FunctionPointer(packet);
+                    handled = this.registry[i].FunctionPointer(packet) || handled;
                     found = true;
                 }
             }
