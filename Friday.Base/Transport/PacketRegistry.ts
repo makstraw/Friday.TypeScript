@@ -54,7 +54,7 @@ namespace Friday.Transport{
                     found = true;
                 }
             }
-            if (!handled) found = found || this.findUnhandledRoute(packet);
+            if (!handled) found = this.findUnhandledRoute(packet) || found;
             if (!found) this.logger.LogDebug("Route not found for: " + packet.MessageType);
         }
 
