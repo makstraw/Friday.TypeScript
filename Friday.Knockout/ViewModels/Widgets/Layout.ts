@@ -5,10 +5,11 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import EventHandler = Friday.Utility.EventHandler;
     import Guid = Friday.ValueTypes.Guid;
     import ArgumentException = Friday.Exceptions.ArgumentException;
+    import IEquatable = Friday.System.IEquatable;
 
     type Position = "Top" | "Bottom" | "Left" | "Right" | "TopLeft" | "TopRight" | "BottomLeft" | "BottomRight" | "Full";
 
-    export class Layout {
+    export class Layout implements IEquatable<Layout> {
         public Id: Guid;
         public CoordinatesUpdated: EventHandler<Widget> = new EventHandler<Widget>();
         public WidgetsOrderUpdated: EventHandler<Layout> = new EventHandler<Layout>();
@@ -327,6 +328,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
         constructor(cfg: IDashboardConfiguration, factory: WidgetFactory) {
             this.Grid = new Grid(cfg.HorizontalGridStepPx, cfg.VerticalGridStepPx);
             this.factory = factory;
+        }
+
+        public Equals(other: Layout): boolean {
+            return this === other || this.Id.Equals(other.Id);
         }
     }
 }

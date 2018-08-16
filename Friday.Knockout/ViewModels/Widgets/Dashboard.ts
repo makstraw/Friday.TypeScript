@@ -105,13 +105,17 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 
         }
 
-        public MoveWidgetToNewLayout(widget: Widget) {
+        public MoveWidgetToLayout(widget: Widget, layout: Layout) {
             let dto = widget.Save();
-            let layout = this.createLayout();
             dto.Layout = layout.Id;
             this.RemoveWidget(this.CurrentLayout(), widget);
             widget = layout.AddWidget(dto);
-            widget.OnSaveRequested.Call(widget);;
+            widget.OnSaveRequested.Call(widget);
+        }
+
+        public MoveWidgetToNewLayout(widget: Widget) {
+            let layout = this.createLayout();
+            this.MoveWidgetToLayout(widget,layout);
         }
 
 
