@@ -1,4 +1,7 @@
 ﻿namespace Friday.Collections {
+    import IEquatable = Friday.System.IEquatable;
+    import IsEquatable = Friday.System.IsEquatable;
+
 
     export enum KeyValuePairSerializationMode {
         Object,
@@ -6,7 +9,7 @@
         Value
     }
 
-    export class KeyValuePair<TKey, TValue> {
+    export class KeyValuePair<TKey, TValue> implements IEquatable<KeyValuePair<TKey, TValue>> {
         public static SerializationMode: KeyValuePairSerializationMode = KeyValuePairSerializationMode.Object;
 
         public Key: TKey;
@@ -30,6 +33,11 @@
 
 
             }
+        }
+
+        public Equals(other: KeyValuePair<TKey, TValue>): boolean {
+            if (IsEquatable(this.Key)) return (this.Key as any).Equals(other.Key);
+            return this.Key === other.Key;
         }
     }
 }
