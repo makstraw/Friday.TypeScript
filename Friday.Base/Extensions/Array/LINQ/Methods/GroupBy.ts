@@ -14,7 +14,7 @@ Array.prototype.GroupBy = function (keySelector: SelectorWithIndex<any, any> | S
     this.forEach((x: any, i: any) => {
         let key = (keySelector as SelectorWithIndex<any, any>)(x, i);
         let element = (elementSelector as SelectorWithIndex<any, any>)(x, i);
-        let array = output.First(item => item.Key === key);
+        let array = output.First(item => Friday.System.IsEquatable(item.Key) ? item.Key.Equals(key) : item.Key === key);
         if (array !== null && array instanceof Friday.Collections.KeyValuePair && Array.isArray(array.Value)) array.Value.push(element);
         else output.push(new Friday.Collections.KeyValuePair<any,Array<any>>(key, [element]));
     });

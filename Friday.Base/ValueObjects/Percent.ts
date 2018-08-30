@@ -38,6 +38,10 @@ namespace Friday.ValueTypes {
             return new Percent(value);
         }
 
+        public static FromDto(dto: Percent): Percent {
+            return Percent.From(dto.Value);
+        }
+
         constructor(value: number) {
             this.Value = value;
         }

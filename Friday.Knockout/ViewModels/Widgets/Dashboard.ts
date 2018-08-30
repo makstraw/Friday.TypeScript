@@ -105,17 +105,20 @@ namespace Friday.Knockout.ViewModels.Widgets {
                 
         }
 
-        public MoveWidgetToLayout(widget: Widget, layout: Layout) {
+        public MoveWidgetToLayout(widget: Widget, layout: Layout): Widget {
             let dto = widget.Save();
             dto.Layout = layout.Id;
-            this.RemoveWidget(this.CurrentLayout(), widget);
+            let oldLayout = this.Layouts().First(l => l.Id.Equals(widget.Layout));
+            if (typeof oldLayout === "undefined" || oldLayout === null) throw new ArgumentException("oldLayout");
+            this.RemoveWidget(oldLayout, widget);
             widget = layout.AddWidget(dto);
             widget.OnSaveRequested.Call(widget);
+            return widget;
         }
 
-        public MoveWidgetToNewLayout(widget: Widget) {
+        public MoveWidgetToNewLayout(widget: Widget): Widget {
             let layout = this.createLayout();
-            this.MoveWidgetToLayout(widget,layout);
+            return this.MoveWidgetToLayout(widget,layout);
         }
 
 
@@ -204,7 +207,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         
 
         private createOrGetLayout(id: Guid): Layout {
-            let layout: Layout= this.Layouts().First(x => x.Id.Equals(id));
+            let layout: Layout = this.Layouts().First(x => x.Id.Equals(id));
             if (typeof layout === "undefined" || layout === null) layout = this.createLayout(id);
             
             return layout;

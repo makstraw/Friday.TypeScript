@@ -11,8 +11,9 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import EventHandler = Friday.Utility.EventHandler;
     import IDisposable = Friday.System.IDisposable;
     import Guid = Friday.ValueTypes.Guid;
+    import IEquatable = Friday.System.IEquatable;
 
-    export abstract class Widget extends RoutedViewModel implements IDisposable{
+    export abstract class Widget extends RoutedViewModel implements IDisposable, IEquatable<Widget>{
         protected abstract DefaultConfiguration: IWidgetOptions;
         public Id: Guid;
         public Layout: Guid;
@@ -136,6 +137,10 @@ namespace Friday.Knockout.ViewModels.Widgets {
             this.koSubscriptions.push(this.FullHeight.subscribe(() => this.OnSaveRequested.Call(this)));
             this.koSubscriptions.push(this.Size.Width.subscribe(() => this.OnWidgetWidthResized.Call(this.Size.Width)));
             this.koSubscriptions.push(this.Size.Height.subscribe(() => this.OnWidgetHeightResized.Call(this.Size.Height)));
+        }
+
+        public Equals(other: Widget): boolean {
+            return this === other || this.Id.Equals(other.Id);
         }
     }
 }

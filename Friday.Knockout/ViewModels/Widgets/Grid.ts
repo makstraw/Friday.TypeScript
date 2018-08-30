@@ -28,6 +28,10 @@
             return this.roundPixelsToGrid(dimension, step);
         }
 
+        public RespectWorkspaceBoundaries(position: WidgetPosition, size: WidgetSize, worskpaceWidth, workspaceHeight) {
+
+        }
+
         public AllocateSpace(size: WidgetSize): WidgetPosition {
             return WidgetPosition.Zero;
         }

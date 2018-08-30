@@ -76,6 +76,7 @@
     <TypeScriptCompile Include="Exceptions\Basic\reference_basicexceptions.ts" />
     <TypeScriptCompile Include="Exceptions\Factory\StaticFactoryNotInitialisedException.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Aggregate.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Any.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Count.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Distinct.ts" />
