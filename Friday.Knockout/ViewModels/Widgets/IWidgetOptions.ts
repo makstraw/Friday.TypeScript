@@ -1,7 +1,7 @@
 ﻿namespace Friday.Knockout.ViewModels.Widgets {
 
     export interface IWidgetOptions {
-        Size: WidgetSize;
+        Size?: WidgetSize;
         Position: WidgetPosition;
         FullWidth: boolean;
         FullHeight: boolean;

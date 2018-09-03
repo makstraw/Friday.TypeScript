@@ -37,7 +37,7 @@
         }
 
         public Equals(other: WidgetSize): boolean {
-            return this.Width() === other.Width() && this.Height() === other.Height();
+            return this.Width() === ko.unwrap(other.Width) && this.Height() === ko.unwrap(other.Height);
         }
     }
 }

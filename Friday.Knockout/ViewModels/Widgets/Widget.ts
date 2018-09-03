@@ -14,7 +14,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
     import IEquatable = Friday.System.IEquatable;
 
     export abstract class Widget extends RoutedViewModel implements IDisposable, IEquatable<Widget>{
-        protected abstract DefaultConfiguration: IWidgetOptions;
+        protected DefaultConfiguration: IWidgetOptions;
         public Id: Guid;
         public Layout: Guid;
         public WidgetName: string;
@@ -22,6 +22,7 @@ namespace Friday.Knockout.ViewModels.Widgets {
         public Size: WidgetSize;
         public abstract readonly MinimumSize: WidgetSize;
         public abstract readonly MaximumSize: WidgetSize;
+
         public BackgroundColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontColor: KnockoutObservable<string> = ko.observable(String.Empty);
         public FontSize: KnockoutObservable<string> = ko.observable(String.Empty);
@@ -103,6 +104,12 @@ namespace Friday.Knockout.ViewModels.Widgets {
             if (fontSize <= 0.7) return;
             this.FontSize((fontSize -= 0.1) + "rem");
         }
+
+        protected ApplyDefaultSize(options: IWidgetOptions) {
+            if (WidgetSize.Zero.Equals(options.Size)) this.Size = WidgetSize.FromDto(this.DefaultConfiguration.Size);
+            else this.Size = WidgetSize.FromDto(options.Size);
+        }
+
 
         constructor(options: IWidgetOptions, transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport, registry);
