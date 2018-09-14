@@ -36,7 +36,7 @@ function typeIsFunction(value: any): boolean {
 }
 
 function isSerializable(value: any): boolean {
-    return typeof value === "object" && typeof value["ToDto"] === "function";
+    return value !== null && typeof value === "object" && typeof value["ToDto"] === "function";
 }
 
 function isPassingFilters(serializationMode: Friday.Knockout.Types.SerializationMode, serializationFilter: Friday.Knockout.Types.SerializationFilter, value: KnockoutObservable<any>): boolean {
