@@ -1,4 +1,5 @@
-﻿namespace Friday.Collections {
+﻿///<reference path="../System/Interfaces/IEquatable.ts" />
+namespace Friday.Collections {
     import IEquatable = Friday.System.IEquatable;
     import IsEquatable = Friday.System.IsEquatable;
 

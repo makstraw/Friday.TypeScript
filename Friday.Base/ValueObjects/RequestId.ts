@@ -40,5 +40,14 @@ namespace Friday.ValueTypes {
         public MatchResponse(id: number) {
             return this.id === id;
         }
+
+        public static ReturnAsInt: boolean = false;
+
+        public toJSON() {
+            if (RequestId.ReturnAsInt)
+                return this.id;
+            else
+                return this;
+        }
     }
 }
