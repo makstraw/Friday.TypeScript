@@ -16,7 +16,7 @@
         */
         private solveEpsilon(duration: number): number {
             return 1.0 / (200.0 * duration);
-        };
+        }
 
         /**
          * @param t {number} parametric timing value
@@ -25,7 +25,7 @@
         private sampleCurveX(t: number): number {
             // `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
             return ((this.ax * t + this.bx) * t + this.cx) * t;
-        };
+        }
 
         /**
         * @param t {number} parametric timing value
@@ -33,7 +33,7 @@
         */
         private sampleCurveY(t: number): number {
             return ((this.ay * t + this.by) * t + this.cy) * t;
-        };
+        }
 
         /**
         * @param t {number} parametric timing value
@@ -41,7 +41,7 @@
         */
         private sampleCurveDerivativeX(t: number) : number{
             return (3.0 * this.ax * t + 2.0 * this.bx) * t + this.cx;
-        };
+        }
 
         /**
         * Given an x value, find a parametric value it came from.
@@ -97,7 +97,7 @@
 
             // Failure.
             return t2;
-        };
+        }
 
         /**
         * @param x {number} the value of x along the bezier curve, 0.0 <= x <= 1.0
@@ -106,7 +106,7 @@
         */
         private solve(x: number, epsilon: number) {
             return this.sampleCurveY(this.solveCurveX(x, epsilon));
-        };
+        }
 
         //Polynominal coefficients
         private readonly coefficientC = 3.0;
@@ -151,6 +151,6 @@
          */
         public Do(x: number, duration: number) {
             return this.solve(x, this.solveEpsilon(+duration || this.DEFAULT_DURATION));
-        };
+        }
     }
 }

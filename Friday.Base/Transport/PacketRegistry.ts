@@ -48,20 +48,26 @@ namespace Friday.Transport{
             let found: boolean = false;
             let handled: boolean = false;
             for (let i = 0; i < this.registry.length; i++) {
-                if (this.registry[i].PacketType == packet.MessageType) {
+                if (this.registry[i].PacketType === packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.name);
-                    handled = this.registry[i].FunctionPointer(packet) || handled;
-                    found = true;
+                    try {
+                        handled = this.registry[i].FunctionPointer(packet) || handled;
+                    } catch (e) {
+                        this.logger.LogDebug("Route throws unhandled exception", e);
+                        throw e;
+                    } finally {
+                        found = true;
+                    }                    
                 }
             }
             if (!handled) found = this.findUnhandledRoute(packet) || found;
-            if (!found) this.logger.LogDebug("Route not found for: " + packet.MessageType);
+            if (!found) this.logger.LogDebug(`Route not found for: ${packet.MessageType}`);
         }
 
         private findUnhandledRoute(packet: BasicMessage): boolean {
             let found: boolean = false;
             for (let i = 0; i < this.unhandledRegistry.length; i++) {
-                if (this.unhandledRegistry[i].PacketType == packet.MessageType) {
+                if (this.unhandledRegistry[i].PacketType === packet.MessageType) {
                     this.logger.LogDebug(this.registry[i].FunctionPointer.name);
                     this.unhandledRegistry[i].FunctionPointer(packet);
                     found = true;
@@ -72,7 +78,7 @@ namespace Friday.Transport{
 
         public FindBinaryRoute(type: number, buffer: Uint8Array) {
             for (let i = 0; i < this.binaryRegistry.length; i++) {
-                if (this.binaryRegistry[i].PacketType == type) {
+                if (this.binaryRegistry[i].PacketType === type) {
                     this.logger.LogDebug(`Routing type ${type}, with buffer ${buffer.byteLength}`);
                     this.binaryRegistry[i].FunctionPointer(buffer);
                     return ;

@@ -1,12 +1,11 @@
 ///<reference path="NoticeViewModel.ts"/>
 module Friday.Knockout.ViewModels.Notices {
 
-    export abstract class NoticeStack {
+    export abstract class NoticeStackViewModel {
         public Data: KnockoutObservableArray<NoticeViewModel> = ko.observableArray([]);
 
         public Add(item: NoticeViewModel) {
             this.Data.push(item);
-            setTimeout(this.Remove.bind(this), 5000, item);
         }
 
         public Remove(item: NoticeViewModel) {

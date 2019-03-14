@@ -11,12 +11,11 @@ namespace Friday.Knockout.ViewModels {
 
 
     export abstract class SerializableViewModel extends RoutedViewModel implements IMessage, IKnockoutSerializable<any> {
-
-
         [index: string]: any;
         public abstract readonly MessageType: any;
         public readonly SerializationMode: SerializationMode = SerializationMode.Exclude;
         public readonly SerializationFilter: SerializationFilter = SerializationFilter.All;
+        public readonly SerializationFields: Array<string> = [];
 
         public Clear() {
             for (var prop in this) {

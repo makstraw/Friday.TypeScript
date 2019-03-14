@@ -14,7 +14,7 @@
             $(element).text(output);
         }
         else {
-            if (typeof value.params == "string" || typeof value.params == "number")
+            if (typeof value.params === "string" || typeof value.params === "number")
                 output = $.i18n(value.key as string, value.params);
             else if (typeof value.params == "object" && Array.isArray(value.params)) {
                 output = $.i18n.apply(null, [value.key, ...value.params]);

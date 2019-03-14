@@ -9,6 +9,7 @@ namespace Friday.Knockout.Models {
         [index: string]: any;
         public readonly SerializationMode: SerializationMode = Knockout.Types.SerializationMode.Exclude;
         public readonly SerializationFilter: SerializationFilter = Knockout.Types.SerializationFilter.ObservablesOnly;
+        public readonly SerializationFields: Array<string> = [];
 
         public ToDto(): T {
             let dto = ko.ToDto(this);

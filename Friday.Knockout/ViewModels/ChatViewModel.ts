@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../Friday.Base/Transport/IPacketRegistryRouteRegistration.ts" />
 /// <reference path="../../Friday.Base/Transport/IMessageSend.ts" />
+///<reference path="../../Friday.Knockout/ViewModels/RoutedViewModel.ts"/>
 namespace Friday.Knockout.Chat {
     import RoutedViewModel = Knockout.ViewModels.RoutedViewModel;
     import IPacketRegistryRouteRegistration = Transport.IPacketRegistryRouteRegistration;
@@ -83,7 +84,7 @@ namespace Friday.Knockout.Chat {
     export abstract class ChatViewModel extends RoutedViewModel implements IChatChannelControl {
         public readonly Channels: Array<ChatChannel> = [];
         public readonly CurrentChannel: KnockoutObservable<string>;
-        public readonly MessageText: KnockoutObservable<string> = ko.observable("");
+        public readonly MessageText: KnockoutObservable<string> = ko.observable(String.Empty);
         public readonly Visible: KnockoutObservable<boolean> = ko.observable(false).extend({Cookie: "isChatVisible"});
         private readonly submitFlags: Array<ISubmitFlag> = [];
         private readonly switchChannelHandler: Function;
@@ -98,7 +99,7 @@ namespace Friday.Knockout.Chat {
                 message[this.submitFlags[i].PropertyName] = this.submitFlags[i].PropertyValue;
             }
             this.sendMessage(message);
-            this.MessageText("");
+            this.MessageText(String.Empty);
         }
 
         public SwitchChannel(channelName: string) {

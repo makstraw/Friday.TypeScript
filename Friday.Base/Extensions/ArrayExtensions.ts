@@ -1,31 +1,29 @@
 ﻿///<reference path="../Definitions/seedrandom.d.ts"/>
-
+///<reference path="StringExtensions.ts"/>
 interface Array<T> {
     shuffle(seed?: string): void;
     shuffle2(seed?: string): void;
 }
 
 Array.prototype.shuffle = function (seed: string): void {
-    if (typeof (seed) == "undefined" || seed.length == 0) {
+    if (typeof (seed) == "undefined" || seed.IsEmpty()) {
         this.sort(() => 0.5 - Math.random());
     } else {
-        var seedrandom = Math.seedrandom;
-        var rngInstance = seedrandom(seed, { state: true });
-        console.log(rngInstance);
+        let rngInstance = new Math.seedrandom(seed, { state: true });
         this.sort(() => 0.5 - rngInstance());
     }
 }
 
 Array.prototype.shuffle2 = function (seed: string): void {
-    var temporaryValue: any;
-    var randomIndex: number;
-    var seedrandom = Math.seedrandom;
-    var currentIndex: number = this.length;
+    let temporaryValue: any;
+    let randomIndex: number;
+    let currentIndex: number = this.length;
+    let rngInstance: prng;
 
-    if (typeof (seed) == "undefined" || seed.length == 0) {
-        var rngInstance = seedrandom();
+    if (typeof (seed) == "undefined" || seed.IsEmpty()) {
+        rngInstance = new Math.seedrandom();
     } else {
-        var rngInstance = seedrandom(seed, { state: true });
+        rngInstance = new Math.seedrandom(seed, { state: true });
     }
 
 

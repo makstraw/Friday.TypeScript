@@ -40,7 +40,9 @@ interface JQueryStatic {
     i18n(): I18N;
     i18n(options: I18NOptions): I18N;
     i18n(key: string): string;
-    i18n(key: string, param1?: any): I18N;
+    i18n(key: string, param1: string): string;
+    i18n(key: string, param1: number): string;
+    i18n(key: string, param1?: object | Function): I18N;
 
 
 }

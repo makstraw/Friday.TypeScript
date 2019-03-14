@@ -1,4 +1,5 @@
-﻿interface Array<T> {
+﻿///<reference path="../../../../Collections/KeyValuePair.ts"/>
+interface Array<T> {
     GroupBy<TKey>(keySelector: SelectorWithIndex<T, TKey>): Array<Friday.Collections.KeyValuePair<TKey, Array<T>>>;
     GroupBy<TKey>(keySelector: SelectorWithIndex<T, TKey>, elementSelector: SelectorWithIndex<T, T>, compareSelector?: HashSelector<TKey>): Array<Friday.Collections.KeyValuePair<TKey, Array<T>>>;
     GroupBy<TKey, TElement>(keySelector: SelectorWithIndex<T, TKey>, elementSelector: SelectorWithIndex<T, TElement>, compareSelector?: HashSelector<TKey>): Array<Friday.Collections.KeyValuePair<TKey, Array<T>>>;

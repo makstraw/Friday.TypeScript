@@ -78,7 +78,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
     cancelFullScreen(): void;
 }
 
-interface Element extends Node, GlobalEventHandlers, ElementTraversal, NodeSelector, ChildNode, ParentNode {
+interface Element extends Node, GlobalEventHandlers, NodeSelector, ChildNode, ParentNode {
     mozRequestFullScreen(): void;
 
 }

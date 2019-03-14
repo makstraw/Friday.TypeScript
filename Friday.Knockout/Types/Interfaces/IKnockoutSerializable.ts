@@ -10,11 +10,15 @@ namespace Friday.Knockout.Types {
     export enum SerializationFilter {
         All,
         ObservablesOnly,
-        PrimitivesOnly
+        NonObservablesOnly,
+        PrimitivesOnly,
+        FieldsFilterOnly
     }
 
     export interface IKnockoutSerializable<T> extends ISerializable<T> {
         readonly SerializationMode: SerializationMode;
         readonly SerializationFilter: SerializationFilter;
+        readonly SerializationFields: Array<string>;
+
     }
 }

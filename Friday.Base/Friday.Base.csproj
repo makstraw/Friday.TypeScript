@@ -74,6 +74,7 @@
     <TypeScriptCompile Include="Exceptions\Basic\NotInitializedException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\OverflowException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\reference_basicexceptions.ts" />
+    <TypeScriptCompile Include="Exceptions\Basic\UnsupportedBrowserException.ts" />
     <TypeScriptCompile Include="Exceptions\Factory\StaticFactoryNotInitialisedException.ts" />
     <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
     <TypeScriptCompile Include="Extensions\Array\LINQ\Methods\Aggregate.ts" />
@@ -120,6 +121,13 @@
     <TypeScriptCompile Include="Logging\ILogger.ts" />
     <TypeScriptCompile Include="Logging\LogLevel.ts" />
     <TypeScriptCompile Include="Reflection\Mirror.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\ISoundTrack.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\Mp3Track.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\OggTrack.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\SoundTrack.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\SoundTrackArray.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\TrackNotFoundException.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\WavTrack.ts" />
     <TypeScriptCompile Include="System\Interfaces\IDisposable.ts" />
     <TypeScriptCompile Include="Transport\BasicMessage.ts" />
     <TypeScriptCompile Include="Transport\DummyPacketRegistry.ts" />
@@ -146,7 +154,7 @@
     <TypeScriptCompile Include="Utility\MethodHelper.ts" />
     <TypeScriptCompile Include="Utility\Notifications.ts" />
     <TypeScriptCompile Include="Utility\ObjectComparison.ts" />
-    <TypeScriptCompile Include="Utility\SoundManager.ts" />
+    <TypeScriptCompile Include="Sound\SoundManager\SoundManager.ts" />
     <TypeScriptCompile Include="Validation\cryptocurrency-address.ts" />
     <TypeScriptCompile Include="System\Interfaces\IArithmetic.ts" />
     <TypeScriptCompile Include="System\Interfaces\IBasicArithmetic.ts" />

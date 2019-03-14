@@ -1,16 +1,30 @@
 ﻿///<reference path="SerializableViewModel.ts"/>
 ///<reference path="Notices/NoticeViewModel.ts"/>
 ///<reference path="../../Friday.Base/Extensions/StringExtensions.ts"/>
+///<reference path="../Exceptions/ExceptionToNoticeTransformationFunctionNotAssigned.ts"/>
+///<reference path="IMessageToNoticeTransformationFunction.ts"/>
+///<reference path="IMessageToCodeFunction.ts"/>
 namespace Friday.Knockout.ViewModels {
     import IPacketRegistryRouteRegistration = Transport.IPacketRegistryRouteRegistration;
     import IMessageSend = Transport.IMessageSend;
     import NoticeViewModel = Knockout.ViewModels.Notices.NoticeViewModel;
+    import IMessage = Friday.Transport.IMessage;
+    import ExceptionToNoticeTransformationFunctionNotAssigned =
+        Exceptions.ExceptionToNoticeTransformationFunctionNotAssigned;
+    import NoticeSeverity = Knockout.ViewModels.Notices.NoticeSeverity;
+    import SerializationMode = Knockout.Types.SerializationMode;
 
     export abstract class ModalViewModel extends SerializableViewModel {
-        public ErrorText: KnockoutObservable<string> = ko.observable(String.Empty);
-        public ShowModal: KnockoutObservable<boolean> = ko.observable(false);
+        public ErrorText: KnockoutObservable<string> = ko.observable(String.Empty).extend({ Serialize: { Mode: SerializationMode.Exclude } });
+        public ShowModal: KnockoutObservable<boolean> = ko.observable(false).extend({ Serialize: { Mode: SerializationMode.Exclude } });
 
         private static modalContext: Array<ModalViewModel> = [];
+        private static messageToNotice: IMessageToNoticeTransformationFunction;
+        private static messageToCode: IMessageToCodeFunction;
+
+        private noticeRoutes: Array<number> = [];
+
+        protected closeOnSuccess: boolean = true;
 
         constructor(transport: IMessageSend, registry: IPacketRegistryRouteRegistration) {
             super(transport,registry);
@@ -29,7 +43,7 @@ namespace Friday.Knockout.ViewModels {
 
         public Clear() {
             super.Clear();
-            this.ErrorText("");
+            this.ErrorText(String.Empty);
             this.ShowModal(false);
         }
 
@@ -44,9 +58,44 @@ namespace Friday.Knockout.ViewModels {
             this.ShowModal(true);
         }
 
+        public Hide() {
+            this.ShowModal(false);
+        }
+
         public Toggle() {
-            if (this.ShowModal()) this.ShowModal(false);
+            if (this.ShowModal()) this.Hide();
             else this.Show();
+        }
+
+        public HandleExceptionMessage(message: IMessage) {
+            if (typeof ModalViewModel.messageToNotice !== "function")
+                throw new ExceptionToNoticeTransformationFunctionNotAssigned();
+            let notice = ModalViewModel.messageToNotice(message);
+            let code = ModalViewModel.messageToCode(message);
+
+            if (this.closeOnSuccess && notice.Severity === NoticeSeverity.Success) {
+                this.ShowModal(false);
+//                return true;
+            }
+
+            if (this.noticeRoutes.Has(code)) {
+                this.ViewModelError(notice);
+//                return true;
+            }
+//            return false;
+        }
+
+        protected registerNoticeRoutes(...args: Array<number>) {
+            this.noticeRoutes = args;
+        }
+
+        public static RegisterMessageToNoticeFunction(func: IMessageToNoticeTransformationFunction) {
+            this.messageToNotice = func;
+        }
+
+        public static RegisterMessageToCodeFunction(func: IMessageToCodeFunction) {
+            this.messageToCode = func;
+
         }
     }
 }

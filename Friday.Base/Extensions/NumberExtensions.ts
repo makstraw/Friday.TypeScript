@@ -4,8 +4,8 @@
 }
 
 Number.prototype.toFixedFloor = function (fractionDigits?: number): string {
-    var tmp = this * Math.pow(10, fractionDigits);
-    var tmp = Math.floor(tmp);
+    let tmp = this * Math.pow(10, fractionDigits);
+    tmp = Math.floor(tmp);
     return (tmp / Math.pow(10, fractionDigits)).toString();
 }
 

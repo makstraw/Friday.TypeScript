@@ -43,5 +43,5 @@ declare module "seedrandom" {
 }
 
 interface Math {
-    seedrandom: seedrandom_prng;
+    seedrandom: prng;
 }

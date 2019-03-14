@@ -82,6 +82,10 @@ namespace Friday.System {
             return this.GetDatePart(DateTime.DatePartMonth);
         }
 
+        public get JSDate(): Date {
+            return new Date(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second);
+        }
+
         public static FromCSharpString(dateTime: string): DateTime {
             var tmpArray: Array<string>;
             tmpArray = dateTime.split("T");

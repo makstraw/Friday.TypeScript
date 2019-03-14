@@ -20,7 +20,7 @@ namespace Friday.Knockout.ValueTypes {
         public Sign: KnockoutObservable<string>;
         public Rate: KnockoutObservable<number>;
 
-        constructor(name: string, sign: string, rate: number) {
+        constructor(name: string, sign: string, rate: number = 1) {
             this.Name = ko.observable(name);
             this.Sign = ko.observable(sign);
             this.Rate = ko.observable(rate);
@@ -101,32 +101,34 @@ namespace Friday.Knockout.ValueTypes {
             return value * Bitcoin.getMultiplier(multiplier);
         }
 
-        public LessThan(value: Bitcoin) {
+        public LessThan(value: Bitcoin): boolean {
             return this.satoshiAmount() < value.satoshiAmount();
         }
 
-        public MoreThan(value: Bitcoin) {
+        public MoreThan(value: Bitcoin): boolean {
             return this.satoshiAmount() > value.satoshiAmount();
         }
 
-        public Equal(value: Bitcoin) {
+        public Equal(value: Bitcoin): boolean {
             return this.satoshiAmount() == value.satoshiAmount();
         }
 
-        public MoreOrEqualThan(value: Bitcoin) {
+        public MoreOrEqualThan(value: Bitcoin): boolean {
             return (this.MoreThan(value) || this.Equal(value));
         }
 
-        public LessOrEqualThan(value: Bitcoin) {
+        public LessOrEqualThan(value: Bitcoin): boolean {
             return (this.LessThan(value) || this.Equal(value));
         }
 
-        public Add(value: Bitcoin) {
+        public Add(value: Bitcoin): Bitcoin {
             this.satoshiAmount(this.ToSatoshi() + value.ToSatoshi());
+            return this;
         }
 
-        public Sub(value: Bitcoin) {
+        public Sub(value: Bitcoin): Bitcoin {
             this.satoshiAmount(this.ToSatoshi() - value.ToSatoshi());
+            return this;
         }
 
         public Set(value: Bitcoin, forceNotify = false) {
@@ -267,6 +269,11 @@ namespace Friday.Knockout.ValueTypes {
         public toString(): string {
             return this.satoshiAmount.toString();
         }
+
+        public toJSON(): number {
+            return this.satoshiAmount();
+        }
+
         public static readonly Bits = "Bits";
         public static readonly BTC = "BTC";
         public static readonly mBTC = "mBTC";
@@ -291,6 +298,10 @@ namespace Friday.Knockout.ValueTypes {
         public static FiatRates: KnockoutObservable<FiatCurrency> = ko.observable(new FiatCurrency("USD", "$", 1));
 
         public static DefaultMultiplier: KnockoutObservable<BitcoinMultiplier> = ko.observable(Bitcoin.BitcoinFormatList()[0]);
+
+        public static get Zero(): Bitcoin {
+            return Bitcoin.FromSatoshi(0);
+        }
     }
 
 //    export class Bitcoin {

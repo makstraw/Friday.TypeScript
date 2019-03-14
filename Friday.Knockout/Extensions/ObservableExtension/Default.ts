@@ -7,7 +7,7 @@ interface KnockoutExtenders {
 }
 
 ko.observable.fn.Reset = function () {
-    this(typeof this._default === 'function' ? this._default() : this._default);
+    this(typeof this._default === 'undefined' ? this() : typeof this._default === 'function' ? this._default() : this._default);
 }
 
 ko.extenders.Default = function(target: any, value?: any) {
