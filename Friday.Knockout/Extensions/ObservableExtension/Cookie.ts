@@ -5,7 +5,7 @@ interface KnockoutExtenders {
 }
 
 ko.extenders.Cookie = (target: any, key: any) => {
-    var initialValue = target();
+    let initialValue = target();
     if (key && Friday.Utility.CookieHelper.GetCookie(key) !== null) {
         try {
             initialValue = JSON.parse(Friday.Utility.CookieHelper.GetCookie(key));

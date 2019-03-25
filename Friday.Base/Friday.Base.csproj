@@ -56,6 +56,7 @@
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackBarConfig.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\CoinStackShadow.ts" />
     <TypeScriptCompile Include="Animation\CoinStackBar\types.ts" />
+    <TypeScriptCompile Include="Charsets\Charsets.ts" />
     <TypeScriptCompile Include="Collections\KeyValuePair.ts" />
     <TypeScriptCompile Include="Crypto\Hash\IHashProvider.ts" />
     <TypeScriptCompile Include="Crypto\Hash\IHashResult.ts" />
@@ -66,9 +67,12 @@
     <TypeScriptCompile Include="Definitions\long.d.ts" />
     <TypeScriptCompile Include="Definitions\seedrandom.d.ts" />
     <TypeScriptCompile Include="Encoding\base58.ts" />
+    <TypeScriptCompile Include="Exceptions\Array\ArrayIndexOutOfRangeException.ts" />
+    <TypeScriptCompile Include="Exceptions\Array\reference.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\ArgumentCountException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\ArgumentException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\ArgumentOutOfRangeException.ts" />
+    <TypeScriptCompile Include="Exceptions\Array\ArrayItemNotFoundException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\Exception.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\NotImplementedException.ts" />
     <TypeScriptCompile Include="Exceptions\Basic\NotInitializedException.ts" />

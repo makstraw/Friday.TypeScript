@@ -30,7 +30,7 @@ namespace Friday.Sound {
                     track.Set(positionMs);
                 }
                 track.Play();
-            } else throw new NotInitializedException(this.constructor.name);
+            };
         }
 
 

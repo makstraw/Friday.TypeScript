@@ -71,6 +71,7 @@ namespace Friday.Knockout.ViewModels {
             if (typeof ModalViewModel.messageToNotice !== "function")
                 throw new ExceptionToNoticeTransformationFunctionNotAssigned();
             let notice = ModalViewModel.messageToNotice(message);
+
             let code = ModalViewModel.messageToCode(message);
 
             if (this.closeOnSuccess && notice.Severity === NoticeSeverity.Success) {

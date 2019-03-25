@@ -32,7 +32,7 @@ window.location.GetParams = (): Array<IQueryParam> => {
     let result: Array<IQueryParam> = [];
 
     let query = window.location.GetParamsQuery();
-    if (query.IsEmpty()) return result;
+    if (query.IsEmpty) return result;
 
     query.split("&").forEach((value: string, index: number) => {
         var pair = value.split("=");

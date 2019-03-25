@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Bindings\AnimationBinding.ts" />
+    <TypeScriptCompile Include="Bindings\BlobDownloadBindng.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
     <TypeScriptCompile Include="Bindings\DataListBinding.ts" />
+    <TypeScriptCompile Include="Bindings\InlineDownloadBinding.ts" />
+    <TypeScriptCompile Include="Bindings\PageTitleBinding.ts" />
     <TypeScriptCompile Include="Exceptions\InvalidWidgetArguments.ts" />
     <TypeScriptCompile Include="Exceptions\NoticeCodeToDescriptionFunctionNotAssigned.ts" />
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
@@ -54,6 +57,9 @@
     <TypeScriptCompile Include="Extensions\ObservableExtension\Serialize.ts" />
     <TypeScriptCompile Include="Templates\RoutedViewModel.ts" />
     <TypeScriptCompile Include="Types\Interfaces\IKnockoutSerializable.ts" />
+    <TypeScriptCompile Include="ValueObjects\Bitcoin\BitcoinMultiplier.ts" />
+    <TypeScriptCompile Include="ValueObjects\Bitcoin\BitcoinMultiplierNames.ts" />
+    <TypeScriptCompile Include="ValueObjects\Bitcoin\FiatCurrency.ts" />
     <TypeScriptCompile Include="ViewModels\ChatViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\DataGridViewModel.ts" />
     <TypeScriptCompile Include="Definitions\jquery.d.ts" />
@@ -61,7 +67,7 @@
     <TypeScriptCompile Include="Definitions\knockout.d.ts" />
     <TypeScriptCompile Include="Bindings\i18nBinding.ts" />
     <TypeScriptCompile Include="Utility\SimpleTimer.ts" />
-    <TypeScriptCompile Include="ValueObjects\Bitcoin.ts" />
+    <TypeScriptCompile Include="ValueObjects\Bitcoin\Bitcoin.ts" />
     <TypeScriptCompile Include="Exceptions\ExceptionToNoticeTransformationFunctionNotAssigned.ts" />
     <TypeScriptCompile Include="ViewModels\FullScreenViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\IMessageToCodeFunction.ts" />
@@ -69,7 +75,6 @@
     <TypeScriptCompile Include="ViewModels\LocaleManager.ts" />
     <TypeScriptCompile Include="ViewModels\ModalViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeList.ts" />
-    <TypeScriptCompile Include="ViewModels\Notices\NoticeRouter.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeSeverity.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeStackViewModel.ts" />
     <TypeScriptCompile Include="ViewModels\Notices\NoticeViewModel.ts" />

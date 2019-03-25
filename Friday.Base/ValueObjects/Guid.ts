@@ -52,7 +52,7 @@
                 this.Value = guid;
         }
 
-        public IsEmpty(): boolean {
+        public get IsEmpty(): boolean {
             return this.Equals(Guid.Empty);
         }
 

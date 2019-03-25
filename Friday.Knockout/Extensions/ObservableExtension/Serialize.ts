@@ -113,7 +113,7 @@ namespace Friday.Knockout.Serialization {
             let property = viewModel[propName];
 
             if (!isPassingPreFilter(viewModel, propName, property)) return;
-            console.log(propName);
+
             if (ko.isObservable(property)) {
                 if (viewModel.SerializationFilter === SerializationFilter.FieldsFilterOnly || isObservablePassingFilters(viewModel.SerializationMode, property)) {
                     propValue = ko.unwrap(property);

@@ -30,15 +30,16 @@ namespace Friday.Knockout.Chat {
     }
 
     export class ChatMessage {
-        public Id: number;
-        public Name: string;
+        public MessageId: number;
+        public UserId: number;
+        public UserName: string;
         public Text: string;
         public Date: Date;
         public AvatarPath: string;
 
-        constructor(id: number, name: string, text: string, date: Date, avatarPath: string) {
-            this.Id = id;
-            this.Name = name;
+        constructor(messageId: number, userId: number, userName: string, text: string, date: Date, avatarPath: string) {
+            this.MessageId = messageId;
+            this.UserName = userName;
             this.Text = text;
             this.Date = date;
             this.AvatarPath = avatarPath;

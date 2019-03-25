@@ -1,5 +1,6 @@
 ﻿///<reference path="../../../Exceptions/Basic/reference_basicexceptions.ts"/>
 ///<reference path="../../Interfaces/IComparable.ts"/>
+///<reference path="../../../Extensions/ArrayExtensions.ts"/>
 namespace Friday.System {
     import NotImplementedException = Exceptions.NotImplementedException;
     import ArgumentException = Exceptions.ArgumentException;
@@ -230,10 +231,15 @@ namespace Friday.System {
             return new TimeSpan(value);
         }
 
+        public static FromCSharpString(value: string): TimeSpan {
+            let parts = value.split(":");
+            return this.FromTicks(this.TimeToTicks(parseInt(parts[0]),parseInt(parts[1]),parseInt(parts[2])));
+        }
+
         public static TimeToTicks(hour: number, minute: number, second: number): Long {
             let totalSeconds = Long.fromNumber(hour).mul(3600).add(minute * 60).add(second);
             if (totalSeconds.greaterThan(TimeSpan.MaxSeconds) || totalSeconds.lessThan(TimeSpan.MinSeconds))
-                throw new ArgumentOutOfRangeException('hour, minute,second');
+                throw new ArgumentOutOfRangeException('hour,minute,second');
             return totalSeconds.mul(TimeSpan.TicksPerSecond);
         }
     }
