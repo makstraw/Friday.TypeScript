@@ -47,8 +47,10 @@
     <TypeScriptCompile Include="Bindings\BlobDownloadBindng.ts" />
     <TypeScriptCompile Include="Bindings\BootstrapBinding.ts" />
     <TypeScriptCompile Include="Bindings\DataListBinding.ts" />
+    <TypeScriptCompile Include="Bindings\GoogleReCaptcha2.ts" />
     <TypeScriptCompile Include="Bindings\InlineDownloadBinding.ts" />
     <TypeScriptCompile Include="Bindings\PageTitleBinding.ts" />
+    <TypeScriptCompile Include="Definitions\grecaptcha.d.ts" />
     <TypeScriptCompile Include="Exceptions\InvalidWidgetArguments.ts" />
     <TypeScriptCompile Include="Exceptions\NoticeCodeToDescriptionFunctionNotAssigned.ts" />
     <TypeScriptCompile Include="Extensions\ObservableArrayExtensions.ts" />
