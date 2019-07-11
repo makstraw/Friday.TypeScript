@@ -6,8 +6,8 @@ namespace Friday.Knockout.ViewModels {
         public Status: KnockoutObservable<boolean> = ko.observable(false);
         public OnError: EventHandler<null> = new EventHandler<null>();
 
-        private requestFunction: Function = document.documentElement.requestFullscreen || document.documentElement.mozRequestFullScreen || document.documentElement.webkitRequestFullscreen || this.nullFunction;
-        private cancelFunction: Function = document.cancelFullScreen || document.mozCancelFullScreen || document.webkitCancelFullScreen || this.nullFunction;
+        private requestFunction: Function = document.documentElement.requestFullscreen || document.documentElement.mozRequestFullScreen || this.nullFunction;
+        private cancelFunction: Function = document.cancelFullScreen || document.mozCancelFullScreen || this.nullFunction;
         
         private element: HTMLElement;
 
@@ -27,12 +27,12 @@ namespace Friday.Knockout.ViewModels {
         }
 
         private fullscreenElement(): Element | null {
-            return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+            return document.fullscreenElement || document.mozFullScreenElement;
         }
 
         public SetElement(element: HTMLElement) {
             this.element = element;
-            this.requestFunction = element.requestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen || this.nullFunction;
+            this.requestFunction = element.requestFullscreen || element.mozRequestFullScreen || this.nullFunction;
             this.requestFunction = this.requestFunction.bind(element);
         }
 
@@ -72,13 +72,13 @@ namespace Friday.Knockout.ViewModels {
     }
 }
 
-interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEvent, ParentNode, DocumentOrShadowRoot {
+interface Document extends Node, GlobalEventHandlers, DocumentEvent, ParentNode, DocumentOrShadowRoot {
     readonly mozFullScreenElement: Element | null;
     mozCancelFullScreen(): void;
     cancelFullScreen(): void;
 }
 
-interface Element extends Node, GlobalEventHandlers, NodeSelector, ChildNode, ParentNode {
+interface Element extends Node, GlobalEventHandlers, ChildNode, ParentNode {
     mozRequestFullScreen(): void;
 
 }
