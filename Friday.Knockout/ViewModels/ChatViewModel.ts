@@ -39,6 +39,7 @@ namespace Friday.Knockout.Chat {
 
         constructor(messageId: number, userId: number, userName: string, text: string, date: Date, avatarPath: string) {
             this.MessageId = messageId;
+            this.UserId = userId;
             this.UserName = userName;
             this.Text = text;
             this.Date = date;

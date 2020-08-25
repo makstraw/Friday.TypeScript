@@ -83,5 +83,9 @@ namespace Friday.ValueTypes {
         public GetHashCode(): number {
             return this.Value ^ this.Value >> 32;
         }
+
+        public toString(): string {
+            return this.Value.toFixed(2) + '%';
+        }
     }
 }

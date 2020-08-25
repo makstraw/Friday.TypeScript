@@ -83,20 +83,17 @@ namespace Friday.System {
         }
 
         public get JSDate(): Date {
-            return new Date(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second);
+            return new Date(this.Year, this.Month-1, this.Day, this.Hour, this.Minute, this.Second);
         }
 
         public static FromCSharpString(dateTime: string): DateTime {
-            var tmpArray: Array<string>;
-            tmpArray = dateTime.split("T");
-            var dateArray = tmpArray[0].split("-");
-            tmpArray = tmpArray[1].split("+");
-            var gmt = tmpArray[1];
-            tmpArray = tmpArray[0].split(".");
-            var microSeconds = tmpArray[1];
-            if (typeof (microSeconds) == "undefined") microSeconds = "0";
-            var timeArray = tmpArray[0].split(":");
-            return new DateTime(Number(dateArray[0]), Number(dateArray[1]), Number(dateArray[2]), Number(timeArray[0]), Number(timeArray[1]), Number(timeArray[2]), Number(microSeconds.substr(0, 3)));
+            let regexp = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})((\.(\d+))?\+(\d{2}):(\d{2}))?/;
+            let result = regexp.exec(dateTime);
+            let millis = result.length == 9 ? Number(result[7].substr(0, 3)) : 0;
+            return new DateTime(
+                Number(result[1]), Number(result[2]), Number(result[3]), //Year, month, day
+                Number(result[4]), Number(result[5]), Number(result[6]), //Hour, minute, second
+                millis); //Miliseconds
         }
 
         public static get Now(): DateTime {
@@ -237,13 +234,13 @@ namespace Friday.System {
                 let ticks = DateTime.DateToTicks(year, month, day);
 
                 if (checkArgumentType("number", hours, minutes, seconds)) {
-                    ticks.add(DateTime.TimeToTicks(hours, minutes, seconds));
+                    ticks = ticks.add(DateTime.TimeToTicks(hours, minutes, seconds));
                 }
 
                 if (typeof milliseconds == "number") {
                     if (milliseconds < 0 || milliseconds >= DateTime.MillisPerSecond)
                         throw new ArgumentOutOfRangeException("milliseconds");
-                    ticks.add(DateTime.TicksPerMillisecond.multiply(milliseconds));
+                    ticks = ticks.add(DateTime.TicksPerMillisecond.multiply(milliseconds));
                 }
 
                 if (typeof kind == "number")
