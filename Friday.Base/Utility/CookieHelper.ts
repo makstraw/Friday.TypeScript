@@ -1,6 +1,6 @@
 ﻿namespace Friday.Utility {
     export class CookieHelper {
-        public static SetCookie(name: string, value: string, days: number) {
+        public static SetCookie(name: string, value: string, days: number, sameSite = "Lax") {
             var expires: string;
 
             if (days) {
@@ -10,7 +10,7 @@
             } else {
                 expires = "";
             }
-            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; SameSite="+sameSite+"; path=/";
         }
 
         public static GetCookie(name: string) {
