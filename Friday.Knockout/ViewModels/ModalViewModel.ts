@@ -33,7 +33,7 @@ namespace Friday.Knockout.ViewModels {
 
         public static HideAll() {
             for (let i = 0; i < ModalViewModel.modalContext.length; i++) {
-                ModalViewModel.modalContext[i].ShowModal(false);
+                ModalViewModel.modalContext[i].Hide();
             }
         }
 
