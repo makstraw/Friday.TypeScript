@@ -31,9 +31,9 @@ namespace Friday.Knockout.ViewModels {
             ModalViewModel.modalContext.push(this);
         }
 
-        public static HideAll() {
+        public static HideAll(exclude: ModalViewModel) {
             for (let i = 0; i < ModalViewModel.modalContext.length; i++) {
-                ModalViewModel.modalContext[i].Hide();
+                if (ModalViewModel.modalContext[i] != exclude)ModalViewModel.modalContext[i].Hide();
             }
         }
 
@@ -54,7 +54,7 @@ namespace Friday.Knockout.ViewModels {
 
         public Show() {
             this.Clear();
-            ModalViewModel.HideAll();
+            ModalViewModel.HideAll(this);
             this.ShowModal(true);
         }
 
