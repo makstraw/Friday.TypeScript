@@ -36,7 +36,16 @@ namespace Friday.Sound {
                 trackArray.SoundArray.push(track.Clone());
             }
             return trackArray;
+        }
 
+        public static FromMultipleTracks(name: string, ...args: Array<SoundTrack>) {
+            if (args.length === 0) throw ("SoundTrackArray is empty");
+            var trackArray = new SoundTrackArray();
+            trackArray.Name = name;
+            for (var i = 0; i < args.length; i++) {
+                trackArray.SoundArray.push(args[i].Clone());
+            }
+            return trackArray;
         }
     }
 }
