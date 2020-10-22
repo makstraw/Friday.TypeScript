@@ -36,14 +36,23 @@ namespace Friday.Knockout.Chat {
         public Text: string;
         public Date: Date;
         public AvatarPath: string;
+        public Role: KnockoutObservable<number> = ko.observable(0);
+        public Deleted: KnockoutObservable<boolean> = ko.observable(false);
+        public DeletionReason: KnockoutObservable<string> = ko.observable("");
 
-        constructor(messageId: number, userId: number, userName: string, text: string, date: Date, avatarPath: string) {
+        constructor(messageId: number, userId: number, userName: string, text: string, date: Date, avatarPath: string, role = 0) {
             this.MessageId = messageId;
             this.UserId = userId;
             this.UserName = userName;
             this.Text = text;
             this.Date = date;
             this.AvatarPath = avatarPath;
+            this.Role(role);
+        }
+
+        public Delete(reason: string) {
+            this.Deleted(true);
+            this.DeletionReason(reason);
         }
     }
 
