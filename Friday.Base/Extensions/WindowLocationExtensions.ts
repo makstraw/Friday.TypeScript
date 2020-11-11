@@ -58,8 +58,8 @@ Object.defineProperty(window.location,
         "DefaultPort",
         {
             get: function DefaultPort(): boolean {
-                return (this.protocol === "http:" && this.port === 80) ||
-                    (this.protocol === "https:" && this.port === 443);
+                return (this.protocol === "http:" && (this.port === "80" || this.port === String.Empty)) ||
+                    (this.protocol === "https:" && (this.port === "443" || this.port === String.Empty));
             },
             set: () => undefined,
             enumerable: true
